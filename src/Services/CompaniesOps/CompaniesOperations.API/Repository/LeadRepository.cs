@@ -49,7 +49,12 @@ namespace CompaniesOperations.API.Repository
             var returnRaw = _context.Leads
             .Include(l => l.Company)
             .Include(l => l.Managements)
-            .Where(lead => lead.Period == period && lead.AssignedOfficce == officeId && lead.AssignedTo == managerIdentity);
+            .Where(lead => lead.Period == period && lead.AssignedOfficce == officeId);
+
+
+            if(managerIdentity != "ALL"){
+                returnRaw = returnRaw.Where(lead => lead.AssignedTo == managerIdentity);
+            }
 
             if(parentState > 0){
                 returnRaw = returnRaw

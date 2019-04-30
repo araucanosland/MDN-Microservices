@@ -19,6 +19,7 @@ namespace CompaniesOperations.API
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,9 +32,22 @@ namespace CompaniesOperations.API
         {
             //Database Services
             services.AddDbContext<CompaniesOperationsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
-            
+
             //Middleware Services
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost",
+                                        "http://motordenegoios",
+                                        "http://serv-292");
+                });
+            });
+            services.Configure<IISOptions>(options => 
+            {
+                options.ForwardClientCertificate = true;
+            });
 
             //Application Services
             services.AddTransient<ILeadRepository, LeadRepository>();
@@ -62,12 +76,8 @@ namespace CompaniesOperations.API
                 app.UseHsts();
             }
 
-            app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-            );
-            app.UseHttpsRedirection();
+            app.UseCors(MyAllowSpecificOrigins);
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

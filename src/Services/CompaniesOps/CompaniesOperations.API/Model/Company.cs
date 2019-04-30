@@ -43,6 +43,11 @@ namespace CompaniesOperations.API.Model
         /// <value></value>
         public string Address { get; set; }
         /// <summary>
+        /// City of the Company
+        /// </summary>
+        /// <value></value>
+        public string City { get; set; }
+        /// <summary>
         /// Cantidad de Empleados de la empresa
         /// </summary>
         /// <value></value>

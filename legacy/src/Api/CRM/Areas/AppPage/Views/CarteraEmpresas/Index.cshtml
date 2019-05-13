@@ -1,0 +1,404 @@
+﻿@{
+    ViewBag.Title = "Ingreso";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Masked Input [ OPTIONAL ]-->
+<script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+<!--Magic Checkbox [ OPTIONAL ]-->
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Asignación Cartera Empresas</h3>
+                </div>
+
+                <!--Block Styled Form -->
+                <!--===================================================-->
+                <form id="frm-data-ce">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Rut Empresa</label>
+                                    <input type="text" class="form-control es-rut" name="RutEmpresa" id="RutEmpresa" tabindex="1" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nombre Empresa</label>
+                                    <input type="text" class="form-control" readonly="readonly" id="EmpresaNombre" name="EmpresaNombre">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Tipo Ejecutivo</label>
+                                    <select id="slTipoEjecutivo" name="tipoejecutivo" class="form-control">
+                                        <option value="1">Ejecutivo Ventas</option>
+                                        <option value="2">Ejecutivo Empresas y Trabajadores</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Ejecutivo Asignado</label>
+                                    <select class="form-control" id="slEjecutivo" name="EjecutivoAsignado"></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="text-right">
+                                    @*<button class="btn btn-primary" type="button" id="bt-bolver">Volver</button>*@
+                                    <button class="btn btn-success" type="submit" id="bt-guarda-otra">Guardar</button>
+                                    <!--<button class="btn btn-success" type="submit" id="bt-guarda-bolver" tabindex="4">Guardar y Volver</button>-->
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <table id="demo-foo-filtering" class="table table-bordered table-hover toggle-circle" data-page-size="15">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">Rut</th>
+                                    <th data-toggle="true">Empresa</th>
+                                    <th data-toggle="true">Rut Ejecutivo</th>
+                                    <th data-toggle="true">Nombre Ejecutivo</th>
+                                    <th data-toggle="true">Tipo</th>
+                                    <th data-hide="phone">Acción</th>
+                                </tr>
+                            </thead>
+                            <div class="pad-btm">
+                                <div class="row">
+                                    <div class="col-sm-2 text-xs-center">
+
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                    </div>
+                                    <div class="col-sm-3 text-xs-center">
+                                    </div>
+                                    <div class="col-sm-1 text-xs-center">
+                                    </div>
+                                    <div class="col-sm-3 col-sm-offset-1">
+
+                                        <div class="form-group">
+                                            <label class="control-label">Filtro</label>
+                                            <input id="flt_general" type="text" placeholder="Palabra Clave" class="form-control" autocomplete="off">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <tbody id="bdy_datos"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="9">
+                                        <div class="text-right">
+                                            <ul class="pagination"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+
+
+
+
+                        <hr />
+
+
+
+                    </div>
+
+                </form>
+                <!--===================================================-->
+                <!--End Block Styled Form -->
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+@section script{
+
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <!--Bootbox Modals [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootbox/bootbox.min.js"></script>
+    <!--Masked Input [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+
+
+    <script type="text/javascript">
+
+
+        //$(function () {
+        $(document).ready(function () {
+            $('.es-rut').mask('99999999-*');
+            var CodIng = httpGet("ci");
+
+            var cargador = {
+                cargaCE: function (CodIng) {
+
+                    $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/cartera-data", { codIngreso: CodIng }, function (response) {
+
+                        $("#RutEmpresa").val(response.RutEmpresa);
+                        $("#RutEmpresa").mask('99.999.999-*')
+
+                        $("#EmpresaNombre").val(response.NombreEmpresa);
+                        $("#slTipoEjecutivo").val(response.TipoEjectEmpresa);
+                        //$("#slTipoEjecutivo").trigger("change");
+
+                        $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/lista-ejecutivo-cargo", { CodTipo: response.TipoEjectEmpresa }, function (datos) {
+                            $("#slEjecutivo").html("");
+                            $("#slTipoEjecutivo").attr("disabled", true);
+                            $.each(datos, function (i, EjecutivoAsignado) {
+                               
+                                var selected = (EjecutivoAsignado.EjecutivoRut == response.RutEjecutivo)
+
+                                $("#slEjecutivo").append($("<option>").val(EjecutivoAsignado.EjecutivoRut).html(EjecutivoAsignado.EjecutivoNombre).prop("selected", selected));
+                            });
+                        });
+
+                    });
+
+                },
+
+                saveCEI: function (volver) {
+                    var WebIngresoCarteraEmpresa = {
+                        webCodIngreso: (typeof CodIng != "undefined") ? CodIng : 0,
+                        webRutEmpresa: $("#RutEmpresa").val(),
+                        webNombreEmpresa: $("#EmpresaNombre").val(),
+                        webTipoEjecutivo: $("#slTipoEjecutivo").val(),
+                        webRutEjecutivo: $("#slEjecutivo").val(),
+                        webNombreEjecutivo: $("#slEjecutivo option:selected").text()
+
+
+                    }
+
+                    $.SecPostJSON(BASE_URL + "/motor/api/CarteraEmpresas/guardar-cartera-empresa", WebIngresoCarteraEmpresa, function (respuesta) {
+                        if (respuesta.Estado === "OK") {
+                            $.niftyNoty({
+                                type: 'success',
+                                container: 'floating',
+                                html: '<strong>OK</strong> ' + respuesta.Mensaje,
+                                focus: false,
+                                timer: 2000,
+                                onHidden: function () {
+
+                                    if (typeof volver != "undefined") {
+                                        location.href = BASE_URL + "/motor/App/CarteraEmpresas"
+                                    }
+                                }
+                            });
+
+
+                        } else {
+                            $.niftyNoty({
+                                type: 'danger',
+                                container: 'floating',
+                                html: '<strong>Error</strong> ' + respuesta.Mensaje,
+                                //focus: false,
+                                timer: 5000,
+                                onHidden: function () {
+                                    $("#bt-guarda-otra").prop("disabled",false)
+                                }
+                            });
+                        }
+                    });
+                }
+
+
+
+            }
+
+            // Search input
+            $('#flt_general').on('input', function (e) {
+                e.preventDefault();
+                if ($(this).val().length >= 3 || $(this).val().length == 0) {
+                    $('#demo-foo-filtering').footable().trigger('footable_filter', { filter: $(this).val() });
+                }
+            });
+
+           /* $('#frm-data-ce').on("submit", function (e) {
+                if(e.keyCode == 13)
+                {
+                    return false;
+                }
+            })*/
+            $('#frm-data-ce').bootstrapValidator({
+                excluded: [':disabled', ':not(:visible)'],
+                feedbackIcons: [],
+                fields: {
+                    EmpresaRut: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe ingresar un rut'
+                            },
+                            callback: {
+                                message: 'Rut Invalido',
+                                callback: function (value, validator, $field) {
+                                    return $.rut.validar(value);
+                                }
+                            }
+                        }
+                    },
+
+
+                }
+            }).on('success.form.bv', function (e) {
+                e.preventDefault();
+                var $form = $(e.target);
+                cargador.saveCEI(0);
+            });
+
+
+            $("#bt-bolver").on("click", function () {
+                location.href = BASE_URL + "/motor/App/Inicio"
+
+            });
+
+            $("#RutEmpresa").on("keypress", function (e) {
+
+                console.log(e.keyCode)
+                if (e.keyCode == 13) {
+                    $("#slTipoEjecutivo").focus();
+                    return false;
+                }
+            })
+
+            $("#RutEmpresa").on("keyup", function (e) {
+                $('#frm-data-ce').bootstrapValidator('updateStatus', 'EmpresaRut', 'NOT_VALIDATED').bootstrapValidator('validateField', 'EmpresaRut');
+
+                console.log(e.keyCode)
+                if (e.keyCode == 13) {
+                    $("#slTipoEjecutivo").focus();
+                    return false;
+                }
+                
+            })
+            $("#RutEmpresa").on("blur", function () {
+                $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/obtener-nombre", { RutEmpresa: $("#RutEmpresa").val() }, function (respuesta) {
+
+                    $("#EmpresaNombre").val(respuesta.NombreEmpresa);//.text(menus.nombreEjecutivo);
+
+                });
+            });
+
+            if (typeof CodIng != "undefined") {
+                cargador.cargaCE(CodIng);
+            }
+
+
+        })
+        function eliminar(CodIng) {
+            bootbox.confirm({
+                size: "medium",
+                title: "El Registro se borrará definitivamente del sistema",
+                message: "¿desea hacerlo?",
+                buttons: {
+                    confirm: {
+                        label: 'Si, eliminar',
+                        className: 'btn-warning'
+                    },
+                    cancel: {
+                        label: 'No, no estoy seguro/a',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+
+
+                        $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/eliminar-cartera-empresa", { CodIngreso: CodIng }, function (response) {
+                            if (response.Estado == "OK") {
+                                $.niftyNoty({
+                                    type: 'success',
+                                    icon: 'pli-like-2 icon-2x',
+                                    message: 'Registro Eliminad exitosamente',
+                                    container: 'floating',
+                                    timer: 2000,
+                                    onHidden: function () {
+
+                                        if (typeof eliminar != 1) {
+                                            location.href = BASE_URL + "/motor/App/CarteraEmpresas"
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            });
+        }
+        //carga ejecutivo asignado segun tipo
+        $("#slTipoEjecutivo").on("change", function (e) {
+            $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/lista-ejecutivo-cargo", { CodTipo: $("#slTipoEjecutivo").val() }, function (datos) {
+                console.log("Objeto", e)
+                $("#slEjecutivo").html("");
+                $.each(datos, function (i, EjecutivoAsignado) {
+                    $("#slEjecutivo").append($("<option>").val(EjecutivoAsignado.EjecutivoRut).html(EjecutivoAsignado.EjecutivoNombre));
+                });
+
+
+            });
+
+
+        });
+
+        $("#bdy_datos").html("");
+        $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/lista-empresa-ejecutivo", function (menus) {
+            $.each(menus, function (i, e) {
+                $("#bdy_datos")
+                    .append(
+                        $("<tr>")
+                            .append($("<td>").append(e.RutEmpresa))
+                            .append($("<td>").append(e.NombreEmpresa))
+                            .append($("<td>").append(e.RutEjecutivo))
+                            .append($("<td>").append(e.NombreEjecutivo))
+                            .append($("<td>").append(e.TipoEjectEmpresa))
+                            .append($("<td>").append($("<a>").addClass("btn").addClass("btn-danger").append($('<i>').addClass("ion-trash-a")).prop({ "title": "Eliminar", "href": "javascript:eliminar(" + e.IdEmpresaIngreso + ")" })
+                                                    ).append($("<a>").addClass("btn").addClass("btn-primary").addClass("mar-lft").append($('<i>').addClass("ion-edit")).prop({ "title": "Editar", "href": "/motor/App/CarteraEmpresas?ci=" + e.IdEmpresaIngreso }))
+                                    )
+                    );
+            });
+
+
+        });
+        $("#slTipoEjecutivo").trigger("change");
+    </script>
+
+}

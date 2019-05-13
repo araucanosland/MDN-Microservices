@@ -8,9 +8,19 @@
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
+    <PackageReference Include="iTextSharp" Version="5.5.13" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="RestSharp" Version="106.6.9" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\CRM.Business.Data\CRM.Business.Data.csproj" />
+    <ProjectReference Include="..\..\Business\CRM.Business.Entity\CRM.Business.Entity.csproj" />
+    <ProjectReference Include="..\..\Lib\CDK\CDK.csproj" />
+    <ProjectReference Include="..\..\Security\CRM.Security.Data\CRM.Security.Data.csproj" />
+    <ProjectReference Include="..\..\Security\CRM.Security.Entity\CRM.Security.Entity.csproj" />
   </ItemGroup>
 
 </Project>

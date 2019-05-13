@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "CarteraEmpresas";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<link href="~/Assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/fullcalendar/nifty-skin/fullcalendar-nifty.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+
+<h1 id="titulo">Cartera Empresas</h1>
+<div id="page-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel" style="border-radius: 6px;">
+                <div class="panel-heading">
+                    <div class="panel-control" style="float:left;">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#demo-lft-tab-2" aria-expanded="true" id="tab_planificacion" style="font-weight: bold;">Planificación <span id="ncitas" class="pull-right badge badge-danger" style="margin-top: 12px;">0</span></a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="false" id="tab_Empresas" style="font-weight: bold;">Empresas Asignadas</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#tab-prospecciones" aria-expanded="false" id="tab_prospecciones" style="font-weight: bold;">Prospectos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <h3 class="panel-title" style="color:white">.</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div id="demo-lft-tab-2" class="tab-pane fade active in">
+                            @Html.Partial("Carteras/Planificacion")
+                        </div>
+
+                        <div id="demo-lft-tab-1" class="tab-pane fade ">
+                            @Html.Partial("Carteras/EmpresasAsignadas")
+                        </div>
+
+                        <div id="tab-prospecciones" class="tab-pane fade">
+                            @Html.Partial("Carteras/Prospectos")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div id="modal-gestion" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+
+    <script src="~/Assets/plugins/chosen/chosen.jquery.min.js"></script>
+
+    <script src="~/Assets/plugins/fullcalendar/lib/moment.min.js"></script>
+    <script src="~/Assets/plugins/fullcalendar/lib/jquery-ui.custom.min.js"></script>
+    <script src="~/Assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src='~/Assets/plugins/fullcalendar/lang-all.js'></script>
+
+    <script src="~/Assets/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-table/locale/bootstrap-table-es-ES.min.js"></script>
+
+    <script src="~/Assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+    <script src="~/Assets/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script type="text/javascript" src="~/Assets/js.App/src/empresas-carteras.js"></script>
+    <script src="~/Assets/js.App/src/empresas-prospectos.js"></script>
+}
+
+

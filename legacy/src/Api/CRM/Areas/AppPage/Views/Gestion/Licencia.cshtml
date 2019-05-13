@@ -1,0 +1,696 @@
+﻿
+@{
+    ViewBag.Title = "Licencia";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tab-base">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_Recepcion" class="tab-principal">Recepción<span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#demo-lft-tab-2" aria-expanded="false" id="tab_Compin" class="tab-principal">COMPIN<span class="badge badge-purple" style="display:none;">5</span></a>
+                    </li>
+                    @*<li class="">
+        <a data-toggle="tab" href="#demo-lft-tab-3" aria-expanded="false" id="tab_Compin_2" class="tab-principal">Compín 2<span class="badge badge-purple" style="display:none;">5</span></a>
+    </li>*@
+                </ul>
+                <div class="tab-content">
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <form id="fdatos">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione Empresa: </label>
+                                            <select class="lista-empresas" name="slEmpresaOrigen" id="slEmpresaOrigen" data-placeholder="Seleccione Empresa"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha </label>
+                                            <div id="demo-dp-component">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control" id="idfecha_inicio" name="idfecha_inicio" readonly>
+                                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="tree">
+                                        <ul>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">N° Total LM Recibidas</label>
+                                                            <input class="form-control" id="LM_Recibidas" type="text" name="LM_Recibidas">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul>
+                                                    <li>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">N° LM Recepcionadas</label>
+                                                                    <input class="form-control" type="text" id="LM_Recepcion" name="LM_Recepcion">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ul>
+                                                            <li>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">N° LM Ingresadas</label>
+                                                                            <input class="form-control" type="text" id="LM_Digitadas" name="LM_Digitadas">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">N° LM No Ingresadas</label>
+                                                                            <input class="form-control" type="text" id="LM_No_Digitadas" name="LM_No_Digitadas">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">N° LM Devueltas</label>
+                                                                    <input class="form-control" type="text" id="LM_No_Recepcion" name="LM_No_Recepcion">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel-footer text-right">
+                                    <button class="btn btn-success" type="submit" id="btGuardar">Guardar</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div id="demo-lft-tab-2" class="tab-pane fade">
+                        <div class="panel-body">
+                            <form id="fdatosCompin">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha </label>
+                                            <div id="demo-dp-component-compin">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control" id="idfechaenvioCompin" name="idfechaenvioCompin" readonly>
+                                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label">N° Licencia Enviadas</label>
+                                            <input class="form-control" type="text" id="LM_Enviadas" name="LM_Enviadas">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                            
+                                            <button class="btn btn-success" style="margin-top: 23px !important;" type="submit" id="btGuardarCompin">Guardar</button>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    @*<div id="demo-lft-tab-3" class="tab-pane fade">
+                        <div class="panel-body">
+                            <form id="fdatosCompin">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha </label>
+                                            <div id="demo-dp-component-compin">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control" id="idfechaenvioCompin2" name="idfechaenvioCompin2" readonly>
+                                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label">N° Licencia Enviadas</label>
+                                            <input class="form-control" type="text" id="LM_Enviadasxxx" name="LM_Enviadasxxx">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label">N° LM Recepcionadas</label>
+                                            <input class="form-control" type="text" id="LM_Enviadasxxxxx" name="LM_Enviadasxxxxx">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label">N° LM Procesadas</label>
+                                            <input class="form-control" type="text" id="LM_Enviadasxxxxxxxxx" name="LM_Enviadasxxxxxxxxx">
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
+                                <div class="panel-footer text-right">
+                                    <button class="btn btn-success" type="submit" id="btGuardarCompin2">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div> *@
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+<style>
+
+
+.tree ul {
+	padding-top: 20px; position: relative;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.tree li {
+	float: left; text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 20px 20px 5px 13px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before, .tree li::after{
+	content: '';
+	position: absolute; top: 0; right: 50%;
+	border-top: 1px solid #ccc;
+	width: 50%; 
+    height: 20px;
+}
+.tree li::after{
+	right: auto; left: 50%;
+	border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+	display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child{ padding-top: 0;}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after{
+	border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before{
+	border-right: 1px solid #ccc;
+	border-radius: 0 5px 0 0;
+	-webkit-border-radius: 0 5px 0 0;
+	-moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+	border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before{
+	content: '';
+	position: absolute; 
+    top: 0; 
+    left: 50%;
+	border-left: 1px solid #ccc;
+	width: 0; 
+    height: 20px;
+}
+
+
+
+.tree li div.row{
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	text-decoration: none;
+	
+	font-size: 11px;
+	display: inline-block;
+	
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+
+        </style>
+
+
+    </div>
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/Assets/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Assets/plugins/chosen/chosen.jquery.min.js"></script>
+
+
+    <script>
+
+        var cargador = {
+            CargarRecepcionLicencia: function (parametros) {
+                
+                $.SecGetJSON(BASE_URL + "/motor/api/Gestion/obtener-recepcion-licencia", parametros, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+
+                        $("#LM_Recibidas").val(respuesta.Objeto.LMRecibida)
+                        $("#LM_Digitadas").val(respuesta.Objeto.LMDigitada)
+                        $("#LM_No_Digitadas").val(respuesta.Objeto.LMNoDigitada)
+                        $("#LM_No_Recepcion").val(respuesta.Objeto.LMNoRecepcionada)
+                        $("#LM_Recepcion").val(respuesta.Objeto.LMRecepcionada)
+                    }
+                    
+                });
+            },
+            CargarRecepcionLicenciaCompin: function (parametros) {
+
+                $.SecGetJSON(BASE_URL + "/motor/api/Gestion/obtener-recepcion-licencia-compin", parametros, function (respuesta) {
+                    if (respuesta.Estado === "OK") {
+                        $("#LM_Enviadas").val(respuesta.Objeto.LMEnviado)
+                    }
+                });
+            },
+        }
+
+        $(document).ready(function () {
+
+
+            //Solo Agente ve Compin
+            if (getCookie("Cargo") !== "Agente") {
+                $("#tab_Compin").hide();
+            }
+            var d = new Date();
+            var fechaHoy = d.getDate().toString().paddingLeft("00") + '-' + (d.getMonth() + 1).toString().paddingLeft("00") + '-' + d.getFullYear().toString()
+            $("#idfecha_inicio").val(fechaHoy)
+            $("#idfechaenvioCompin").val(fechaHoy)
+            //$("#idfechaenvioCompin2").val(fechaHoy)
+
+            
+
+            $('.lista-empresas').chosen({ width: '100%', no_results_text: "No se han encontrado resultados" }).on("change", function (e) {
+                
+                if(($("#idfecha_inicio").val().length > 0) && ($(e.currentTarget).find(":selected").val().length > 0 ))
+                {
+                    var parametros = {
+                        Fecha: $("#idfecha_inicio").val(),
+                        RutEmpresa: $(e.currentTarget).find(":selected").val()
+                    };
+                    cargador.CargarRecepcionLicencia(parametros);
+                }
+            });
+
+            /*$('#demo-dp-component .input-group.date').datepicker(
+                    { autoclose: true, format: 'dd-mm-yyyy', language: "es", daysOfWeekDisabled: [6, 0], todayHighlight: true }
+             ).on('changeDate', function (e) {
+                 $('#fdatos').bootstrapValidator('updateStatus', 'idfecha_inicio', 'NOT_VALIDATED').bootstrapValidator('validateField', 'idfecha_inicio');
+
+                 if (($("#idfecha_inicio").val().length > 0) && ($("#slEmpresaOrigen").find(":selected").val().length > 0)) {
+                     var parametros = {
+                         Fecha: $("#idfecha_inicio").val(),
+                         RutEmpresa: $("#slEmpresaOrigen").find(":selected").val()
+                     };
+                     cargador.CargarRecepcionLicencia(parametros);
+                 }
+
+             });*/
+
+            /*$('#demo-dp-component-compin .input-group.date').datepicker(
+                 { autoclose: true, format: 'dd-mm-yyyy', language: "es", daysOfWeekDisabled: [6, 0], todayHighlight: true }
+             ).on('changeDate', function (e) {
+                 $('#fdatosCompin').bootstrapValidator('updateStatus', 'idfechaenvioCompin', 'NOT_VALIDATED').bootstrapValidator('validateField', 'idfechaenvioCompin');
+
+                 var parametros = {
+                     Fecha: $("#idfechaenvioCompin").val(),
+                 };
+                 cargador.CargarRecepcionLicenciaCompin(parametros);
+
+             });*/
+
+            $("#LM_Recepcion").on("keyup", function () {
+
+                try {
+                    var resta = parseInt($("#LM_Recibidas").val()) - parseInt($(this).val())
+                    var final = resta < 0 || isNaN(resta) ? 0 : resta;
+                    $("#LM_No_Recepcion").val(final)
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_No_Recepcion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_No_Recepcion');
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_Recibidas', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_Recibidas');
+                    
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+
+            $("#LM_No_Recepcion").on("keyup", function () {
+
+                try {
+                    var resta = parseInt($("#LM_Recibidas").val()) - parseInt($(this).val())
+                    var final = resta < 0 || isNaN(resta) ? 0 : resta;
+                    $("#LM_Recepcion").val(final);
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_Recepcion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_Recepcion');
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_Recibidas', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_Recibidas');
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+
+            $("#LM_Digitadas").on("keyup", function () {
+
+                try {
+                    var resta = parseInt($("#LM_Recepcion").val()) - parseInt($(this).val())
+                    var final = resta < 0 || isNaN(resta) ? 0 : resta;
+                    $("#LM_No_Digitadas").val(final)
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_No_Digitadas', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_No_Digitadas');
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_Recepcion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_Recepcion');
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+            
+            $("#LM_No_Digitadas").on("keyup", function () {
+
+                try {
+                    var resta = parseInt($("#LM_Recepcion").val()) - parseInt($(this).val())
+                    var final = resta < 0 || isNaN(resta) ? 0 : resta;
+                    $("#LM_Digitadas").val(final)
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_Digitadas', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_Digitadas');
+                    $('#fdatos').bootstrapValidator('updateStatus', 'LM_Recepcion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'LM_Recepcion');
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+
+            $.SecGetJSON(BASE_URL + "/motor/api/Gestion/listar-empresa-licencia", function (respuesta) {
+
+                $(".lista-empresas").html("");
+                $(".lista-empresas").append($("<option>").val(""));
+                $.each(respuesta, function (i, e) {
+                    //Llenar los origenes solo que tengan cantidad > 0
+
+                    $("#slEmpresaOrigen").append($("<option>").val(e.EmpresaRut).html(e.EmpresaRutDv + " " + e.EmpresaNombre));
+
+                });
+
+                $(".lista-empresas").trigger("chosen:updated");
+
+            });
+
+
+
+            $('#fdatos').bootstrapValidator({
+                excluded: [':disabled'],
+                fields: {
+                    slEmpresaOrigen: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar una empresa'
+                            }
+                        }
+                    },
+                    idfecha_inicio: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar una fecha de inicio'
+                            }
+                        }
+                    },
+                    LM_Recibidas: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Nro. de LM Recibidas no debe ser vacío.'
+                            },
+                            digits: {
+                                message: 'El valor debe ser un digito'
+                            },
+                            callback: {
+                                message: 'La suma de los hijos debe ser igual al padre',
+                                callback: function (value, validator, $field) {
+                                    var total = parseInt($("#LM_Recepcion").val()) + parseInt($("#LM_No_Recepcion").val())
+                                    return parseInt(value) === total;
+                                }
+                            }
+                        }
+                    },
+                    LM_Digitadas: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Nro. de LM Digitadas no debe ser vacío.'
+                            },
+                            digits: {
+                                message: 'El valor debe ser un digito'
+                            },
+                            lessThan: {
+                                value: function () { return $("#LM_Recepcion").val(); },
+                                message: 'El valor no puede ser mayor al total recivido'
+                            }
+                        }
+                    },
+                    LM_No_Digitadas: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Nro. de LM No Digitadas no debe ser vacío.'
+                            },
+                            digits: {
+                                message: 'El valor debe ser un digito'
+                            },
+                            lessThan: {
+                                value: function () { return $("#LM_Recepcion").val(); },
+                                message: 'El valor no puede ser mayor al total recivido'
+                            }
+                        }
+                    },
+                    LM_No_Recepcion: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Nro. de LM No Recepcionadas no debe ser vacío.'
+                            },
+                            digits: {
+                                message: 'El valor debe ser un digito'
+                            },
+                            lessThan: {
+                                value: function () { return $("#LM_Recibidas").val(); },
+                                message: 'El valor no puede ser mayor al total recivido'
+                            }
+                        }
+                    },
+                    LM_Recepcion: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Nro. de LM Recepcionadas no debe ser vacío.'
+                            },
+                            digits: {
+                                message: 'El valor debe ser un digito'
+                            },
+                            lessThan: {
+                                value: function () { return $("#LM_Recibidas").val(); },
+                                message: 'El valor no puede ser mayor al total recivido'
+                            },
+                            callback: {
+                                message: 'La suma de los hijos debe ser igual al padre',
+                                callback: function (value, validator, $field) {
+                                    var total = parseInt($("#LM_Digitadas").val()) + parseInt($("#LM_No_Digitadas").val())
+                                    return parseInt(value) === total;
+                                }
+                            }
+                        }
+                    },
+                }
+            }).on('success.form.bv', function (e) {
+                e.preventDefault();
+                var $form = $(e.target);
+
+                var webDato = {
+                    wRutEmpresa: $("#slEmpresaOrigen").val(),
+                    wFechaRecepcion: $("#idfecha_inicio").val(),
+                    wLMRecibida: $("#LM_Recibidas").val(),
+                    wLMDigitada: $("#LM_Digitadas").val(),
+                    wLMNoDigitada: $("#LM_No_Digitadas").val(),
+                    wLMNoRecepcion: $("#LM_No_Recepcion").val(),
+                    wCodOficina: getCookie("Oficina"),
+                    wLMRecepcionada: $("#LM_Recepcion").val()
+                };
+
+                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-recepcion-licencia", webDato, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+                        $.niftyNoty({
+                            type: 'success',
+                            container: 'floating',
+                            html: '<strong>OK</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000
+                        });
+
+                        /*$("fdatos").trigger("reset");
+                        $("#fdatos")[0].reset();
+                        $(".lista-empresas").trigger("chosen:updated");*/
+
+                        
+                        
+
+                    } else {
+                        $.niftyNoty({
+                            type: 'danger',
+                            container: 'floating',
+                            html: '<strong>Error</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000
+                        });
+                    }
+
+                    $form.bootstrapValidator('resetForm', true);
+                    var d = new Date();
+                    var fechaHoy = d.getDate().toString().paddingLeft("00") + '-' + (d.getMonth() + 1).toString().paddingLeft("00") + '-' + d.getFullYear().toString()
+                    $("#idfecha_inicio").val(fechaHoy)
+                    
+
+                });
+
+            });
+
+
+            $('#fdatosCompin').bootstrapValidator({
+                excluded: [':disabled', ':not(:visible)'],
+                fields: {
+                    idfechaenvioCompin: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar Fecha de envío a compin'
+                            }
+                        }
+                    },
+                    LM_Enviadas: {
+                        validators: {
+                            notEmpty: {
+                                message: 'El valor no puede ser vacío'
+                            },
+                            digits: {
+                                message: 'El valor debe ser un digito'
+                            }
+                        }
+                    },
+                    
+                }
+            }).on('success.form.bv', function (e) {
+                e.preventDefault();
+
+                var webDatoCompin = {
+                    wFechaEnvio: $("#idfechaenvioCompin").val(),
+                    wLMEnviada: $("#LM_Enviadas").val(),
+                    wCodOficina: getCookie("Oficina")
+                };
+
+                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-recepcion-licencia-envio-compin", webDatoCompin, function (respuesta) {
+                    if (respuesta.Estado === "OK") {
+                        $.niftyNoty({
+                            type: 'success',
+                            container: 'floating',
+                            html: '<strong>OK</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000
+                        });
+                        $("fdatosCompin").trigger("reset");
+                        $("#fdatosCompin")[0].reset();
+                    } else {
+                        $.niftyNoty({
+                            type: 'danger',
+                            container: 'floating',
+                            html: '<strong>Error</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000
+                        });
+                    }
+
+                    var d = new Date();
+                    var fechaHoy = d.getDate().toString().paddingLeft("00") + '-' + (d.getMonth() + 1).toString().paddingLeft("00") + '-' + d.getFullYear().toString()
+                    $("#idfechaenvioCompin").val(fechaHoy)
+                });
+
+            });
+
+
+        });
+
+    </script>
+}

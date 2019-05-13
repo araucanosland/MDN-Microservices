@@ -1,0 +1,847 @@
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_preaprobados" class="tab-principal">Comercial <span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#demo-lft-tab-2" aria-expanded="false" id="tab_recuperaciones" class="tab-principal">Normalización <span class="badge badge-purple" style="display:none;">5</span></a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#demo-lft-tab-4" aria-expanded="false" id="tab_segcesantia" class="tab-principal">Seg. Cesantía</a>
+                    </li>
+
+                    <li class="">
+                        <a data-toggle="tab" href="#demo-lft-tab-5" aria-expanded="false" id="tab_derivaciones" class="tab-principal">Derivaciones</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+
+
+                            <div class="pad-btm">
+                                <div class="row">
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Estado</label>
+                                            <select id="demo-foo-filter-status" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Sub Estado</label>
+                                            <select id="demo-foo-filter-statusSub" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-1 text-xs-center" style="width: 130px;">
+                                        <div class="form-group">
+                                            <label class="control-label">Marcas</label>
+                                            <select id="demo-foo-filter-statusMarca" class="form-control">
+                                                <option value="">Seleccione</option>
+                                                <option value="Pensionados">Pensionados Nuevos</option>
+                                                <option value="Cumpleanos">Cumpleaños</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-1 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Prioridad</label>
+                                            <select id="slPrioridad" class="form-control selectpicker">
+                                                <option value="">Todos</option>
+                                                <option data-content='<span class="badge badge-success">1</span>'>1</option>
+                                                <option data-content='<span class="badge badge-yelow">2</span>'>2</option>
+                                                <option data-content='<span class="badge badge-warning">3</span>'>3</option>
+                                                <option data-content='<span class="badge badge-danger">4</span>'>4</option>
+                                                <option data-content='<span class="badge badge-purple">5</span>'>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-1 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Segmento</label>
+                                            <select id="slSegmento" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="Pensionados">Pensionados</option>
+                                                <option value="Privados">Privados</option>
+                                                <option value="Publicos">Públicos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Tipo</label>
+                                            <select id="slTipo" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="NUEVOS">Nuevos</option>
+                                                <option value="PARALELO">Paralelo</option>
+                                                <option value="RENEGOCIACION">Renegociación</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Vencimiento</label>
+                                            <select id="flt_vencidos" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="AYER">Vencidos</option>
+                                                <option value="HOY">Vence Hoy</option>
+                                                <option value="PROX5DIAS">Prox. 5 días</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center" style="width: 358px;">
+                                        <div class="form-group">
+                                            <label class="control-label">Busqueda por Empresa</label>
+                                            <select id="demo-chosen-select" tabindex="2"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <label class="control-label">Rut</label>
+                                        <div class="input-group mar-btm">
+                                            <input id="demo-foo-search" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                            @*<input id="filtrar" type="text" class="form-control" placeholder="Buscar...">*@
+                                            <div class="input-group-btn">
+                                                <button data-target="#demo-lg-modal-search" data-toggle="modal" class="btn btn-primary" type="button">
+                                                    <i class="pli-search-on-cloud"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <button id="button" class="btn btn-default">Filtrar</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>Para visualizar datos debe presionar el botón filtrar.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover toggle-circle" id="tabla_comercial"></table>
+                        </div>
+                    </div>
+                    <div id="demo-lft-tab-2" class="tab-pane fade">
+                        <div class="panel-body">
+
+                            <div class="pad-btm">
+                                <div class="row">
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Causa</label>
+                                            <select id="flt_causa_normalizacion" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Consecuencia</label>
+                                            <select id="flt_consecuencia_normalizacion" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Estado</label>
+                                            <select id="flt_estado_normalizacion" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-1 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Prioridad</label>
+                                            <select id="slPrioridad_normalizacion" class="form-control selectpicker">
+                                                <option value="">Todos</option>
+                                                <option data-content='<span class="badge badge-gray">1</span>'>1</option>
+                                                <option data-content='<span class="badge badge-gray">2</span>'>2</option>
+                                                <option data-content='<span class="badge badge-gray">3</span>'>3</option>
+                                                <option data-content='<span class="badge badge-gray">4</span>'>4</option>
+                                                <option data-content='<span class="badge badge-gray">5</span>'>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Vencimiento</label>
+                                            <select id="flt_vencidos_normalizacion" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="AYER">Vencidos</option>
+                                                <option value="HOY">Vence Hoy</option>
+                                                <option value="PROX5DIAS">Prox. 5 días</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 text-xs-center">
+                                        <label class="control-label">Rut</label>
+                                        <div class="input-group mar-btm">
+                                            <input id="flt_rut_normalizacion" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                            <div class="input-group-btn">
+                                                <button data-target="#demo-lg-modal-search" data-toggle="modal" class="btn btn-primary" type="button">
+                                                    <i class="pli-search-on-cloud"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <button id="btn_recuperaciones" class="btn btn-default">Filtrar</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>Para visualizar datos debe presionar el botón filtrar.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover toggle-circle" id="tabla_recuperaciones"></table>
+                        </div>
+                    </div>
+                    <div id="demo-lft-tab-4" class="tab-pane fade">
+                        <div class="panel-body">
+                            <div class="pad-btm">
+                                <div class="row">
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Estado</label>
+                                            <select id="flt_estado_sc" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Sub Estado</label>
+                                            <select id="flt_sub_estado_sc" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Vencimiento</label>
+                                            <select id="flt_vencidos_sc" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="AYER">Vencidos</option>
+                                                <option value="HOY">Vence Hoy</option>
+                                                <option value="PROX5DIAS">Prox. 5 días</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 text-xs-center">
+                                        <label class="control-label">Rut</label>
+                                        <div class="input-group mar-btm">
+                                            <input id="flt_rut_sc" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                            <div class="input-group-btn">
+                                                <button data-target="#demo-lg-modal-search" data-toggle="modal" class="btn btn-primary" type="button">
+                                                    <i class="pli-search-on-cloud"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <button id="btn_seguro_cesantia" class="btn btn-default">Filtrar</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>Para visualizar datos debe presionar el botón filtrar.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover toggle-circle" id="tabla_seguro_cesantia"></table>
+                        </div>
+                    </div>
+                    <div id="demo-lft-tab-5" class="tab-pane fade">
+                        <div class="panel-body">
+
+                            <div class="pad-btm">
+                                <div class="row">
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Estado</label>
+                                            <select id="demo-foo-filter-statusDR" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Sub Estado</label>
+                                            <select id="demo-foo-filter-statusSubDR" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Prioridad</label>
+                                            <select id="slPrioridadDR" class="form-control selectpicker">
+                                                <option value="">Todos</option>
+                                                <option data-content='<span class="badge badge-success">1</span>'>1</option>
+                                                <option data-content='<span class="badge badge-yelow">2</span>'>2</option>
+                                                <option data-content='<span class="badge badge-warning">3</span>'>3</option>
+                                                <option data-content='<span class="badge badge-danger">4</span>'>4</option>
+                                                <option data-content='<span class="badge badge-purple">5</span>'>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-1 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Segmento</label>
+                                            <select id="slSegmentoDR" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="Pensionados">Pensionados</option>
+                                                <option value="Privados">Privados</option>
+                                                <option value="Publicos">Públicos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Tipo</label>
+                                            <select id="slTipoDR" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="NUEVOS">Nuevos</option>
+                                                <option value="PARALELO">Paralelo</option>
+                                                <option value="RENEGOCIACION">Renegociación</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Vencimiento</label>
+                                            <select id="flt_vencidos_dr" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="AYER">Vencidos</option>
+                                                <option value="HOY">Vence Hoy</option>
+                                                <option value="PROX5DIAS">Prox. 5 días</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 text-xs-center">
+                                        <label class="control-label">Rut</label>
+                                        <input id="demo-foo-searchDR" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <button id="btn_derivaciones" class="btn btn-default">Filtrar</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>Para visualizar datos debe presionar el botón filtrar.</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered table-hover toggle-circle" id="tabla_derivaciones"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Large Bootstrap Modal-->
+        <!--===================================================-->
+        <div id="demo-lg-modal-search" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                        <h4 class="modal-title" id="myLargeModalLabel-search">Buscar Afiliado</h4>
+                    </div>
+                    <div class="modal-body" id="bdy_busqueda">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <label class="control-label">Rut Afiliado</label>
+                                    <input class="form-control" id="afi_rut_busc" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal footer-->
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                        <button class="btn btn-primary" id="btn_buscar_otr" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--===================================================-->
+        <!--End Large Bootstrap Modal-->
+
+
+        <div id="mdl_data" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                        <h4 class="modal-title" id="myLargeModalLabel">Gestión</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="tab-base" id="MDL_Primario" style="margin-bottom: 0px !important;">
+                            <!--Nav Tabs-->
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab-gestion-1" id="tab_contacti" aria-expanded="true">Contacto</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#tab-gestion-2" aria-expanded="false">Historial de Gestión</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#tab-gestion-3" aria-expanded="false">Contactabilidad</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#tab-gestion-4" aria-expanded="false">Filtros</a>
+                                </li>
+                            </ul>
+
+                            <!--Tabs Content-->
+                            <div class="tab-content" style="box-shadow: 0 0 0 !important;">
+                                <div id="tab-gestion-1" class="tab-pane fade active in">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label class="control-label">Rut</label>
+                                                    <input class="form-control" id="afi_rut" type="text" value="17.024.783-1" readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label class="control-label">Nombres</label>
+                                                    <input class="form-control" id="afi_nombres" type="text" value="Carlos Antonio Pradenas Pérez" readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label class="control-label segmento_texto">Segmento</label>
+                                                    <input class="form-control" id="afi_segmento" type="text" value="Privados" readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Oficina Asignación</label>
+                                                    <input class="form-control" id="OficinaAsig" type="text" value="OficinaAsig" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label" id="labelrutempresa">Rut Empresa</label>
+                                                    <input class="form-control" id="afi_empresa_rut" type="text" value="99.999.999-9" readonly="readonly">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6" id="morf_cnvs">
+                                                <div class="form-group">
+                                                    <label class="control-label" id="labelempresa">Empresa</label>
+                                                    <input class="form-control" type="text" id="afi_empresa_nombre" value="La Araucana C.C.A.F." readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group has-success">
+                                                    <label class="control-label" id="morfeable_monto">Monto Pre Aprobado</label>
+                                                    <div class="input-group mar-btm">
+                                                        <span class="input-group-addon"><i class="demo-pli-wallet-2"></i></span>
+                                                        <input class="form-control text-lg-right" id="afi_preaprobado" type="text" value="4.300.000" readonly="readonly">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="display:none;">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Emails</label>
+                                                    <button class="btn btn-xs btn-rounded btn-default" type="button" data-clipboard-action="copy" id="btn_copiar">copiar seleccionado</button>
+                                                    <div class="input-group mar-btm multicontrol-mail">
+                                                        <div class="input-group-btn">
+                                                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="height: 34px; margin-right:0px;">
+                                                                <i class="pli-mail-2"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="forma-uno-mail"><a href="#" id="correos_Malo">Marcar como Malo</a></li>
+                                                                <li class="divider desaparecible-mail"></li>
+                                                                <li class="forma-dos-mail"><a href="#" id="correos_Nuevo">Agregar Nuevo</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <select class="form-control" id="afi_correos" readonly="readonly"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Celulares</label>
+                                                    <div class="input-group mar-btm multicontrol-cel">
+                                                        <div class="input-group-btn">
+                                                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="height: 34px; margin-right:0px;">
+                                                                <i class="pli-smartphone-3"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="forma-uno-cel"><a href="#" id="celulares_Malo">Marcar como Malo</a></li>
+                                                                <li class="divider desaparecible-cel"></li>
+                                                                <li class="forma-dos-cel"><a href="#" id="celulares_Nuevo">Agregar Nuevo</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <select class="form-control" id="afi_celulares" readonly="readonly"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div style="display:none;" class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Telefonos</label>
+                                                    <div class="input-group mar-btm multicontrol">
+
+                                                        <div class="input-group-btn">
+                                                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="height: 34px; margin-right:0px;">
+                                                                <i class="pli-phone-2"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="forma-uno"><a href="#" id="telefonos_Malo">Marcar como Malo</a></li>
+                                                                <li class="divider desaparecible"></li>
+                                                                <li class="forma-dos"><a href="#" id="telefonos_Nuevo">Agregar Nuevo</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <select class="form-control" id="afi_telefonos" readonly="readonly"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Oficina Preferencia</label>
+                                                    <div class="input-group mar-btm">
+
+                                                        <select class="form-control" id="afi_oficina_preferencia" readonly="readonly"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Horario Preferencia</label>
+                                                    <div class="input-group mar-btm">
+                                                        <select class="form-control" id="afi_horario_preferencia" readonly="readonly">
+                                                            <option value="">Seleccione</option>
+                                                            <optgroup label="Generales">
+                                                                <option>Durante la Mañana</option>
+                                                                <option>Durante la Tarde</option>
+                                                                <option>Cualquier Horario</option>
+                                                            </optgroup>
+                                                            <optgroup label="Especificas">
+                                                                <option>09:00-11:00</option>
+                                                                <option>11:00-13:00</option>
+                                                                <option>13:00-15:00</option>
+                                                                <option>15:00-17:00</option>
+                                                                <option>17:00-19:00</option>
+                                                            </optgroup>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row charlyNTF" style="display:none;">
+                                            <div class="col-sm-12 charlyNTFContainer">
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="tab-gestion-2" class="tab-pane fade">
+                                    <div class="list-group" id="gestiones_realizadas" style="min-height:290px;">
+                                    </div>
+                                </div>
+                                <div id="tab-gestion-3" class="tab-pane fade">
+                                    <div class="row">
+                                        <button type="button" id="btn-add-contac" class="btn btn-primary btn-xs">+</button>
+                                    </div>
+                                    <div class="mar-btm" style="display: none;" id="formulario-contac">
+                                        <form id="form-registro-contacto" action="#" method="post">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="btn-group bootstrap-select">
+                                                            <label class="control-label">Tipo de Contacto</label>
+                                                            <select class="selectpicker" id="cbtippContac" name="cbtippContac">
+                                                                <option value="">Seleccione..</option>
+                                                                <option value="1">Celular</option>
+                                                                <option value="2">Teléfono</option>
+                                                                <option value="3">Mail</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="btn-group bootstrap-select">
+                                                            <label class="control-label">Clasificación de Contacto</label>
+                                                            <select class="selectpicker" id="cbClasificacionConctac" name="cbClasificacionConctac">
+                                                                <option value="">Seleccione..</option>
+                                                                <option value="1">Personal</option>
+                                                                <option value="2">Comercial</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Datos de Contacto</label>
+                                                        <input class="form-control" id="afi_NewContacto" type="text" value="" maxlength="150" name="afi_NewContacto">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <button class="btn btn-primary" id="btGuardaContacto" type="submit">Guardar Contacto</button>
+                                            
+                                        </form>
+                                    </div>
+                                    
+                                    <div class="row">
+                                                                                
+                                        
+                                        <table class="table table-hover table-vcenter" style="font-size: 11px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Gestión</th>
+                                                    <th>Datos Contacto</th>
+                                                    <th>Tipo contacto</th>
+                                                    <th>Ultimo Contacto Valido</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bdy_datos_contactos"></tbody>
+                                        </table>
+                                    </div>
+
+                                    
+
+                                </div>
+                                <div id="tab-gestion-4" class="tab-pane fade">
+                                    <div class="table-responsive" style="overflow:scroll; height:350px;">
+                                        <table class="table table-striped">
+                                            <tbody id="letable"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal footer-->
+                    <div class="modal-footer" id="mensahes-must">
+                        <form id="datos-gestion" action="#" method="post" style="display:none;">
+                            <div class="row esconder" style="text-align: left;">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Estado</label>
+                                        <select class="form-control" id="ges_estado" name="ges_estado">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Sub Estado</label>
+                                        <select class="form-control" id="ges_subestado" name="ges_subestado" disabled="disabled">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" id="fpg">
+                                        <label class="control-label">Fecha Próxima Gestión</label>
+                                        <div id="demo-dp-component">
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control" id="ges_prox_gestion" name="ges_prox_gestion">
+                                                <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row esconder" style="text-align: left;">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Comentarios</label>
+                                        <textarea placeholder="Comentarios" rows="3" class="form-control" id="ges_comentarios" name="ges_comentarios"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="ges_id_asignacion" name="ges_id_asignacion" value="" />
+
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                            <button class="btn btn-primary esconder" id="btn_savear" type="submit">Guardar</button>
+                        </form>
+                        <form id="datos-gestion_normalizacion" action="#" method="post" style="display:none;">
+                            <div class="row esconder" style="text-align: left;">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Causa basal</label>
+                                        <select class="form-control" id="ges_causa_basal_normalizacion" name="ges_causa_basal_normalizacion">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Consecuencia</label>
+                                        <select class="form-control" id="ges_consecuencia_normalizacion" name="ges_consecuencia_normalizacion">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Estado</label>
+                                        <select class="form-control" id="ges_estado_normalizacion" name="ges_estado_normalizacion">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group" id="fpg_normalizacion">
+                                        <label class="control-label">Fecha Próxima Gestión</label>
+                                        <div id="demo-dp-component_normalizacion">
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control" id="ges_prox_gestion_normalizacion" name="ges_prox_gestion_normalizacion">
+                                                <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row esconder" style="text-align: left;">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Comentarios</label>
+                                        <textarea placeholder="Comentarios" rows="3" class="form-control" id="ges_comentarios_normalizacion" name="ges_comentarios_normalizacion"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="ges_id_asignacion_normalizacion" name="ges_id_asignacion_normalizacion" value="" />
+
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                            <button class="btn btn-primary esconder" id="btn_savear_normalizacion" type="submit">Guardar</button>
+                        </form>
+                        <form id="datos-gestion-sc" action="#" method="post" style="display:none;">
+                            <div class="row esconder" style="text-align: left;">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Estado</label>
+                                        <select class="form-control" id="ges_estadoSC" name="ges_estadoSC">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Sub Estado</label>
+                                        <select class="form-control" id="ges_subestadoSC" name="ges_subestadoSC" disabled="disabled">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" id="fpgSC">
+                                        <label class="control-label">Fecha Próxima Gestión</label>
+                                        <div id="demo-dp-componentSC">
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control" id="ges_prox_gestionSC" name="ges_prox_gestionSC">
+                                                <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row esconder" style="text-align: left;">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Comentarios</label>
+                                        <textarea placeholder="Comentarios" rows="3" class="form-control" id="ges_comentariosSC" name="ges_comentariosSC"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="ges_id_asignacionSC" name="ges_id_asignacionSC" value="" />
+
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                            <button class="btn btn-primary esconder" id="btn_savear_sc" type="submit">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="PrincipalTabActivo" value="1" />
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+@section script{
+    <script src="~/Assets/js.App/gestion.min.js?g=@Guid.NewGuid().ToString()"></script>
+}

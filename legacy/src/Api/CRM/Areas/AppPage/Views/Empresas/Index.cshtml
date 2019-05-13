@@ -1,0 +1,305 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Bootstrap Table [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_fideliacion" class="tab-principal">Fidelización</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#lft-tab-2" aria-expanded="false" id="tab_retencion" class="tab-principal">Retención</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#lft-tab-3" aria-expanded="false" id="tab_prospeccion" class="tab-principal">Prospección</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="mar-btm">
+                                        <a href="/motor/App/Empresas/Nuevo?t=F" class="btn btn-primary">
+                                            <i class="ion-plus-circled"></i>
+                                            Nueva
+                                        </a>
+
+                                    </div>
+
+                                    <table class="table" id="tabla_fidelizacion"></table>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div id="lft-tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="mar-btm">
+                                        <a href="/motor/App/Empresas/Nuevo?t=R" class="btn btn-primary">
+                                            <i class="ion-plus-circled"></i>
+                                            Nueva
+                                        </a>
+
+                                    </div>
+
+
+                                    <table class="table" id="tabla_retencion"></table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div id="lft-tab-3" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="mar-btm">
+                                        <a href="/motor/App/Empresas/Nuevo?t=P" class="btn btn-primary">
+                                            <i class="ion-plus-circled"></i>
+                                            Nuevo
+                                        </a>
+
+                                    </div>
+
+
+                                    <table class="table" id="tabla_prospeccion"></table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+
+@section script{
+    
+<!--Bootstrap Table [ OPTIONAL ]-->
+<script src="~/Assets/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="~/Assets/plugins/bootstrap-table/locale/bootstrap-table-es-ES.min.js"></script>
+    
+
+    <script>
+        const pestana = sessionStorage.getItem('PESTANA_ACTIVA');
+        if (pestana != null)
+        {
+            switch (pestana)
+            {
+                case 'FIDELIZACION':
+                    $('#tab_fideliacion').tab('show');
+                    break;
+                case 'RETENCION':
+                    $('#tab_retencion').tab('show');
+                    break;
+                case 'PROSPECCION':
+                    $('#tab_prospeccion').tab('show');
+                    break;
+            }
+        }
+            
+
+
+        $("#tab_fideliacion").on("shown.bs.tab", function () {
+            sessionStorage.setItem('PESTANA_ACTIVA', 'FIDELIZACION');
+        });
+
+        $("#tab_retencion").on("shown.bs.tab", function () {
+            sessionStorage.setItem('PESTANA_ACTIVA', 'RETENCION');
+        });
+
+        $("#tab_prospeccion").on("shown.bs.tab", function () {
+            sessionStorage.setItem('PESTANA_ACTIVA', 'PROSPECCION');
+        });
+
+        
+
+        $("#tabla_fidelizacion").bootstrapTable({
+            url: "/Motor/api/Empresas/listar-fidelizacion",
+            pagination: true,
+            sidePagination: 'server',
+            locale: 'es-ES',
+            striped: true,
+            pagination: true,
+            pageSize: 30,
+            pageList: [30, 60, 90],
+            search: true,
+            showColumns: false,
+            showRefresh: false,
+            columns: [
+                {
+                    field: 'Empresa.emp_rut',
+                    title: 'Rut',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        var dondeir = BASE_URL + "/motor/App/Empresas/Editar?t=F&id=" + row.Fidelizacion.fide_id;
+                        return '<a href="' + dondeir + '">' + value + '</a>';
+                    }
+                },
+                {
+                    field: 'Empresa.emp_nombre',
+                    title: 'Nombre',
+                    sortable: true
+                },
+                {
+                    field: 'Empresa.emp_holding',
+                    title: 'Holding',
+                    sortable: true
+                },
+                {
+                    field: 'Representante.rep_nombre',
+                    title: 'Representante',
+                    sortable: true
+                },
+                {
+                    field: 'Fidelizacion.fide_estamento',
+                    title: 'Estamento',
+                    sortable: true
+                },
+                {
+                    field: 'Fidelizacion.fide_fecha_calendario',
+                    title: 'Fecha Ingreso',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return value.toFecha();
+                    }
+                },
+            ]
+        })
+
+        $("#tabla_retencion").bootstrapTable({
+            url: "/Motor/api/Empresas/listar-retencion",
+            pagination: true,
+            sidePagination: 'server',
+            locale: 'es-ES',
+            striped: true,
+            pagination: true,
+            pageSize: 30,
+            pageList: [30, 60, 90],
+            search: true,
+            showColumns: false,
+            showRefresh: false,
+            columns: [
+                {
+                    field: 'Empresa.emp_rut',
+                    title: 'Rut',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        var dondeir = BASE_URL + "/motor/App/Empresas/Editar?t=R&id=" + row.Retencion.ret_id;
+                        return '<a href="' + dondeir + '">' + value + '</a>';
+                    }
+                },
+                {
+                    field: 'Empresa.emp_nombre',
+                    title: 'Nombre',
+                    sortable: true
+                },
+                {
+                    field: 'Empresa.emp_holding',
+                    title: 'Holding',
+                    sortable: true
+                },
+                {
+                    field: 'Retencion.ret_estamento',
+                    title: 'Estamento',
+                    sortable: true
+                },
+                {
+                    field: 'Retencion.ret_caja_destino',
+                    title: 'Caja Destino',
+                    sortable: true
+                },
+            ]
+        })
+
+        $("#tabla_prospeccion").bootstrapTable({
+            url: "/Motor/api/Empresas/listar-prospeccion",
+            pagination: true,
+            sidePagination: 'server',
+            locale: 'es-ES',
+            striped: true,
+            pagination: true,
+            pageSize: 30,
+            pageList: [30, 60, 90],
+            search: true,
+            showColumns: false,
+            showRefresh: false,
+            columns: [
+                {
+                    field: 'Empresa.emp_rut',
+                    title: 'Rut',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        var dondeir = BASE_URL + "/motor/App/Empresas/Editar?t=P&id=" + row.Prospeccion.pros_id;
+                        return '<a href="' + dondeir + '">' + value + '</a>';
+                    }
+                },
+                {
+                    field: 'Empresa.emp_nombre',
+                    title: 'Nombre',
+                    sortable: true
+                },
+                {
+                    field: 'Empresa.emp_holding',
+                    title: 'Holding',
+                    sortable: true
+                },
+                {
+                    field: 'Prospeccion.pros_caja_origen',
+                    title: 'Caja Origen',
+                    sortable: true
+                },
+                {
+                    field: 'UltimaGestion.gstp_fecha_accion',
+                    title: 'Fecha Ultima Gestión',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        
+                        return value.toFecha();
+                    }
+                },
+            ]
+        })
+
+
+    </script>
+    
+ }
+

@@ -1,0 +1,297 @@
+﻿<div class="panel">
+    <div class="panel-body">
+        <p class="text-lg text-semibold panel panel-trans text-center" id="lbMenesajeEncuensta" style="display:none;"><i class="pli-like-2 icon-2x"></i> AFILIADO YA REALIZO ENCUESTA....</p>
+        <div id="DivEncusta" style="display:none">
+            <div class="media-block">
+                <div class="media-left" style="white-space:nowrap">
+                    <div class="invoice-logo">
+                        <div class="media-left">
+                            <img src="~/Assets/img/logo_arau.png" style="width: 180px" />
+                        </div>
+                        <br />
+                        <div class="media-body">
+                            <h5 class="h3 mar-no">Enfermedades Crónicas y medicamentos </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="media-body text-right">
+                    <h3 class="h1 text-uppercase text-normal mar-no">ENCUESTA</h3>
+                </div>
+            </div>
+            <hr class="new-section-sm bord-no">
+            <div class="well well-sm" style="border-radius: 7px;">
+                <p class="text-bold text-main mar-no">Señor(a) </p>
+                <p>Caja de Compensación La Araucana, en su constante preocupación por entregar un mejor servicio, está realizando una breve encuesta con el fin de conocer que enfermedades crónicas y medicamente usan sus afiliados para así brindarles más y mejores beneficios.</p>
+            </div>
+            <hr />
+            <div class="row">
+                <p class="text-bold text-main mar-no">
+                    1.	¿Ud. tiene alguna enfermedad crónica?
+                </p> <p style="margin-left: 19px;">
+                    Tales como presión alta, diabetes, colesterol alto, problemas al corazón, problemas respiratorios, depresión u otra enfermedad emocional o mental, sobrepeso u obesidad, cáncer u otra enfermedad de larga duración.
+                </p>
+            </div>
+            <div class="row" style="margin-left: 10px;">
+                <div class="col-md-9">
+                    <div class="radio">
+                        <input id="rbEnfermedadSI" class="magic-radio" type="radio" name="rbEnfermedad" value='SI'>
+                        <label for="rbEnfermedadSI">SI</label>
+                    </div>
+                    <div class="radio">
+                        <input id="rbEnfermedadNO" class="magic-radio" type="radio" name="rbEnfermedad" value='NO'>
+                        <label for="rbEnfermedadNO">NO</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="divContenedor" style="display:none;">
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        2.	Nos puede indicar cuál(es) son las enfermedades  crónicas que Ud. posee?
+                    </p> <p style="margin-left: 19px;">
+                        (Ingrese todas las enfermedades que le indique, con un máximo de 10)
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+
+                    <div class="form-group">
+                        <div class="panel-body">
+                            <label for="selectEnfermedad" class="sr-only">Seleccione enfermedad</label>
+                            <select id="selectEnfermedad" size="3" data-placeholder="Seleccione enfermedad..." multiple tabindex="4"></select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="    margin-top: -20px; margin-left: 14px;">
+                        <div class="col-md-1 mar-btm">
+                            <div class="checkbox">
+                                <input id="ckOtrosEnfermedad" class="magic-checkbox" type="checkbox">
+                                <label for="ckOtrosEnfermedad">Otro</label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 mar-btm">
+                            <input type="text" id="txtOtrosEnfermedad" class="form-control" placeholder="" style="width: 200px;" disabled>
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        3.	Nos puede indicar que medicamento(s) toma para controlar esta(s) enfermedades.
+                    </p> <p style="margin-left: 19px;">
+                        (Ingrese todos los medicamentos que le indique, con un máximo de 15)
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+                    <div class="form-group">
+                        <div class="panel-body">
+                            <label for="selectMedicamentos" class="sr-only">Seleccione medicamentos</label>
+                            <select id="selectMedicamentos" data-placeholder="Seleccione medicamentos..." multiple tabindex="4"></select>
+
+                        </div>
+                    </div>
+                    <div class="row" style="    margin-top: -20px; margin-left: 14px;">
+                        <div class="col-md-1 mar-btm">
+                            <div class="checkbox">
+                                <input id="ckOtrosMedicamentos" class="magic-checkbox" type="checkbox">
+                                <label for="ckOtrosMedicamentos">Otro</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mar-btm">
+                            <input type="text" id="txtOtrosMedicamentos" class="form-control" placeholder="" style="width: 200px;" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        4.	¿Cómo adquiere estos Medicamentos?
+                    </p> <p style="margin-left: 19px;">
+                        (Puede seleccionar más de una opción)
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+                    <div class="col-md-9">
+
+                        <div class="checkbox">
+                            <input id="rbConsultorio" class="magic-checkbox" type="checkbox" name="rbAdMedicamentos" value="Consultorio">
+                            <label for="rbConsultorio">Consultorio</label>
+                        </div>
+
+                        <div class="checkbox">
+                            <input id="rbFarmaciaGES" class="magic-checkbox" type="checkbox" name="rbAdMedicamentos" value="Farmacia por Canasta GES">
+                            <label for="rbFarmaciaGES">En farmacia por Canasta GES</label>
+                        </div>
+
+                        <div class="checkbox">
+                            <input id="rbFarmacia" class="magic-checkbox" type="checkbox" name="rbAdMedicamentos" value="Farmacia">
+                            <label for="rbFarmacia">Farmacia</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        5.	En qué Farmacia adquiere sus medicamentos preferentemente?
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+                    <div class="col-md-9">
+                        <div class="radio">
+                            <input id="rbNoCompra" class="magic-radio" type="radio" name="chkFarmacias" value="Consultorio">
+                            <label for="rbNoCompra">No los compra/Se los dan todos en Consultorio	 </label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbFAhumada" class="magic-radio" type="radio" name="chkFarmacias" value="Farmacias Ahumada">
+                            <label for="rbFAhumada">Farmacias Ahumada</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbCruzVerde" class="magic-radio" type="radio" name="chkFarmacias" value="Cruz Verde">
+                            <label for="rbCruzVerde">Cruz Verde</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbSalco" class="magic-radio" type="radio" name="chkFarmacias" value="Salcobrand">
+                            <label for="rbSalco">Salcobrand</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbDrSimi" class="magic-radio" type="radio" name="chkFarmacias" value="Dr. Simi">
+                            <label for="rbDrSimi">Dr. Simi	</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbPopular" class="magic-radio" type="radio" name="chkFarmacias" value="Farmacia Popular/Comunal">
+                            <label for="rbPopular">Farmacia Popular/Comunal</label>
+                        </div>
+                        <div class="radio">
+
+                            <div class="row">
+                                <div class="col-md-3 mar-btm">
+                                    <input id="rbOtroCual" class="magic-radio" type="radio" name="chkFarmacias" value="Otra">
+                                    <label for="rbOtroCual">Otra, cual? </label>
+                                </div>
+                                <div class="col-md-4 mar-btm">
+                                    <input type="text" id="txtOtroCual" class="form-control" placeholder="" style="width: 200px;" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <h5 class="h3 text-uppercase text-normal mar-no">Variables de segmentación</h5>
+                <hr class="new-section-sm bord-no">
+                @*<div class="row">
+                        <p class="text-bold text-main mar-no">
+                            6.	Ingrese actividad principal del afiliado
+                        </p>
+                    </div>
+                    <div class="row" style="margin-left: 10px;">
+                        <div class="col-md-9">
+                            <div class="radio">
+                                <input id="rbTrabajador" class="magic-radio" type="radio" name="chkActividad" value="Trabajador">
+                                <label for="rbTrabajador">Trabajador</label>
+                            </div>
+                            <div class="radio">
+                                <input id="rbPensionado" class="magic-radio" type="radio" name="chkActividad" value="Pensionado">
+                                <label for="rbPensionado">Pensionado</label>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        6.	Ingrese género del afiliado encuestado
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+                    <div class="col-md-9">
+                        <div class="radio">
+                            <input id="rbMasculino" class="magic-radio" type="radio" name="chkSexo" value="Masculino">
+                            <label for="rbMasculino">Masculino</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbFemenino" class="magic-radio" type="radio" name="chkSexo" value="Femenino">
+                            <label for="rbFemenino">Femenino</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        7.	¿Cuál es su Edad?
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+                    <div class="col-md-9">
+                        <div class="radio">
+                            <input id="rb18-24" class="magic-radio" type="radio" name="chkEdad" value="18-24">
+                            <label for="rb18-24">18-24 años</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rb25-34" class="magic-radio" type="radio" name="chkEdad" value="25-34">
+                            <label for="rb25-34">25-34 años</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rb35-44" class="magic-radio" type="radio" name="chkEdad" value="35-44">
+                            <label for="rb35-44">35-44 años</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rb45-54" class="magic-radio" type="radio" name="chkEdad" value="45-54">
+                            <label for="rb45-54">45-54 años</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rb55-64" class="magic-radio" type="radio" name="chkEdad" value="55-64">
+                            <label for="rb55-64">55-64 años</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rb65-74" class="magic-radio" type="radio" name="chkEdad" value="65-74">
+                            <label for="rb65-74">65-74 años</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rb75" class="magic-radio" type="radio" name="chkEdad" value="75 o mas">
+                            <label for="rb75">75 o mas años</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p class="text-bold text-main mar-no">
+                        8.	¿Cuál es su Régimen de Salud?
+                    </p>
+                </div>
+                <div class="row" style="margin-left: 10px;">
+                    <div class="col-md-9">
+                        <div class="radio">
+                            <input id="rbFonasa" class="magic-radio" type="radio" name="chkPrevison" value="Fonasa">
+                            <label for="rbFonasa">Fonasa</label>
+                        </div>
+                        <div class="radio">
+                            <input id="rbIsapre" class="magic-radio" type="radio" name="chkPrevison" value="Isapre">
+                            <label for="rbIsapre">Isapre</label>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row">
+                        <p class="text-bold text-main mar-no">
+                            10.	Ingrese Región de residencia del afiliado
+                        </p>
+                    </div>
+                    <div class="row" style="margin-left: 10px;">
+                        <div class="panel-body">
+                            <select id="region-encuesta" class="form-control"></select>
+                        </div>
+                    </div>*@
+
+                <hr class="new-section-sm bord-no">
+                <div class="well well-sm" style="border-radius: 7px;">
+                    <p class="text-bold text-main mar-no" id="NomAfiliado"> </p>
+                    <p>Agradecemos su disposición a responder. Toda la información entregada es confidencial y servirá para brindarle un mejor servicio.</p>
+                </div>
+            </div>
+            <hr />
+            <button class="btn btn-success btn-rounded" id="btFinalizar">Finalizar Encuesta</button>
+        </div>
+    </div>
+</div>
+
+

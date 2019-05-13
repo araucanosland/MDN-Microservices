@@ -1,0 +1,483 @@
+﻿@{
+    ViewBag.Title = "Ingreso";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Masked Input [ OPTIONAL ]-->
+<script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+<!--Magic Checkbox [ OPTIONAL ]-->
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+<!--Chosen [ OPTIONAL ]-->
+<link href="~/Assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Listado de Empresas</h3>
+                        </div>
+                        <!--Block Styled Form -->
+                        <!--===================================================-->
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="pad-btm">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label class="control-label">Buscar</label>
+                                                    <input id="flt_general" type="text" placeholder="Rut o Nombre Empresa" class="form-control" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="empresas-total" class="table table-bordered table-hover toggle-circle" data-page-size="15"></table>
+                                </div>
+
+                            </div>
+                            <hr />
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Mis Empresas Asignadas</h3>
+                        </div>
+
+                        <!--Block Styled Form -->
+                        <!--===================================================-->
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="demo-foo-filtering2" class="table table-bordered table-hover toggle-circle" data-page-size="15">
+                                        <thead>
+                                            <tr>
+                                                <th data-hide="phone">Eliminar</th>
+                                                <th data-toggle="true">Rut</th>
+                                                <th data-toggle="true">Empresa</th>
+
+                                            </tr>
+                                        </thead>
+                                        <div class="pad-btm">
+
+                                            <div class="row">
+
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Buscar</label>
+                                                        <input id="flt_general2" type="text" placeholder="Rut o Nombre Empresa" class="form-control" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <tbody id="bdy_datosRecepcion"></tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="9">
+                                                    <div class="text-right">
+                                                        <ul class="pagination"></ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="demo-lg-modal" class="modal fade" tabindex="-1">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                    <h4 class="modal-title" id="myLargeModalLabel"</h4>
+                </div>
+                <!--Modal footer-->
+                <div class="modal-footer" id="mensahes-mustPre">
+                    <form id="datos-empresa" action="#" method="post">
+                        <div class="row" style="text-align: left;">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">N° Trabajadores</label>
+                                    <input type="text" class="form-control solo-numeros" id="NTrabajador" name="NTrabajador">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Ejecutivo de Atencion</label>
+
+                                    <select id="demo-cs-multiselect" name="demo-cs-multiselect" class="form-control" data-placeholder="Seleccionar Ejecutivo" multiple tabindex="4"></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" id="fpg">
+                                    <label class="control-label">Es Holding</label>
+                                    <select class="form-control" id="Holding" name="Holding">
+                                        <option value="">Seleccione</option>
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row esconder" style="text-align: left;">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Comentarios</label>
+                                    <textarea placeholder="Comentarios" rows="3" class="form-control" id="empresa_comentarios" name="empresa_comentarios"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="rutempresa" name="rutempresa" value="" />
+                        <input type="hidden" id="nombreempresa" name="nombreempresa" value="" />
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                        <button class="btn btn-primary esconder" id="btn_save" type="submit">Guardar</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->
+@section script{
+
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Chosen [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/chosen/chosen.jquery.min.js"></script>
+
+
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <!--Bootbox Modals [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootbox/bootbox.min.js"></script>
+    <!--Masked Input [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+
+
+<script src="~/Assets/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="~/Assets/plugins/bootstrap-table/locale/bootstrap-table-es-ES.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script type="text/javascript">
+        //$(function () {
+        $(document).ready(function () {
+            $(".solo-numeros").on({
+                keydown: function (e) {
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                        (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        return;
+                    }
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                },
+                blur: function (event) {
+                    var number = parseInt($(this).val().replace(/\./g, ''));
+                    if (!isNaN(number))
+                        $(this).val(number);
+                }
+            });
+            //$('.es-rut').mask('99999999-*');
+            var CodIng = httpGet("ci");
+            var cargador = {
+                saveCEI: function (volver) {
+                    var WebCarteraEmpresaAdmin = {
+                        CodIngresoEmpresa: (typeof CodIng != "undefined") ? CodIng : 0,
+                        RutEmpresa: $("#rutempresa").val(),
+                        NombreEmpresa: $("#nombreempresa").val(),
+                        nTrabajador: $("#NTrabajador").val(),
+                        esHolding: $("#Holding").val(),
+                        Comentarios: $("#empresa_comentarios").val(),
+                        EjecAsignado: []
+
+
+                    }
+
+
+                    $('#demo-cs-multiselect :selected').each(function () {
+                        WebCarteraEmpresaAdmin.EjecAsignado.push($(this).val())
+                    });
+
+                    console.log(WebCarteraEmpresaAdmin);
+
+                    $.SecPostJSON(BASE_URL + "/motor/api/CarteraEmpresas/guardar-cartera-empresa-admin", WebCarteraEmpresaAdmin, function (respuesta) {
+                        if (respuesta.Estado === "OK") {
+                            $.niftyNoty({
+                                type: 'success',
+                                container: 'floating',
+                                html: '<strong>OK</strong> ' + respuesta.Mensaje,
+                                focus: false,
+                                timer: 2000,
+                                onHidden: function () {
+                                        location.href = BASE_URL + "/motor/App/CarteraEmpresas/Admin"
+                                }
+                            });
+                        } else {
+                            $.niftyNoty({
+                                type: 'danger',
+                                container: 'floating',
+                                html: '<strong>Error</strong> ' + respuesta.Mensaje,
+                                //focus: false,
+                                timer: 5000,
+                                onHidden: function () {
+                                    $("#bt-guarda-otra").prop("disabled", false)
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            // Search input
+            $('#flt_general').on('input', function (e) {
+                e.preventDefault();
+                if ($(this).val().length >= 3 || $(this).val().length == 0) {
+                    $('#demo-foo-filtering').footable().trigger('footable_filter', { filter: $(this).val() });
+                }
+            });
+            $('#flt_general2').on('input', function (e) {
+                e.preventDefault();
+                if ($(this).val().length >= 3 || $(this).val().length == 0) {
+                    $('#demo-foo-filtering2').footable().trigger('footable_filter', { filter: $(this).val() });
+                }
+            });
+
+            if (typeof CodIng != "undefined") {
+                cargador.cargaCE(CodIng);
+            }
+
+            $('#demo-lg-modal').on('hidden.bs.modal', function (event) {
+
+                $('#datos-empresa').bootstrapValidator("destroy");
+
+            });
+            $('#demo-lg-modal').on('show.bs.modal', function (event) {
+
+                var link = $(event.relatedTarget); // Button that triggered the modal
+                var RutEmpresa = link.data('rut');
+                var NombreEmpresa = link.data('nombre');
+
+
+                $("#rutempresa").val(RutEmpresa);
+                $("#nombreempresa").val(NombreEmpresa);
+                $("#myLargeModalLabel").html(NombreEmpresa);
+
+                $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/lista-ejecutivo-admin", function (datos) { //{ CodTipo: $("#slTipoEjecutivo").val() }
+                    $("#demo-cs-multiselect").html("");
+                    $.each(datos, function (i, EjecutivoAsignado) {
+                        $("#demo-cs-multiselect").append($("<option>").val(EjecutivoAsignado.EjecutivoRut).html(EjecutivoAsignado.EjecutivoNombre));
+
+                    });
+                    $('#demo-cs-multiselect').chosen({ width: '100%' });
+                });
+
+                $('#datos-empresa').bootstrapValidator({
+                    excluded: [':disabled', ':not(:visible)'],
+                    feedbackIcons: [],
+                    fields: {
+                        NTrabajador: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe ingresar N° Trabajador'
+                                }
+                            }
+                        },
+                        Holding: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Seleccione Holding'
+                                }
+                            }
+                        },
+                        Holding: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Seleccione Holding'
+                                }
+                            }
+                        },
+                        empresa_comentarios: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe ingresar comentarios'
+                                }
+                            }
+                        },
+
+                    }
+                }).on('success.form.bv', function (e) {
+                    e.preventDefault();
+                    var $form = $(e.target);
+
+
+
+
+                    cargador.saveCEI(0);
+                });
+
+
+            });
+
+
+
+
+        })
+        function eliminar(CodIng) {
+            bootbox.confirm({
+                size: "medium",
+                title: "El Registro se borrará definitivamente del sistema",
+                message: "¿desea hacerlo?",
+                buttons: {
+                    confirm: {
+                        label: 'Si, eliminar',
+                        className: 'btn-warning'
+                    },
+                    cancel: {
+                        label: 'No, no estoy seguro/a',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/eliminar-cartera-empresa-admin", { CodIngreso: CodIng }, function (response) {
+                            if (response.Estado == "OK") {
+                                $.niftyNoty({
+                                    type: 'success',
+                                    icon: 'pli-like-2 icon-2x',
+                                    message: 'Registro Eliminad exitosamente',
+                                    container: 'floating',
+                                    timer: 100,
+                                    onHidden: function () {
+
+                                        if (typeof eliminar != 1) {
+                                            location.href = BASE_URL + "/motor/App/CarteraEmpresas/Admin"
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                    }
+                }
+            });
+        }
+
+        $("#demo-cs-multiselect").on("change", function (e) {
+
+        });
+
+
+
+        $('#flt_general').keyup(function () {
+
+            if ($(this).val().length > 2) {
+                $("#empresas-total").bootstrapTable('refresh', {
+                    url: BASE_URL + "/motor/api/CarteraEmpresas/lista-empresa-total",
+                    query: {
+                        search: $('#flt_general').val()
+                    }
+                });
+            }
+            
+        });
+        
+
+        $('#empresas-total').bootstrapTable({
+            url: BASE_URL + "/motor/api/CarteraEmpresas/lista-empresa-total",
+            pagination: true,
+            sidePagination: 'server',
+            ajaxOptions: {
+                headers: {
+                    "Token": getCookie("Token"),
+                    "TokenExpiry": "900",
+                    "Access-Control-Expose-Headers": "Token,TokenExpiry"
+                }
+            },
+            locale: 'es-ES',
+            striped: true,
+            pagination: true,
+            pageSize: 50,
+            pageList: [],
+            search: false,
+            showColumns: false,
+            showRefresh: false,
+            sortName: 'EmpresaNombre',
+            columns: [
+                {
+                    field: 'RutEmpresa',
+                    title: 'Rut Empresa',
+                    sortable: true
+                    
+                },
+                {
+                    field: 'NombreEmpresa',
+                    title: 'Nombre Empresa',
+                    sortable: false
+                    
+                },
+                {
+                    field: 'EmpresaNombre',
+                    title: 'Agregar',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return '<a href="#" class="btn btn-success" data-target="#demo-lg-modal" data-toggle="modal" data-nombre="' + row.NombreEmpresa + '" data-rut="' + row.RutEmpresa + '"><i class="ion-arrow-right-a"></i></a>';
+                    }
+                },
+              
+            ]
+        });
+
+     
+
+
+        $("#bdy_datosRecepcion").html("");
+        $.SecGetJSON(BASE_URL + "/motor/api/CarteraEmpresas/listar-empresa-admin", function (menus) {
+            $.each(menus, function (i, e) {
+                $("#bdy_datosRecepcion")
+                    .append(
+                        $("<tr>")
+                         .append($("<td>").append($("<a>").addClass("btn").addClass("btn-danger").append($('<i>').addClass("ion-trash-a")).prop({ "title": "Eliminar", "href": "javascript:eliminar(" + e.IdSucursalEmpresa + ")" })
+                                                    ).append($("<a>").addClass("btn").addClass("btn-primary").addClass("mar-lft").append($('<i>').addClass("ion-edit")).prop({ "title": "Editar", "href": "/motor/App/CarteraEmpresas?ci=" + e.IdEmpresaIngreso })
+                    ))
+
+                           // .append($("<td>").append($("<a>").addClass("btn").addClass("btn-danger").append($('<i>').addClass("ion-trash-a")).prop({ "title": "Eliminar", "href": "javascript:eliminar(" + e.IdSucursalEmpresa + ")" })))
+                            .append($("<td>").append(e.RutEmpresa))
+                            .append($("<td>").append(e.NombreEmpresa))
+                    );
+            });
+
+        });
+        //$("#demo-cs-multiselect").trigger("change");
+    </script>
+
+}

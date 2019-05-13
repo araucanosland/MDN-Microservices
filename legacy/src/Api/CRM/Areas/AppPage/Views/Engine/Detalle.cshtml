@@ -1,0 +1,1161 @@
+﻿
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="tab-base" style="margin-bottom: 0px !important;">
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-gestion-1" aria-expanded="true">Entidad</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-gestion-2" aria-expanded="false">Historial de Gestión</a>
+                    </li>
+
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-gestion-3" aria-expanded="false">Contactabilidad</a>
+                    </li>
+                    
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content" style="box-shadow: 0 0 0 !important;">
+                    <div id="tab-gestion-1" class="tab-pane fade active in">
+                        <form>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label class="control-label">Rut</label>
+                                        <input class="form-control" id="entidad_rut" type="text" value="17.024.783-1" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <label class="control-label">Nombres</label>
+                                        <input class="form-control" id="entidad_nombres" type="text" value="Carlos Antonio Pradenas Pérez" readonly="readonly">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row" id="rwDinamico">
+
+
+
+                            </div>
+
+
+                            <div class="row" id="rwDescargas" style="display:none;">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Documentos descargables</label>
+                                    <div class="input-group mar-btm">
+                                        <select id="slDocumentoSeleccion" class="form-control">
+                                            <option value="">Seleccione</option>
+                                            <option value="5doc-pendiente">Documentacion Pendiente</option>
+                                            <option value="5disponibles-apago">Disponibles a Pago</option>
+                                        </select>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-mint" type="button" id="btn-descargar-adjunto">Descargar</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+    <div class="row hidden">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Emails</label>
+                <button class="btn btn-xs btn-rounded btn-default" type="button" data-clipboard-action="copy" id="btn_copiar">copiar seleccionado</button>
+                <div class="input-group mar-btm multicontrol-mail">
+                    <div class="input-group-btn">
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="height: 34px; margin-right:0px;">
+                            <i class="pli-mail-2"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="forma-uno-mail"><a href="#" id="correos_Malo">Marcar como Malo</a></li>
+                            <li class="divider desaparecible-mail"></li>
+                            <li class="forma-dos-mail"><a href="#" id="correos_Nuevo">Agregar Nuevo</a></li>
+                        </ul>
+                    </div>
+                    <select class="form-control" id="afi_correos" readonly="readonly"></select>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Celulares</label>
+                <div class="input-group mar-btm multicontrol-cel">
+                    <div class="input-group-btn">
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="height: 34px; margin-right:0px;">
+                            <i class="pli-smartphone-3"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="forma-uno-cel"><a href="#" id="celulares_Malo">Marcar como Malo</a></li>
+                            <li class="divider desaparecible-cel"></li>
+                            <li class="forma-dos-cel"><a href="#" id="celulares_Nuevo">Agregar Nuevo</a></li>
+                        </ul>
+                    </div>
+                    <select class="form-control" id="afi_celulares" readonly="readonly"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row hidden">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Telefonos</label>
+                <div class="input-group mar-btm multicontrol">
+
+                    <div class="input-group-btn">
+                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" style="height: 34px; margin-right:0px;">
+                            <i class="pli-phone-2"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="forma-uno"><a href="#" id="telefonos_Malo">Marcar como Malo</a></li>
+                            <li class="divider desaparecible"></li>
+                            <li class="forma-dos"><a href="#" id="telefonos_Nuevo">Agregar Nuevo</a></li>
+                        </ul>
+                    </div>
+
+
+                    <select class="form-control" id="afi_telefonos" readonly="readonly"></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Oficina Preferencia</label>
+                <div class="input-group mar-btm">
+
+                    <select class="form-control" id="afi_oficina_preferencia" readonly="readonly"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">Horario Preferencia</label>
+                <div class="input-group mar-btm">
+                    <select class="form-control" id="afi_horario_preferencia" readonly="readonly">
+                        <option value="">Seleccione</option>
+                        <option>09:00-11:00</option>
+                        <option>11:00-13:00</option>
+                        <option>13:00-15:00</option>
+                        <option>15:00-17:00</option>
+                        <option>17:00-19:00</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+                            
+
+
+                            <div class="row charlyNTF" style="display:none;">
+                                <div class="col-sm-12 charlyNTFContainer">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="tab-gestion-2" class="tab-pane fade">
+                        <div class="list-group" id="gestiones_realizadas">
+
+
+                        </div>
+                    </div>
+                    <div id="tab-gestion-3" class="tab-pane fade">
+                        <div class="row">
+                            <button type="button" id="btn-add-contac" class="btn btn-primary btn-xs">+</button>
+                        </div>
+                        <div class="mar-btm" style="display: none;" id="formulario-contac">
+                            <form id="form-registro-contacto" action="#" method="post">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="btn-group bootstrap-select">
+                                                <label class="control-label">Tipo de Contacto</label>
+                                                <select class="selectpicker" id="cbtippContac" name="cbtippContac">
+                                                    <option value="">Seleccione..</option>
+                                                    <option value="1">Celular</option>
+                                                    <option value="2">Teléfono</option>
+                                                    <option value="3">Mail</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="btn-group bootstrap-select">
+                                                <label class="control-label">Clasificación de Contacto</label>
+                                                <select class="selectpicker" id="cbClasificacionConctac" name="cbClasificacionConctac">
+                                                    <option value="">Seleccione..</option>
+                                                    <option value="1">Personal</option>
+                                                    <option value="2">Comercial</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Datos de Contacto</label>
+                                            <input class="form-control" id="afi_NewContacto" type="text" value="" maxlength="150" name="afi_NewContacto">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary" id="btGuardaContacto" type="submit">Guardar Contacto</button>
+
+                            </form>
+                        </div>
+
+                        <div class="row">
+
+
+                            <table class="table table-hover table-vcenter" style="font-size: 11px;">
+                                <thead>
+                                    <tr>
+                                        <th>Gestión</th>
+                                        <th>Datos Contacto</th>
+                                        <th>Tipo contacto</th>
+                                        <th>Ultimo Contacto Valido</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bdy_datos_contactos"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Gestión</h3>
+                </div>
+
+                <div class="panel-body text-center">
+
+                    <form id="datos-gestion" action="#" method="post">
+                        <div class="row esconder" style="text-align: left;">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Estado</label>
+                                    <select class="form-control" id="ges_estado" name="ges_estado">
+                                        <option value="">Seleccione</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Sub Estado</label>
+                                    <select class="form-control" id="ges_subestado" name="ges_subestado" disabled="disabled">
+                                        <option value="">Seleccione</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" id="fpg">
+                                    <label class="control-label">Fecha Próxima Gestión</label>
+                                    <div id="demo-dp-component">
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" id="ges_prox_gestion" name="ges_prox_gestion">
+                                            <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row esconder" style="text-align: left;">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Comentarios</label>
+                                    <textarea placeholder="Comentarios" rows="3" class="form-control" id="ges_comentarios" name="ges_comentarios"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" id="ges_id_asignacion" name="ges_id_asignacion" value="" />
+                        <input type="hidden" id="ges_oficina" name="ges_oficina" value="" />
+                        <input type="hidden" id="ges_token" name="ges_token" value="" />
+
+                        <button type="button" id="btnvolver" class="btn btn-default btn-success-basic">Volver Atras</button>
+                        <button class="btn btn-primary esconder" id="btn_savear" type="submit">Guardar</button>
+                    </form> 
+
+                </div>
+            </div>
+
+        </div>
+
+        <input type="hidden" id="PrincipalTabActivo" value="1" />
+    </div>
+
+
+
+</div>
+
+
+@section script{
+
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script>
+
+
+        var clipboard = new Clipboard("#btn_copiar", {
+            container: document.getElementById('demo-lg-modal'),
+            text: function () {
+                return $("#afi_correos").find(':selected').html();
+            }
+        });
+
+        clipboard.on("success", function (e) {
+            alert("Correo Copiado!!!!");
+        });
+
+
+        $(function () {
+
+
+            $("#ges_oficina").val(getCookie("Oficina"))
+            $("#ges_token").val(getCookie("Token"))
+
+            var faIcon = {
+                valid: 'fa fa-check-circle fa-lg text-success',
+                invalid: 'fa fa-times-circle fa-lg',
+                validating: 'fa fa-refresh'
+            }
+
+            var hstGest = {
+                cargaHistorial : function(valor){
+
+                    //Gestiones Realizadas
+                    $("#gestiones_realizadas").html("");
+                    $.each(valor, function (i, e) {
+                        $("#gestiones_realizadas").append($("<a>").attr("href", '#')
+                             .append($("<h4>").addClass("list-group-item-heading").html("<strong>Gestor:</strong> " + e.RutEjecutivo + "  " + e.NombreEjecutivo))
+                             .append($("<p>").addClass("list-group-item-text").html("<strong>Fecha Gestión:</strong>" + e.Gestion.FechaAccion.toFechaHora() + ", <strong>Fecha Prox. Gestión:</strong> " + e.Gestion.FechaCompromiso.toFecha()))
+                             .append($("<p>").addClass("list-group-item-text").html("<strong>Estado:</strong> " + e.EstadoGestion.Nombre + ",  <strong>Sub Estado:</strong> " + e.SubEstadoGestion.Nombre))
+                             .append($("<p>").addClass("list-group-item-text").html("<strong>Comentario:</strong> " + e.Gestion.NotaGestion))
+                         );
+                    });
+                },
+                cargaContactabiliad: function(elrut){
+                    //Carga de selects
+                    $.SecGetJSON(BASE_URL + "/motor/api/Gestion/detalle-contacto", { rut: elrut }, function (datos) {
+                        ///////////////////////////////////////////////////////
+                        $("#afi_telefonos").html("");
+                        $.each(datos.Telefonos, function (i, telefono) {
+
+                            var n = '+' + telefono.Valor_contacto + ((telefono.Valido === 0) ? ' (malo)' : '');
+                            var c = (telefono.Valido === 0) ? $("<option>").html(n).data("malo", "true") : $("<option>").html(n);
+                            $("#afi_telefonos").append(c)
+
+                        });
+
+                        if (datos.Telefonos.length == 0) {
+                            $(".desaparecible, .forma-uno").hide();
+                        }
+
+
+                        ///////////////////////////////////////////////////////
+                        $("#afi_celulares").html("");
+                        $.each(datos.Celulares, function (i, celular) {
+
+                            var n = '+' + celular.Valor_contacto + ((celular.Valido === 0) ? ' (malo)' : '');
+                            var c = (celular.Valido === 0) ? $("<option>").html(n).data("malo", "true") : $("<option>").html(n);
+                            $("#afi_celulares").append(c)
+
+                        });
+
+                        if (datos.Celulares.length == 0) {
+                            $(".desaparecible-cel, .forma-uno-cel").hide();
+                        }
+
+                        ///////////////////////////////////////////////////////
+                        $("#afi_correos").html("");
+                        $.each(datos.Correos, function (i, correo) {
+
+                            var n = correo.Valor_contacto + ((correo.Valido === 0) ? ' (malo)' : '');
+                            var c = (correo.Valido === 0) ? $("<option>").html(n).data("malo", "true") : $("<option>").html(n);
+                            $("#afi_correos").append(c)
+
+                        });
+
+                        if (datos.Correos.length == 0) {
+                            $(".desaparecible-mail, .forma-uno-mail").hide();
+                        }
+
+
+                        $('#afi_oficina_preferencia').val(datos.OficinaPreferencia.Valor_preferencia);
+                        $('#afi_horario_preferencia').val(datos.HorarioPreferencia.Valor_preferencia);
+
+                    });
+
+                }
+
+            }
+
+            var cmp = httpGet("cc");
+            var asg = httpGet("ca");
+            $("#ges_id_asignacion").val(asg);
+
+            if (cmp == 5) {
+                $("#rwDescargas").show();
+            }
+           
+
+            $.SecGetJSON(BASE_URL + "/CPEngine/api/camp/lista-atributos-asig", { cc: cmp, ca: asg }, function (attrs) {
+
+               
+                $.each(attrs, function (i, e) {
+
+                    var valor = e.Valor.ValorAttr;
+                    if (e.Atributo.TipoDato == "MONEDA")
+                    {
+                        
+                        valor = parseFloat(e.Valor.ValorAttr).toMoney(0)
+                    }
+
+                    $("#rwDinamico").append('<div class="col-sm-4">'+
+                                    '<div class="form-group">'+
+                                        '<label class="control-label">'+ e.Atributo.Etiqueta +'</label>' +
+                                        '<input class="form-control" id="' + e.Atributo.CodAttr + '" type="text" value="' + valor + '" readonly="readonly">' +
+                                    '</div>'+
+                                '</div>');
+                });
+            });
+
+            var trutAfiliado = '';
+            $.SecGetJSON(BASE_URL + "/CPEngine/api/camp/data-asignacion", { ca: asg }, function (valor) {
+                
+       
+                hstGest.cargaHistorial(valor.Gestiones)
+                hstGest.cargaContactabiliad(valor.Entidad.RutEntidad)
+                trutAfiliado = valor.Entidad.RutEntidad + '-' + valor.Entidad.DvEntidad;
+                $("#entidad_rut").val(valor.Entidad.RutEntidad.toMoney(0) + '-' + valor.Entidad.DvEntidad);
+
+                $("#entidad_nombres").val(valor.Entidad.NombreEntidad);
+
+
+
+                //CONTACT
+
+
+                var rutAf = trutAfiliado.replace(/\./g, '');
+                rutAf = rutAf.substring(0, rutAf.indexOf('-'));
+                console.log(rutAf);
+                $("#bdy_datos_contactos").html("");
+                $.SecGetJSON(BASE_URL + "/motor/api/Contactos/lista-contactos-afi", { RutAfiliado: rutAf }, function (contac) {
+                    $.each(contac, function (i, e) {
+                        var colorPorc = '';
+                        var alertFecha = '';
+                        if (e.PorcIndice > 70) {
+                            var colorPorc = 'pull-left badge badge-success'
+                        }
+                        if (e.PorcIndice > 40 && e.PorcIndice < 69) {
+                            var colorPorc = 'pull-left badge badge-warning'
+                        }
+                        if (e.PorcIndice < 39) {
+                            var colorPorc = 'pull-left badge badge-danger'
+                        }
+                        if (e.FechaContacto.toFecha() === "01-01-1900") {
+                            alertFecha = e.FechaContacto.toFecha() + '<i class="badge badge-danger badge-stat badge-icon pull-right add-tooltip" style="position: static; data-toggle="tooltip" data-container="body" data-placement="top" data-original-title="Se debe Actualizar Contacto">!</i>'
+                            $("#afiContac").css({ 'display': 'block' })
+                        }
+                        else { alertFecha = e.FechaContacto.toFecha() }
+                        $("#bdy_datos_contactos")
+                            .append(
+                                $("<tr>")
+                                    .append($("<td>").append(
+                                        $("<select>").addClass('dropdown-caret').css('width', '88px').css('border-radius', '6px').append(
+                                            $('<option data-icon="fa fa-paint-brush">').val('Seleccione').text("Seleccione..."),
+                                            $('<option>').val(1).text("Valido Presencial"),
+                                            $('<option>').val(2).text("Contacto Valido"),
+                                            $('<option>').val(3).text("Tercero Valido"),
+                                            $('<option>').val(4).text("No Contesta"),
+                                            $('<option>').val(5).text("Buzon de voz"),
+                                            $('<option>').val(6).text("Apagado"),
+                                            $('<option>').val(7).text("Equivocado"),
+                                            $('<option>').val(8).text("No Existe")
+                                        ).on('change', function () {
+
+                                            var indice = $(this).val();
+                                            var valorD = e.ValorDato;
+                                            var ofici = getCookie("Oficina");
+                                            $.SecGetJSON(BASE_URL + "/motor/api/Contactos/actualiza-indice-contacto", { Indice: indice, RutAfi: rutAf, ValorDato: valorD, Oficina: ofici }, function (datos) {
+                                                $.niftyNoty({
+                                                    type: 'success',
+                                                    icon: 'pli-like-2 icon-2x',
+                                                    message: 'Gestión Guardada correctamente.',
+                                                    container: 'floating',
+                                                    timer: 5000
+                                                });
+                                            });
+                                        })
+                                    ))
+                                    .append($("<td>").append(e.ValorDato))
+                                    .append($("<td>").append(e.TipoDato))
+                                    .append($("<td>").append(alertFecha))
+                            );
+                    });
+                });
+
+
+                $('#form-registro-contacto').bootstrapValidator({
+                    excluded: [':disabled', ':not(:visible)'],
+                    feedbackIcons: [],
+                    fields: {
+                        cbtippContac: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe seleccionar un tipo de Contacto'
+                                }
+                            }
+                        },
+                        cbClasificacionConctac: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe seleccionar una clasificación de contacto'
+                                }
+                            }
+                        },
+                        afi_NewContacto: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Debe ingresar un contacto'
+                                },
+                                stringLength: {
+                                    message: 'No pueden ser mas de 100 caracteres',
+                                    max: function (value, validator, $field) {
+                                        return 150 - (value.match(/\r/g) || []).length;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }).on('success.form.bv', function (e) {
+                    // Prevén que se mande el formulario
+                    e.preventDefault();
+                    var $form = $(e.target);
+
+                    var objeto_envio_contacto = {
+                        RutAfiliado: rutAf,
+                        IdTipoContac: $('#cbtippContac').val(),
+                        GlosaTipoContac: $('select[name="cbtippContac"] option:selected').text(),
+                        IdClasifContac: $('#cbClasificacionConctac').val(),
+                        GlosaClasifContac: $('select[name="cbClasificacionConctac"] option:selected').text(),
+                        DatosContac: $('#afi_NewContacto').val()
+                    }
+                    $.SecGetJSON(BASE_URL + "/motor/api/Contactos/ingresa-nuevo-contacto", objeto_envio_contacto, function (datos) {
+                        $("#form-registro-contacto").bootstrapValidator('resetForm', true);
+                        $('#demo-lg-modal-new').modal('hide');
+                        //Cargador.CargaDatosContactos(rutAf)
+                        $.niftyNoty({
+                            type: 'success',
+                            icon: 'pli-like-2 icon-2x',
+                            message: 'Contacto Guardado correctamente.',
+                            container: 'floating',
+                            timer: 5000
+                        });
+                    });
+
+                });
+                //END CONTAC
+
+
+
+                $("#btn-descargar-adjunto").on("click", function () {
+                    var controlador = $("#slDocumentoSeleccion").val();
+                    
+                    if (controlador != null || controlador != '') {
+                        location.href = BASE_URL + "/CPEngine/api/camp/" + controlador + "?re=" + valor.Entidad.RutEntidad + "&of=" + getCookie("Oficina")
+                    }
+                    
+
+                });
+
+
+
+            });
+            
+            //Carga de selects
+            $.SecGetJSON(BASE_URL + "/CPEngine/api/camp/lista-estges-camp", { cc: cmp, cp: 0}, function (datos) {
+                //$("#ges_estado").data("TipoAsignacion", afiData.TipoAsignacion);
+                $("#ges_estado").html("");
+                $("#ges_estado").append($("<option>").attr("value", "").html("Seleccione"));
+                
+                $.each(datos, function (i, e) {
+                    $("#ges_estado").append($("<option>").attr("value", e.CodEstado).html(e.Nombre).data("terminal", e.EsTerminal))
+                });
+            });
+
+
+            //Evento de Estado maestro Pre Aprobados
+            $("#ges_estado").on("change", function () {
+
+                if ($(this).val() != '') {
+                    $("#ges_subestado").attr("disabled", false);
+                    $.SecGetJSON(BASE_URL + "/CPEngine/api/camp/lista-estges-camp", { cc: cmp, cp: $(this).val() }, function (datos) {
+                        $("#ges_subestado").html("");
+                        $("#ges_subestado").append($("<option>").attr("value", "").html("Seleccione"));
+                        $('#datos-gestion').bootstrapValidator('updateStatus', 'ges_subestado', 'NOT_VALIDATED').bootstrapValidator('validateField', 'ges_subestado');
+                        $.each(datos, function (i, e) {
+                            $("#ges_subestado").append($("<option>").attr("value", e.CodEstado).html(e.Nombre))
+                        });
+                    });
+
+
+                    if ($(this).find("option:selected").data("terminal")) {
+                        $("#fpg").hide();
+                    }
+                    else {
+                        $("#fpg").show();
+                    }
+
+                }
+                else {
+                    $("#ges_subestado").html("");
+                    $("#ges_subestado").attr("disabled", true);
+                }
+            });
+
+            // Validacion de formulario de Pre Aprobados
+            // =================================================================
+            $('#datos-gestion').bootstrapValidator({
+                excluded: [':disabled', ':not(:visible)'],
+                feedbackIcons: faIcon,
+                fields: {
+                    ges_estado: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar un estado'
+                            }
+                        }
+                    },
+                    ges_subestado: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar un sub estado'
+                            }
+                        }
+                    },
+                    ges_prox_gestion: {
+                        validators: {
+                            notEmpty: {
+                                message: 'La fecha de próxima gestión no puede ser vacía'
+                            },
+                            date: {
+                                format: 'DD-MM-YYYY',
+                                message: 'Formato de fecha incorrecto'
+                            }
+                        }
+                    },
+                    ges_comentarios: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe agregar algún comentario'
+                            },
+                            stringLength: {
+                                message: 'No pueden ser mas de 150 caracteres',
+                                max: function (value, validator, $field) {
+                                    return 150 - (value.match(/\r/g) || []).length;
+                                }
+                            }
+                        }
+                    },
+
+
+
+                }
+            }).on('success.form.bv', function (e) {
+                // Prevén que se mande el formulario
+                e.preventDefault();
+                var $form = $(e.target);
+                $.SecPostJSON(BASE_URL + "/CPEngine/api/camp/guardar-gestion-cmp", $form.serialize(), function (respuesta) {
+
+                    
+                    hstGest.cargaHistorial(respuesta.Objeto)
+
+                    /*if (respuesta.Objeto != null && respuesta.Objeto.length > 0 && respuesta.Objeto[0].EstadoGestion.ejes_terminal === "CERRADOS") {
+                        $(".esconder").hide();
+                    }*/
+
+                    $("#datos-gestion").bootstrapValidator('resetForm', true);
+                    //$("#mensaje_guardar").fadeIn();
+
+                    $.niftyNoty({
+                        type: 'success',
+                        container: 'floating',
+                        html: '<strong>OK</strong> Gestion guardada exitosamente.',
+                        focus: false,
+                        timer: 3000
+                    });
+                });
+            });
+
+            //Datepicker de Pre Aprobados
+            $('#demo-dp-component .input-group.date').datepicker(
+                { autoclose: true, format: 'dd-mm-yyyy', startDate: "0d", language: "es", daysOfWeekDisabled: [6, 0], todayHighlight: true }
+            ).on('changeDate', function (e) {
+                $('#datos-gestion').bootstrapValidator('updateStatus', 'ges_prox_gestion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'ges_prox_gestion');
+            });
+
+
+            $("#btnvolver").on("click", function () {
+                location.href = "/motor/App/Engine?cc=" + cmp;
+            });
+
+
+
+            //CONTACTO
+
+            //Carga de selects Filtros de Pre Aprobados
+            $.SecGetJSON(BASE_URL + "/motor/api/Gestion/listar-oficinas", function (datos) {
+
+                $("#afi_oficina_preferencia").html("");
+                $("#afi_oficina_preferencia").append($("<option>").attr("value", "").html("Seleccione"));
+                $.each(datos, function (i, e) {
+                    $("#afi_oficina_preferencia").append($("<option>").attr("value", e.Id).html(e.Nombre))
+                });
+
+            });
+
+
+            $("#afi_oficina_preferencia").on("change", function () {
+
+                if ($(this).val() != "") {
+                    var WebPreferencia = {
+                        afiliado_Rut: $("#entidad_rut").val().replace('.', '').replace('.', ''),
+                        tipo_preferencia: "OFICINA",
+                        valor_preferencia: $(this).val(),
+                        valido: true
+                    }
+                    WebPreferencia.afiliado_Rut = WebPreferencia.afiliado_Rut.substring(0, WebPreferencia.afiliado_Rut.length - 2);
+
+                    $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-preferencia-afiliado", WebPreferencia, function (respuesta) {
+                        if (respuesta.Estado === "OK") {
+                        }
+                    });
+                }
+            });
+            $("#afi_horario_preferencia").on("change", function () {
+
+                if ($(this).val() != "") {
+
+                    var WebPreferencia = {
+                        afiliado_Rut: $("#entidad_rut").val().replace('.', '').replace('.', ''),
+                        tipo_preferencia: "HORARIO",
+                        valor_preferencia: $(this).val(),
+                        valido: true
+                    }
+
+                    WebPreferencia.afiliado_Rut = WebPreferencia.afiliado_Rut.substring(0, WebPreferencia.afiliado_Rut.length - 2);
+
+                    $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-preferencia-afiliado", WebPreferencia, function (respuesta) {
+                        if (respuesta.Estado === "OK") {
+                            
+                        }
+                    });
+                }
+
+
+            });
+
+
+            $("#afi_telefonos").on("change", function (e) {
+
+                $(".desaparecible, .forma-uno").show();
+                if ($("#afi_telefonos :selected").data("malo") !== "undefined" && $("#afi_telefonos :selected").data("malo") === "true") {
+                    $(".desaparecible, .forma-uno").hide();
+                }
+            })
+            $("#telefonos_Malo").on("click", function (e) {
+
+
+                var WebDatoContacto = {
+                    afiliado_Rut: $("#entidad_rut").val().replace('.', '').replace('.', ''),
+                    tipo: "telefonos",
+                    valor_contacto: $("#afi_telefonos :selected").html().replace("+", ""),
+                    valido: 0
+                }
+                WebDatoContacto.afiliado_Rut = WebDatoContacto.afiliado_Rut.substring(0, WebDatoContacto.afiliado_Rut.length - 2);
+
+                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-nuevo-contacto", WebDatoContacto, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+
+                        $("#afi_telefonos :selected").html($("#afi_telefonos :selected").html() + ' (malo)').data("malo", "true");
+                        $(".desaparecible, .forma-uno").hide();
+                    }
+
+                });
+
+
+            });
+            $("#telefonos_Nuevo").on("click", function (e) {
+
+                var that = $(this);
+                $("#afi_telefonos, .desaparecible, .forma-dos").hide();
+
+
+
+                $(".multicontrol").append(
+                    $("<form>").attr({ "id": "miForm", "name": "miForm", "method": "post" }).append($("<input>").attr({ "type": "hidden", "id": "afiliado_Rut", "name": "afiliado_Rut", "value": $("#entidad_rut").val() })).append($("<input>").attr({ "type": "hidden", "id": "tipo", "name": "tipo", "value": "telefonos" })).append(
+                        $("<input>").attr({ "type": "text", "id": "tmp_telefono", "name": "tmp_telefono", "maxlength": "12" }).val("+56").addClass("form-control").on({
+                            "keypress blur": function (e) {
+
+
+                                if (e.type === "blur" || (e.type === "keypress" && e.which === 13)) {
+                                    e.preventDefault();
+
+                                    if (typeof $("#miForm").data("bootstrapValidator") === "undefined") {
+                                        $("#miForm").bootstrapValidator({
+                                            fields: {
+                                                tmp_telefono: {
+                                                    validators: {
+                                                        notEmpty: {
+                                                            message: 'no puede guardar numero vacio',
+                                                        },
+                                                        stringLength: {
+                                                            min: 12,
+                                                            max: 12,
+                                                            message: 'formato de numero incorrecto'
+                                                        },
+                                                    }
+                                                },
+                                            }
+                                        }).on('success.form.bv', function (e) {
+                                            e.preventDefault();
+                                            var $form = $(e.target);
+                                            var funcion = {
+                                                existeValorEnSelect: function (arrayOptions, valorBuscado) {
+                                                    $.each(arrayOptions, function (i, e) {
+
+                                                        if ($(e).val() === valorBuscado) {
+                                                            return true;
+                                                        }
+                                                    });
+                                                    return false;
+                                                }
+                                            }
+                                            if (!funcion.existeValorEnSelect($("#afi_telefonos option"), $form.find("#tmp_telefono").val())) {
+
+                                                var WebDatoContacto = {
+                                                    afiliado_Rut: $form.find("#afiliado_Rut").val().replace('.', '').replace('.', ''),
+                                                    tipo: $form.find("#tipo").val(),
+                                                    valor_contacto: $form.find("#tmp_telefono").val().replace("+", ""),
+                                                    valido: 1
+                                                }
+                                                WebDatoContacto.afiliado_Rut = WebDatoContacto.afiliado_Rut.substring(0, WebDatoContacto.afiliado_Rut.length - 2);
+
+                                                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-nuevo-contacto", WebDatoContacto, function (respuesta) {
+                                                    if (respuesta.Estado === "OK") {
+
+                                                        $("#afi_telefonos").prepend($("<option>").html($form.find("#tmp_telefono").val()));
+                                                        $("#afi_telefonos option:eq(0)").prop('selected', true)
+                                                        $("#afi_telefonos, .desaparecible, .forma-dos, .forma-uno").show();
+                                                        $("#miForm").remove();
+                                                    }
+                                                });
+
+                                            }
+                                        });
+                                    }
+
+
+                                    $("#miForm").submit();
+                                }
+
+                            },
+
+                        })
+
+                    ));
+
+            });
+            $("#afi_celulares").on("change", function (e) {
+
+                $(".desaparecible-cel, .forma-uno-cel").show();
+                if ($("#afi_celulares :selected").data("malo") !== "undefined" && $("#afi_celulares :selected").data("malo") === "true") {
+                    $(".desaparecible-cel, .forma-uno-cel").hide();
+                }
+            })
+            $("#celulares_Malo").on("click", function (e) {
+
+
+                var WebDatoContacto = {
+                    afiliado_Rut: $("#entidad_rut").val().replace('.', '').replace('.', ''),
+                    tipo: "celulares",
+                    valor_contacto: $("#afi_celulares :selected").html().replace("+", ""),
+                    valido: 0
+                }
+                WebDatoContacto.afiliado_Rut = WebDatoContacto.afiliado_Rut.substring(0, WebDatoContacto.afiliado_Rut.length - 2);
+
+                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-nuevo-contacto", WebDatoContacto, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+
+                        $("#afi_celulares :selected").html($("#afi_celulares :selected").html() + ' (malo)').data("malo", "true");
+                        $(".desaparecible-cel, .forma-uno-cel").hide();
+                    }
+
+                });
+
+
+            });
+            $("#celulares_Nuevo").on("click", function (e) {
+
+                var that = $(this);
+                $("#afi_celulares, .desaparecible-cel, .forma-dos-cel").hide();
+
+
+
+                $(".multicontrol-cel").append(
+                    $("<form>").attr({ "id": "miFormCel", "name": "miFormCel", "method": "post" }).append($("<input>").attr({ "type": "hidden", "id": "afiliado_Rut", "name": "afiliado_Rut", "value": $("#entidad_rut").val() })).append($("<input>").attr({ "type": "hidden", "id": "tipo", "name": "tipo", "value": "celulares" })).append(
+                        $("<input>").attr({ "type": "text", "id": "tmp_celular", "name": "tmp_celular", "maxlength": "12" }).val("+56").addClass("form-control").on({
+                            "keypress blur": function (e) {
+
+
+                                if (e.type === "blur" || (e.type === "keypress" && e.which === 13)) {
+                                    e.preventDefault();
+
+                                    if (typeof $("#miFormCel").data("bootstrapValidator") === "undefined") {
+                                        $("#miFormCel").bootstrapValidator({
+                                            fields: {
+                                                tmp_celular: {
+                                                    validators: {
+                                                        notEmpty: {
+                                                            message: 'no puede guardar numero vacio',
+                                                        },
+                                                        stringLength: {
+                                                            min: 12,
+                                                            max: 12,
+                                                            message: 'formato de numero incorrecto'
+                                                        },
+                                                    }
+                                                },
+                                            }
+                                        }).on('success.form.bv', function (e) {
+                                            e.preventDefault();
+                                            var $form = $(e.target);
+                                            var funcion = {
+                                                existeValorEnSelect: function (arrayOptions, valorBuscado) {
+                                                    $.each(arrayOptions, function (i, e) {
+
+                                                        if ($(e).val() === valorBuscado) {
+                                                            return true;
+                                                        }
+                                                    });
+                                                    return false;
+                                                }
+                                            }
+                                            if (!funcion.existeValorEnSelect($("#afi_celulares option"), $form.find("#tmp_celular").val())) {
+
+                                                var WebDatoContacto = {
+                                                    afiliado_Rut: $form.find("#afiliado_Rut").val().replace('.', '').replace('.', ''),
+                                                    tipo: $form.find("#tipo").val(),
+                                                    valor_contacto: $form.find("#tmp_celular").val().replace("+", ""),
+                                                    valido: 1
+                                                }
+                                                WebDatoContacto.afiliado_Rut = WebDatoContacto.afiliado_Rut.substring(0, WebDatoContacto.afiliado_Rut.length - 2);
+
+                                                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-nuevo-contacto", WebDatoContacto, function (respuesta) {
+                                                    if (respuesta.Estado === "OK") {
+                                                        $("#afi_celulares").prepend($("<option>").html($form.find("#tmp_celular").val()));
+                                                        $("#afi_celulares option:eq(0)").prop('selected', true)
+                                                        $("#afi_celulares, .desaparecible-cel, .forma-dos-cel, .forma-uno-cel").show();
+                                                        $("#miFormCel").remove();
+                                                    }
+
+                                                });
+
+                                            }
+                                        });
+                                    }
+
+
+                                    $("#miFormCel").submit();
+                                }
+
+                            },
+
+                        })
+
+                    ));
+
+            });
+            $("#afi_correos").on("change", function (e) {
+
+                $(".desaparecible-mail, .forma-uno-mail").show();
+                if ($("#afi_correos :selected").data("malo") !== "undefined" && $("#afi_correos :selected").data("malo") === "true") {
+                    $(".desaparecible-mail, .forma-uno-mail").hide();
+                }
+            })
+            $("#correos_Malo").on("click", function (e) {
+
+
+                var WebDatoContacto = {
+                    afiliado_Rut: $("#entidad_rut").val().replace('.', '').replace('.', ''),
+                    tipo: "correos",
+                    valor_contacto: $("#afi_correos :selected").html(),
+                    valido: 0
+                }
+                WebDatoContacto.afiliado_Rut = WebDatoContacto.afiliado_Rut.substring(0, WebDatoContacto.afiliado_Rut.length - 2);
+
+                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-nuevo-contacto", WebDatoContacto, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+
+                        $("#afi_correos :selected").html($("#afi_correos :selected").html() + ' (malo)').data("malo", "true");
+                        $(".desaparecible-mail, .forma-uno-mail").hide();
+                    }
+
+                });
+
+
+            });
+            $("#correos_Nuevo").on("click", function (e) {
+
+                var that = $(this);
+                $("#afi_correos, .desaparecible-mail, .forma-dos-mail").hide();
+
+
+
+                $(".multicontrol-mail").append(
+                    $("<form>").attr({ "id": "miFormMail", "name": "miFormMail", "method": "post" }).append($("<input>").attr({ "type": "hidden", "id": "afiliado_Rut", "name": "afiliado_Rut", "value": $("#entidad_rut").val() })).append($("<input>").attr({ "type": "hidden", "id": "tipo", "name": "tipo", "value": "correos" })).append(
+                        $("<input>").attr({ "type": "text", "id": "tmp_correo", "name": "tmp_correo" }).addClass("form-control").on({
+                            "keypress blur": function (e) {
+
+
+                                if (e.type === "blur" || (e.type === "keypress" && e.which === 13)) {
+                                    e.preventDefault();
+
+                                    if (typeof $("#miFormMail").data("bootstrapValidator") === "undefined") {
+                                        $("#miFormMail").bootstrapValidator({
+                                            fields: {
+                                                tmp_correo: {
+                                                    validators: {
+                                                        notEmpty: {
+                                                            message: 'No puede guardar correo vacio',
+                                                        },
+                                                        stringLength: {
+                                                            max: 512,
+                                                            message: 'No puede Exceder los 512 caracteres'
+                                                        },
+                                                        emailAddress: {
+                                                            message: 'No es un formato de correo válido'
+                                                        },
+                                                    }
+                                                },
+                                            }
+                                        }).on('success.form.bv', function (e) {
+                                            e.preventDefault();
+                                            var $form = $(e.target);
+                                            var funcion = {
+                                                existeValorEnSelect: function (arrayOptions, valorBuscado) {
+                                                    $.each(arrayOptions, function (i, e) {
+
+                                                        if ($(e).val() === valorBuscado) {
+                                                            return true;
+                                                        }
+                                                    });
+                                                    return false;
+                                                }
+                                            }
+                                            if (!funcion.existeValorEnSelect($("#afi_correos option"), $form.find("#tmp_correo").val())) {
+
+                                                var WebDatoContacto = {
+                                                    afiliado_Rut: $form.find("#afiliado_Rut").val().replace('.', '').replace('.', ''),
+                                                    tipo: $form.find("#tipo").val(),
+                                                    valor_contacto: $form.find("#tmp_correo").val(),
+                                                    valido: 1
+                                                }
+                                                WebDatoContacto.afiliado_Rut = WebDatoContacto.afiliado_Rut.substring(0, WebDatoContacto.afiliado_Rut.length - 2);
+
+                                                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-nuevo-contacto", WebDatoContacto, function (respuesta) {
+                                                    if (respuesta.Estado === "OK") {
+                                                        $("#afi_correos").prepend($("<option>").html($form.find("#tmp_correo").val()));
+                                                        $("#afi_correos option:eq(0)").prop('selected', true)
+                                                        $("#afi_correos, .desaparecible-mail, .forma-dos-mail, .forma-uno-mail").show();
+                                                        $("#miFormMail").remove();
+                                                    }
+
+                                                });
+
+                                            }
+                                        });
+                                    }
+
+
+                                    $("#miFormMail").submit();
+                                }
+
+                            },
+
+                        })
+
+                    ));
+
+            });
+            
+
+
+
+            $('#btn-add-contac').on('click', function () {
+
+                console.log('Visibiliadad', $('#formulario-contac').is(':visible'));
+                if ($('#formulario-contac').is(':visible')) {
+                    $('#formulario-contac').hide('slow');
+                }
+                else {
+                    $('#formulario-contac').show('slow');
+                }
+
+            });
+
+
+            
+
+ 
+
+        });
+
+
+        
+
+    </script>
+}

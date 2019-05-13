@@ -1,0 +1,405 @@
+﻿
+@{
+    ViewBag.Title = "CalculadoraCredito";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<style>
+    .ocultus {
+        display: none;
+    }
+
+    .help-block {
+        color: #b71e1e !important;
+    }
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Calculadora Cuota Máxima descontar Público</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="formulario_calculadora">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="row mar-top">
+                                    <div class="col-lg-4" data-toggle="tooltip" data-container="body" data-placement="bottom" data-original-title="Este campo corresponde al rut del afiliado">Rut Afiliado</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="rut_afiliado" id="rut_afiliado" />
+                                    </div>
+                                </div>
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Rut Empresa</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="rut_empresa" id="rut_empresa" />
+                                    </div>
+                                </div>
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Ingrese Última Renta depurada en CRM</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control solo-numeros" name="renta_depurada_crm" id="renta_depurada_crm" />
+                                    </div>
+                                </div>
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Calculo automático 15 % Descuento Legal</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="descuento_legal" id="descuento_legal" readonly />
+                                        <input type="hidden" name="procentaje_descuento" id="procentaje_descuento" value="15" />
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top">
+
+
+
+                                    <div class="col-lg-4">Ingresar total descuentos Última Liquidación</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control solo-numeros" name="total_descuentos_liquidacion" id="total_descuentos_promedio" />
+
+                                        @*
+                <div class="col-lg-3">
+                    <input type="text" class="form-control promediar-descuentos-total solo-numeros" name="total_descuentos_primer_mes" id="total_descuentos_primer_mes" />
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control promediar-descuentos-total solo-numeros" name="total_descuentos_segundo_mes" id="total_descuentos_segundo_mes" />
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control promediar-descuentos-total solo-numeros" name="total_descuentos_tercer_mes" id="total_descuentos_tercer_mes" />
+                </div>
+                <div class="col-lg-3">
+
+                </div>
+                                        *@
+                                    </div>
+                                </div>
+                                <div class="row mar-top">
+
+                                    <div class="col-lg-8 col-lg-offset-4">
+                                        <div class="col-lg-3 text-center">
+                                            @*<p>Mes 1</p>*@
+                                        </div>
+                                        <div class="col-lg-3 text-center">
+                                            @*<p>Mes 2</p>*@
+                                        </div>
+                                        <div class="col-lg-3 text-center">
+                                            @*<p>Mes 3</p>*@
+                                        </div>
+                                        <div class="col-lg-3 text-center">
+                                            @*<p></p>*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4"> Ingresar Descuentos Legales Última Liquidación</div>
+                                    <div class="col-lg-8">
+                                        @*<div class="col-lg-3">
+                    <input type="text" class="form-control promediar-descuentos-legal solo-numeros" name="descuentos_legales_primer_mes" id="descuentos_legales_primer_mes" style="display:none"/>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control promediar-descuentos-legal solo-numeros" name="descuentos_legales_segundo_mes" id="descuentos_legales_segundo_mes"style="display:none" />
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control promediar-descuentos-legal solo-numeros" name="descuentos_legales_tercer_mes" id="descuentos_legales_tercer_mes"style="display:none" />
+                </div>*@
+                                        @*<div class="col-lg-8">*@
+                                        <input type="text" class="form-control solo-numeros" name="descuentos_legales_promedio" id="descuentos_legales_promedio" />
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top form-group">
+                                    <div class="col-lg-4">¿Tiene descuentos de creditos por Planilla que se cancelarán con este crédito?. <small>Si es si, debe sumar todas la cuotas de creditos que se esten cancelando</small></div>
+                                    <div class="col-lg-8">
+                                        <div class="radio">
+                                            <input id="tiene_descuentos_planilla_si" class="magic-radio si-descuentos-planilla form-control" name="tiene_descuentos_planilla" value="Si" type="radio">
+                                            <label for="tiene_descuentos_planilla_si">Si</label>
+                                            <input id="tiene_descuentos_planilla_no" class="magic-radio si-descuentos-planilla form-control" name="tiene_descuentos_planilla" value="No" type="radio">
+                                            <label for="tiene_descuentos_planilla_no">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top ocultus" id="contenedor_creditos_planilla">
+                                    <div class="col-lg-4">Suma Descuentos de Creditos por planilla</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control solo-numeros add-tooltip" data-toggle="tooltip" data-container="body" data-placement="right" data-original-title="Lorem Ipsum" name="descuentos_creditos_planilla" id="descuentos_creditos_planilla" disabled />
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Cuota del Crédito Máxima a descontar</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="cuota_maxima_descontar_caja" id="cuota_maxima_descontar_caja" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top">
+                                    <div class="col-lg-3 col-lg-offset-9 text-right">
+                                        <button class="btn btn-default" type="reset">Limpiar</button>
+                                        <button class="btn btn-success" type="submit">Calcular</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+    <script>
+        $(function () {
+
+            $('#rut_afiliado').mask('99.999.999-*');
+            $('#rut_empresa').mask('99.999.999-*');
+
+            $('.promediar-descuentos-legal').on('keyup, blur', (event) => {
+                var suma = 0;
+                $('.promediar-descuentos-legal').each((i, e) => {
+                    suma = suma + parseInt($(e).val().replace(/\./g, ''))
+                })
+                if (!isNaN(suma)) {
+                    var promedio = suma / 3;
+                    $('#descuentos_legales_promedio').val(promedio.toMoney(0));
+                }
+            });
+
+            $('.si-descuentos-planilla').on('change', function (event) {
+
+
+                if ($(this).val() == 'Si') {
+                    $('#contenedor_creditos_planilla').show();
+                    $('#descuentos_creditos_planilla').prop({ disabled: false });
+                } else {
+                    $('#contenedor_creditos_planilla').hide();
+                    $('#descuentos_creditos_planilla').prop({ disabled: true }).val("");
+                }
+            });
+
+            $('#renta_depurada_crm').on('keyup, blur', function () {
+                var descuento = (parseInt($('#procentaje_descuento').val()) / 100) * parseInt($(this).val().replace(/\./g, ''));
+                $('#descuento_legal').val(!isNaN(descuento) ? descuento.toMoney(0) : 0);
+            });
+
+            $('#formulario_calculadora').on({
+                submit: function (e) {
+                    e.preventDefault();
+                    return false;
+                },
+                reset: function (event) {
+                    $(this).bootstrapValidator('resetForm', true);
+                }
+            })
+
+            $("#rut_afiliado").on("keyup", function () {
+                $('#formulario_calculadora').bootstrapValidator('updateStatus', 'rut_afiliado', 'NOT_VALIDATED').bootstrapValidator('validateField', 'rut_afiliado');
+            })
+
+            $("#rut_empresa").on("keyup", function () {
+                $('#formulario_calculadora').bootstrapValidator('updateStatus', 'rut_empresa', 'NOT_VALIDATED').bootstrapValidator('validateField', 'rut_empresa');
+            })
+
+            $(".solo-numeros").on({
+                keydown: function (e) {
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                        (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        return;
+                    }
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                },
+                blur: function (event) {
+                    var number = parseInt($(this).val().replace(/\./g, ''));
+                    if (!isNaN(number))
+                        $(this).val(number.toMoney(0));
+                }
+            });
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#formulario_calculadora').bootstrapValidator({
+                excluded: [':disabled'], //, ':not(:visible)'
+                fields: {
+                    rut_afiliado: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Rut'
+                            },
+                            callback: {
+                                message: 'Rut Invalido',
+                                callback: function (value, validator, $field) {
+
+                                    /*if ($.rut.validar(value)) {
+                                        $field.trigger("calculadora.onRutValidado");
+                                    }*/
+
+                                    return $.rut.validar(value);
+
+                                }
+                            }
+                        }
+                    },
+                    rut_empresa: {
+                        threshold: 9,
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Rut'
+                            },
+                            callback: {
+                                message: 'Rut Invalido',
+                                callback: function (value, validator, $field) {
+                                    return $.rut.validar(value);
+                                }
+                            },
+                            /*remote: {
+                                message: 'El rut de la Empresa No corresponde a la publicas que operan con el 15%',
+                                url: BASE_URL + "/Motor/api/Gestion/existe-empresas-15-porciento",
+                                type: 'GET'
+                            }*/
+                        }
+                    },
+                    renta_depurada_crm: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar Renta Depurada CRM'
+                            }
+                        }
+                    },
+                    total_descuentos_promedio: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    descuentos_legales_primer_mes: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    descuentos_legales_segundo_mes: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    descuentos_legales_tercer_mes: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    tiene_descuentos_planilla: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar una opción'
+                            }
+                        }
+                    },
+                    descuentos_legales_promedio: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar una opción'
+                            },
+                            callback: {
+                                //message: 'El valor no puede ser mayor que ',
+                                callback: function (value, validator, $field) {
+                                    return {
+                                        valid: parseInt(value.replace(/\./g, '')) <= parseInt($("#total_descuentos_promedio").val().replace(/\./g, '')),
+                                        message: 'Este valor debe ser menor que el total descuentos Última Liquidación'
+                                    }
+                                }
+                            },
+                            greaterThan: {
+                                value: 1,
+                                message: 'Este valor debe ser mayor que 0'
+                            },
+                        }
+                    },
+                    descuentos_creditos_planilla: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe ingresar los descuentos de creditos por planilla',
+                            },
+                            callback: {
+                                //message: 'El valor no puede ser mayor que ',
+                                callback: function (value, validator, $field) {
+                                    return {
+                                        valid: value <= (parseInt($('#total_descuentos_promedio').val().replace(/\./g, '')) - parseInt($('#descuentos_legales_promedio').val().replace(/\./g, ''))),
+                                        message: 'El valor no puede ser mayor que ' + (parseInt($('#total_descuentos_promedio').val().replace(/\./g, '')) - parseInt($('#descuentos_legales_promedio').val().replace(/\./g, ''))).toMoney(0)
+                                    }
+                                }
+                            },
+                        }
+                    },
+
+                }
+
+            }).on('success.form.bv', function (e) {
+                // Prevén que se mande el formulario
+                e.preventDefault();
+                var $form = $(e.target);
+                var cuota = parseInt($("#descuento_legal").val().replace(/\./g, '')) - (parseInt($('#total_descuentos_promedio').val().replace(/\./g, '')) - parseInt($('#descuentos_legales_promedio').val().replace(/\./g, ''))) + (!isNaN(parseInt($('#descuentos_creditos_planilla').val().replace(/\./g, ''))) ? parseInt($('#descuentos_creditos_planilla').val().replace(/\./g, '')) : 0);
+
+                const descuento_legal = parseInt($("#descuento_legal").val().replace(/\./g, ''));
+                //cuota = (cuota > descuento_legal) ? descuento_legal : cuota;
+                $('#cuota_maxima_descontar_caja').val(!isNaN(cuota) ? cuota.toMoney(0) : 0);
+
+
+                if ($('#cuota_maxima_descontar_caja').closest("div").hasClass("has-error")) {
+                    $('#cuota_maxima_descontar_caja').closest("div").removeClass("has-error");
+                }
+
+                if ($('#cuota_maxima_descontar_caja').closest("div").hasClass("has-success")) {
+                    $('#cuota_maxima_descontar_caja').closest("div").removeClass("has-success");
+                }
+
+                if (cuota <= 0) {
+                    $('#cuota_maxima_descontar_caja').closest("div").addClass("has-error");
+                } else {
+                    $('#cuota_maxima_descontar_caja').closest("div").addClass("has-success");
+                }
+
+                const envio = objectifyForm($form.serializeArray())
+                console.log({ envio });
+                $.SecPostJSON(BASE_URL + "/Motor/api/Gestion/logear-calculadora", envio, function (response) {
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var x = 0;
+                });
+            });
+
+        });
+    </script>
+
+
+
+
+}
+

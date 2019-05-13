@@ -1,0 +1,1133 @@
+﻿
+@{
+    ViewBag.Title = "RolVerificador";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+
+<style>
+    .ocultus {
+        display: none;
+    }
+
+    .help-block {
+        color: #b71e1e !important;
+    }
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="row no-print">
+        <div class="col-lg-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Calculadora Rol Verificador</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="formulario_calculadora">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="panel panel-bordered-info" style="border-radius: 5px;">
+                                    <div class="panel-body">
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4" data-toggle="tooltip" data-container="body" data-placement="bottom" data-original-title="Este campo corresponde al rut del afiliado">Rut Afiliado</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" name="rut_afiliado" id="rut_afiliado" />
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Anexo</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" maxlength="10" name="anexo_empresa" id="anexo_empresa" />
+                                                <small id="leyenda_muni"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="panel panel-bordered-info" style="border-radius: 5px;">
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <b>Debes marcar todos los conceptos que puedas identificar en la liquidación de renta.</b>
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-md-12">
+                                                <div class="checkbox">
+                                                    <div class="col-lg-2">
+                                                        <input id="cotiza" name="cotiza" class="magic-checkbox" type="checkbox">
+                                                        <label for="cotiza">Cotiza</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <input id="grado_profesional_directivo" name="grado_profesional_directivo" class="magic-checkbox" type="checkbox">
+                                                        <label for="grado_profesional_directivo">Grado o Profesional o Directivo</label>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <input id="seguro_cesantia" name="seguro_cesantia" class="magic-checkbox" type="checkbox">
+                                                        <label for="seguro_cesantia">Seguro de Cesantía</label>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <input id="pro_empleo" name="pro_empleo" class="magic-checkbox" type="checkbox">
+                                                        <label for="pro_empleo">Pro Empleo / PMU</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="col-md-12" style="margin-top: 16px;">
+                                                <div class="checkbox">
+                                                    <div class="col-lg-5">
+                                                        <input id="ley_especifica" name="ley_especifica" class="magic-checkbox" type="checkbox">
+                                                        <label for="ley_especifica">Ley Especifica (19378-19464-19070)</label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <input id="ley_especifica_2" name="ley_especifica_2" class="magic-checkbox" type="checkbox">
+                                                        <label for="ley_especifica_2">Ley Específica (18883-18834)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        @*<div class="row mar-top">
+                                                <div class="col-lg-3">
+                                                    <label>Cotiza</label>
+
+                                                    <div>
+                                                        <input class="magic-radio" type="radio" name="cotiza" value="1" id="cotiza_yes">
+                                                        <label for="cotiza_yes">SI</label>
+
+                                                        <input class="magic-radio" type="radio" name="cotiza" value="0" id="cotiza_no">
+                                                        <label for="cotiza_no">NO</label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <label>Grado o Profesional o Directivo</label>
+
+                                                    <div>
+                                                        <input class="magic-radio" type="radio" value="1" name="grado_profesional_directivo" id="grado_yes">
+                                                        <label for="grado_yes">SI</label>
+
+                                                        <input class="magic-radio" type="radio" value="0" name="grado_profesional_directivo" id="grado_no">
+                                                        <label for="grado_no">NO</label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <label>Seguro de Cesantía</label>
+
+                                                    <div>
+                                                        <input class="magic-radio" type="radio" name="seguro_cesantia" value="1" id="seguro_cesantia_yes">
+                                                        <label for="seguro_cesantia_yes">SI</label>
+
+                                                        <input class="magic-radio" type="radio" name="seguro_cesantia" value="0" id="seguro_cesantia_no">
+                                                        <label for="seguro_cesantia_no">NO</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>*@
+
+                                        @*<div class="row mar-top">
+
+
+                                                <div class="col-lg-3">
+                                                    <label for="pro_empleo">Pro Empleo / PMU</label>
+
+                                                    <div>
+                                                        <input class="magic-radio" type="radio" name="pro_empleo" value="1" id="pro_empleo_yes">
+                                                        <label for="pro_empleo_yes">SI</label>
+
+                                                        <input class="magic-radio" type="radio" name="pro_empleo" value="0" id="pro_empleo_no">
+                                                        <label for="pro_empleo_no">NO</label>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-6">
+                                                    <label>Ley Especifica (19378-19464-19070)</label>
+
+                                                    <div>
+                                                        <input class="magic-radio" type="radio" name="ley_especifica" value="1" id="ley_especifica_yes">
+                                                        <label for="ley_especifica_yes">SI</label>
+
+                                                        <input class="magic-radio" type="radio" name="ley_especifica" value="0" id="ley_especifica_no">
+                                                        <label for="ley_especifica_no">NO</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>*@
+
+                                        <div class="row mar-top no-print" style="margin-top: 30px;">
+                                            <div class="col-lg-12">
+                                                <button type="button" class="btn btn-warning btn-xs" id="calcuar_contrato">Determinar Contrato</button>
+                                                <button type="button" class="btn btn-info btn-xs" id="desmarcar_todos">Desmarcar todos</button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row resultado-acciones ocultus">
+                                            <div class="col-lg-9" style="margin-top: 30px;" id="message_placeholder">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-bordered-info ocultus ultima-patita" style="border-radius: 5px; page-break-before: always;">
+                                    <div class="panel-body">
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Ingrese el <b>Total de Haberes</b> de la <b>Liquidación mas Baja</b>.</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control solo-numeros depurar-renta" name="haberes" id="haberes" data-desc="este campo es el sueldo bruto" />
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Ingrese los <b>Bonos extraordinarios</b> de la <b>Liquidación mas Baja</b>.</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control solo-numeros depurar-renta" name="bonos_extraordinarios" id="bonos-extraordinarios" data-desc="Este se resta de haberes y corresponde a los bonos extraordianrios" />
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Ingrese los <b>Descuentos Legales</b> de la <b>Liquidación más Baja</b>.</div>
+                                            <div class="col-lg-2 ocultus">
+                                                Mes 1<input type="text" class="form-control solo-numeros promediar depurar-renta" name="descuentos_legales_1" id="descuentos_legales_1" data-desc="" />
+                                            </div>
+                                            <div class="col-lg-2 ocultus">
+                                                Mes 2<input type="text" class="form-control solo-numeros promediar depurar-renta" name="descuentos_legales_2" id="descuentos_legales_2" data-desc="" />
+                                            </div>
+                                            <div class="col-lg-2 ocultus">
+                                                Mes 3<input type="text" class="form-control solo-numeros promediar depurar-renta" name="descuentos_legales_3" id="descuentos_legales_3" data-desc="" />
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control solo-numeros clc-otros-descuentos depurar-renta" name="descuentos_legales_promedio" id="descuentos_legales_promedio" data-desc="" />
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4"><b>Renta Depurada CRM</b>. </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group has-feedback " id="valida_renta_depurada">
+                                                    <input type="text" name="renta_depurada_crm" id="renta_depurada_crm" class="form-control solo-numeros">
+                                                    <i class="demo-pli-cross icon-lg form-control-feedback ocultus error"></i>
+                                                    <i class="demo-pli-like icon-lg form-control-feedback ocultus ok"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">Renta Depurada (Automática). </div>
+                                            <div class="col-lg-3">
+                                                <input type="text" class="form-control solo-numeros clc-otros-descuentos" name="renta_depurada_calculada" id="renta_depurada_calculada" data-desc="" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Ingrese el <b>Total de Descuentos</b> de la <b>Última Liquidación</b></div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control solo-numeros clc-otros-descuentos" name="total_descuentos_liquidacion" id="total-descuentos" />
+                                            </div>
+                                        </div>
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Otros Descuentos (Automático)</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control solo-numeros" name="otros_descuentos" id="otros-descuentos" readonly />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top">
+                                            <div class="col-lg-4">Ingrese el <b>Valor Cuota</b> del <b>Crédito en Evaluación (Checklist Verificador)</b>.</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control solo-numeros" name="valor_cuota" id="valor-cuota" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mar-top" id="contenedor_creditos_planilla">
+                                            <div class="col-lg-4">Ingrese el <b>Valor Cuota</b> del <b>Crédito(s) a Comprar de la Liquidación (Checklist Verificador)</b>.</div>
+                                            <div class="col-lg-8">
+                                                <input type="text" value="0" class="form-control solo-numeros" name="descuentos_creditos_planilla" id="descuentos_creditos_planilla" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row ocultus" id="resultado_final">
+                                            <div class="col-lg-8" id="texto-resultado">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mar-top ocultus ultima-patita resultado-calculadora">
+                                    <div class="col-lg-7" style="margin-top: 30px;" id="calculadora_result_placeholder">
+
+                                    </div>
+
+                                    <div class="col-lg-5 text-right ocultus ultima-patita no-print" style="margin-top: 37px;">
+                                        <input type="hidden" name="Id" id="Id" value="" />
+                                        <input type="hidden" name="Resultado1" id="Resultado1" value="" />
+                                        <button class="btn btn-default" type="button" onclick="location.reload()">Limpiar</button>
+                                        <button class="btn btn-info ocultus imprimire" id="imprimirs" type="button">Imprimir</button>
+                                        <button class="btn btn-primary" type="submit">Calcular</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ocultus">
+        <h3 style="text-align:center">Rol Verificador Motor de Negocios</h3>
+        <br />
+        <h4>Afiliado y Municipio</h4>
+        <hr />
+        <table style="width:70%;">
+            <tr>
+                <td>Rut Afiliado</td>
+                <td>:</td>
+                <td id="elrutafiliado">17.042.783-1</td>
+            </tr>
+
+            <tr>
+                <td>Anexo</td>
+                <td>:</td>
+                <td id="elanexomuni">123222</td>
+            </tr>
+
+            <tr>
+                <td>Municipalidad</td>
+                <td>:</td>
+                <td id="elnombremuni">I. Municipalidad de Santiago</td>
+
+                <td>Muni. Rut</td>
+                <td>:</td>
+                <td id="elrutmuni">77.777.777-7</td>
+            </tr>
+        </table>
+        <br />
+        <h4>Tipo de Contrato</h4>
+        <hr />
+        <table style="width:40%;">
+            <tr>
+                <td>Cotiza</td>
+                <td>:</td>
+                <td id="elcotiza">SI</td>
+            </tr>
+            <tr>
+                <td>Grado o Profesional o Directivo</td>
+                <td>:</td>
+                <td id="elgrado">SI</td>
+            </tr>
+            <tr>
+                <td>Seguro de Cesantía</td>
+                <td>:</td>
+                <td id="elseguroces">SI</td>
+            </tr>
+            <tr>
+                <td>Pro Empleo / PMU</td>
+                <td>:</td>
+                <td id="elproempleo">SI</td>
+            </tr>
+            <tr>
+                <td>Ley Especifica (19378-19464-19070)</td>
+                <td>:</td>
+                <td id="laleyespecifica1">SI</td>
+            </tr>
+        </table>
+        <br />
+        <h4>Calculo de Endeudamiento</h4>
+        <hr />
+        <table style="width:70%;">
+            <tr>
+                <td>Ingrese el Total de Haberes de la Liquidación mas Baja.</td>
+                <td>: </td>
+                <td id="loshaberes">884.222</td>
+            </tr>
+            <tr>
+                <td>Ingrese los Bonos extraordinarios de la Liquidación mas Baja.</td>
+                <td>: </td>
+                <td id="losbonos">728.444</td>
+            </tr>
+            <tr>
+                <td>Ingrese los Descuentos Legales de la Liquidación más Baja.</td>
+                <td>: </td>
+                <td id="losdescuentoslegales">889.000</td>
+            </tr>
+            <tr>
+                <td>Renta Depurada CRM.</td>
+                <td>: </td>
+                <td id="larentadepuradacrm">299.888</td>
+            </tr>
+            <tr>
+                <td>Renta Depurada Calculada.</td>
+                <td>: </td>
+                <td id="larentadepuradacalculada">299.888</td>
+            </tr>
+            <tr>
+                <td>Ingrese el Total de Descuentos de la Última Liquidación</td>
+                <td>: </td>
+                <td id="eltotaldescuentos">299.000</td>
+            </tr>
+            <tr>
+                <td>Otros Descuentos (Automático)</td>
+                <td>: </td>
+                <td id="losotrosdescuentos">103.000</td>
+            </tr>
+
+            <tr>
+                <td>Ingrese el Valor Cuota del Crédito en Evaluación (Checklist Verificador).</td>
+                <td>: </td>
+                <td id="elvalorcuotaevaluacion">34.500</td>
+            </tr>
+            <tr>
+                <td>Ingrese el Valor Cuota del Crédito(s) a Comprar de la Liquidación (Checklist Verificador).</td>
+                <td>: </td>
+                <td id="elvalorcuotacompracartera">0</td>
+            </tr>
+        </table>
+        <br />
+        <p><b id="elresultadofinal">Resultado: Ok, No Excede máximo Endeudamiento</b></p>
+    </div>
+</div>
+
+
+
+
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+    <script src="~/Assets/plugins/chosen/chosen.jquery.min.js"></script>
+    <script>
+
+        // Warn if overriding existing method
+        if (Array.prototype.equals)
+            console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+        // attach the .equals method to Array's prototype to call it on any array
+        Array.prototype.equals = function (array) {
+            // if the other array is a falsy value, return
+            if (!array)
+                return false;
+
+            // compare lengths - can save a lot of time
+            if (this.length != array.length)
+                return false;
+
+            for (var i = 0, l = this.length; i < l; i++) {
+                // Check if we have nested arrays
+                if (this[i] instanceof Array && array[i] instanceof Array) {
+                    // recurse into the nested arrays
+                    if (!this[i].equals(array[i]))
+                        return false;
+                }
+                else if (this[i] != array[i]) {
+                    // Warning - two different object instances will never be equal: {x:20} != {x:20}
+                    return false;
+                }
+            }
+            return true;
+        }
+        // Hide method from for-in loops
+        Object.defineProperty(Array.prototype, "equals", { enumerable: false });
+
+
+        var controller = {
+
+            onPrint: function () {
+                const ladata = objectifyForm($('#formulario_calculadora').serializeArray());
+
+                console.log({
+                    ladata
+                })
+
+                $("#elrutafiliado").text(ladata.rut_afiliado);
+                $("#elanexomuni").text(ladata.anexo_empresa);
+                //$("#elnombremuni").text("");
+                //$("#elrutmuni").text("");
+
+                $("#elcotiza").text(determinateState(ladata.cotiza));
+                $("#elgrado").text(determinateState(ladata.grado_profesional_directivo));
+                $("#elseguroces").text(determinateState(ladata.seguro_cesantia));
+                $("#elproempleo").text(determinateState(ladata.pro_empleo));
+                $("#laleyespecifica1").text(determinateState(ladata.ley_especifica));
+
+
+                $("#loshaberes").text(detMon(ladata.haberes));
+                $("#losbonos").text(detMon(ladata.bonos_extraordinarios));
+                $("#losdescuentoslegales").text(detMon(ladata.descuentos_legales_promedio));
+                $("#larentadepuradacrm").text(detMon(ladata.renta_depurada_crm));
+                $("#larentadepuradacalculada").text(detMon(ladata.renta_depurada_calculada));
+                $("#eltotaldescuentos").text(detMon(ladata.total_descuentos_liquidacion));
+                $("#losotrosdescuentos").text(detMon(ladata.otros_descuentos));
+                $("#elvalorcuotaevaluacion").text(detMon(ladata.valor_cuota));
+                $("#elvalorcuotacompracartera").text(detMon(ladata.descuentos_creditos_planilla));
+
+                window.print();
+            }
+
+        }
+        function determinateState(val) {
+            return val === "1" ? "SI" : val === "0" ? "NO" : "-";
+        }
+
+        function detMon(val) {
+            return parseInt(val).toMoney(0);
+        }
+
+
+
+        $(function () {
+
+            $('#anexo_empresa').on('blur', function () {
+
+                $.SecGetJSON(BASE_URL + "/Motor/api/Gestion/lista-empresa-rol", { IdAnexo: $(this).val() }, function (datos) {
+                    $('#leyenda_muni').text(`Rut: ${datos.RutEmpresa} - Nombre: ${datos.NombreEmpresa}`);
+                    $('#elnombremuni').text(`${datos.NombreEmpresa}`);
+                    $('#elrutmuni').text(`${datos.RutEmpresa}`);
+                });
+            })
+
+
+            $("#imprimirs").on('click', function () {
+                controller.onPrint();
+            });
+
+            $('#renta_depurada_crm').on('blur', function () {
+
+                $("#valida_renta_depurada").find(".ok").hide();
+                $("#valida_renta_depurada").find(".error").hide();
+                $("#valida_renta_depurada").removeClass("has-error").removeClass("has-success");
+
+                var number = parseInt($(this).val().replace(/\./g, ''));
+                if (!isNaN(number))
+                    $(this).val(number.toMoney(0));
+
+
+                var renta_depurada_calculada = 0,
+                    haberes = !isNaN(parseInt($('#haberes').val().replace(/\./g, ''))) ? parseInt($('#haberes').val().replace(/\./g, '')) : 0,
+                    bonos_extraordinarios = !isNaN(parseInt($('#bonos-extraordinarios').val().replace(/\./g, ''))) ? parseInt($('#bonos-extraordinarios').val().replace(/\./g, '')) : 0,
+                    descuentos_legales_promedio = !isNaN(parseInt($('#descuentos_legales_promedio').val().replace(/\./g, ''))) ? parseInt($('#descuentos_legales_promedio').val().replace(/\./g, '')) : 0;
+
+                renta_depurada_calculada = haberes - (bonos_extraordinarios + descuentos_legales_promedio);
+                renta_depurada_calculada = renta_depurada_calculada < 0 ? 0 : renta_depurada_calculada;
+                console.log({ renta_depurada_calculada })
+                $('#renta_depurada_calculada').val(renta_depurada_calculada.toMoney(0));
+
+
+
+
+                if ($("#renta_depurada_crm").val() === $("#renta_depurada_calculada").val()) {
+                    $("#valida_renta_depurada").find(".ok").show();
+                    $("#valida_renta_depurada").addClass("has-success");
+                } else {
+                    $("#valida_renta_depurada").find(".error").show();
+                    $("#valida_renta_depurada").addClass("has-error");
+                }
+            });
+
+            var resultado_contrato = {
+
+                respuesta: '',
+                mostrarElResultado: function (type = 'success', messaje = '') {
+                    $('#message_placeholder').html("");
+                    $('#message_placeholder').append($('<div>').addClass(`alert alert-${type}`).text(messaje));
+                    $('.resultado-acciones').show();
+                    $("#Resultado1").val(messaje);
+                },
+                generaRespuesta: function (cotiza, grado, seguro_cesantia, pro_empleo, ley_especifica, ley_especifica_2) {
+
+                    var matriz_real = [cotiza, grado, seguro_cesantia, pro_empleo, ley_especifica, ley_especifica_2];
+
+                    console.log({ matriz_real })
+
+
+                    var matriz_respuestas_ = [
+
+
+                        {
+                            combinacion: [undefined, undefined, undefined, undefined, undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: ['on', 'on', 'on', 'on', undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: [undefined, 'on', 'on', 'on', undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: [undefined, undefined, 'on', 'on', undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: [undefined, undefined, undefined, 'on', undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+
+
+
+
+                        {
+                            combinacion: [undefined, undefined, undefined, undefined, 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                        {
+                            combinacion: ['on', 'on', 'on', 'on', 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+
+                        {
+                            combinacion: [undefined, 'on', 'on', 'on', 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                        {
+                            combinacion: [undefined, undefined, 'on', 'on', 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                        {
+                            combinacion: [undefined, undefined, undefined, 'on', 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+    
+
+
+
+
+                        {
+                            combinacion: [undefined, undefined, undefined, 'on', undefined, undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                        {
+                            combinacion: [undefined, 'on', undefined, undefined, undefined, undefined],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: ['on', undefined, undefined, undefined, undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: ['on', undefined, 'on', undefined, undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: [undefined, 'on', undefined, undefined, undefined, 'on'],
+                            mensaje: 'Afiliado Afecto al 15%',
+                            tipo: 'warning',
+                            abrirCalculadora: true
+                        },
+                        {
+                            combinacion: ['on', undefined, undefined, undefined, 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                        //{
+                        //    combinacion: ['on', undefined, undefined, undefined, undefined, undefined],
+                        //    mensaje: 'Afiliado NO Afecto al 15%',
+                        //    tipo: 'success',
+                        //    abrirCalculadora: false
+                        //},
+                        {
+                            combinacion: ['on', undefined, 'on', undefined, 'on', undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                        {
+                            combinacion: ['on', undefined, 'on', undefined, undefined, undefined],
+                            mensaje: 'Afiliado NO Afecto al 15%',
+                            tipo: 'success',
+                            abrirCalculadora: false
+                        },
+                    ]
+
+                    var output = matriz_respuestas_.find(function (e) {
+                        return e.combinacion.equals(matriz_real);
+
+                    })
+
+                    if (output === undefined) {
+                        resultado_contrato.mostrarElResultado('primary', 'Requiere Certificado');
+                        return false;
+                    }
+                    resultado_contrato.mostrarElResultado(output.tipo, output.mensaje, output.abrirCalculadora);
+                    return output;
+                }
+
+            };
+
+
+            /*Mover hacia el lugar que corresponda */
+
+            $("#calcuar_contrato").on('click', function () {
+                $('#message_placeholder').html("");
+                $('.ultima-patita').hide();
+                $('.resultado-acciones').hide();
+
+                if ($("#rut_afiliado").val() === '') {
+                    alert("Favor completa el Rut");
+                    return false;
+                }
+
+                if ($("#anexo_empresa").val() === '') {
+                    alert("Favor completa el Anexo");
+                    return false;
+                }
+
+
+                var respu = resultado_contrato.generaRespuesta(
+                    $('input[name=cotiza]:checked').val(),
+                    $('input[name=grado_profesional_directivo]:checked').val(),
+                    $('input[name=seguro_cesantia]:checked').val(),
+                    $('input[name=pro_empleo]:checked').val(),
+                    $('input[name=ley_especifica]:checked').val(),
+                    $('input[name=ley_especifica_2]:checked').val()
+                );
+
+                console.log({
+                    mensaje: 'Calculando los datos inputados',
+                    resultado: respu
+                })
+                if (respu && respu.abrirCalculadora) {
+                    $('.ultima-patita').show();
+                }
+
+                var objeto_envio_rol_verificador = {
+                    Id: '',
+                    RutAfiliado: $("#rut_afiliado").val(),
+                    Anexo: $("#anexo_empresa").val(),
+                    RutEmpresa: $('#elrutmuni').text(),
+                    NombreEmpresa: $('#elnombremuni').text(),
+                    Cotiza: determinarEstado($('input[name=cotiza]:checked').val()),
+                    Grado: determinarEstado($('input[name=grado_profesional_directivo]:checked').val()),
+                    SeguroCesantia: determinarEstado($('input[name=seguro_cesantia]:checked').val()),
+                    ProEmpleo: determinarEstado($('input[name=pro_empleo]:checked').val()),
+                    LeyEspecifica: determinarEstado($('input[name=ley_especifica]:checked').val()),
+                    LeyEspecifica2: determinarEstado($('input[name=ley_especifica_2]:checked').val()),
+                    Resultado1: $('#Resultado1').val()
+                }
+                console.log({
+                    objeto_envio_rol_verificador
+                })
+                $.SecPostJSON(BASE_URL + "/Motor/api/Gestion/guarda-rol-verificador", objeto_envio_rol_verificador, function (datos) {
+                    $('#Id').val(datos.Id);
+                });
+
+            });
+
+            //function determinarEstado(entrada) {
+            //    if (entrada === '1') {
+            //        return "true";
+            //    } else if (entrada === '0') {
+            //        return "false";
+            //    } else {
+            //        return null;
+            //    }
+            //}
+
+            function determinarEstado(entrada) {
+                if (entrada === 'on') {
+                    return "true";
+                } else if (entrada === undefined) {
+                    return "false";
+                } else {
+                    return null;
+                }
+            }
+
+
+            var sumatoria = {
+                totalHaberes: 0,
+                bonosExtraordinarios: 0,
+                descuentosLegales: 0,
+                otrosDescuentos: 0,
+                valorCuota: 0,
+                descuentosPlanilla: 0,
+                calcularEstado: function () {
+                    var topeDescuentos = (this.totalHaberes - this.bonosExtraordinarios - this.descuentosLegales) * 0.15;
+                    var residuoOtrosDescuentos = this.otrosDescuentos - this.descuentosPlanilla;
+                    var cargaDescuentosNueva = residuoOtrosDescuentos + this.valorCuota;
+
+                    console.log({ topeDescuentos, residuoOtrosDescuentos, cargaDescuentosNueva });
+
+                    if (topeDescuentos < cargaDescuentosNueva) {
+                        console.log('[ERROR] La nueva carga excede el tope de descuentos', {
+                            sumatoria,
+                            topeDescuentos,
+                            residuoOtrosDescuentos,
+                            cargaDescuentosNueva
+                        })
+                        //$.trigger('charlie.events.onCatchNuevosOtrosDescuentosExcedeTope');
+                        return false;
+                    }
+
+                    return true;
+                },
+                parseObjects: function (
+                    totalHaberes = '0',
+                    bonosExtraordinarios = '0',
+                    descuentosLegales = '0',
+                    otrosDescuentos = '0',
+                    valorCuota = '0',
+                    descuentosPlanilla = '0') {
+
+                    this.totalHaberes = this.parseJQueryObjectInt(totalHaberes);
+                    this.bonosExtraordinarios = this.parseJQueryObjectInt(bonosExtraordinarios);
+                    this.descuentosLegales = this.parseJQueryObjectInt(descuentosLegales);
+                    this.otrosDescuentos = this.parseJQueryObjectInt(otrosDescuentos);
+                    this.valorCuota = this.parseJQueryObjectInt(valorCuota);
+                    this.descuentosPlanilla = this.parseJQueryObjectInt(descuentosPlanilla);
+
+                },
+                parseJQueryObjectInt: function (input) {
+                    return input != '' ? parseInt(input.replace(/\./g, '')) : 0;
+                }
+
+            }
+
+
+            $('.promediar').on('keyup', function () {
+                //$('#descuentos_legales_promedio').
+                var sumatoria = 0;
+                $('.promediar').each(function (i, e) {
+                    console.log({ e, i })
+                    if ($(e).val() !== undefined) {
+                        sumatoria += parseInt($(e).val().replace(/\./g, ''))
+                    }
+                });
+                var promedio = sumatoria / 3;
+                promedio = !isNaN(promedio) ? promedio : 0;
+                $("#descuentos_legales_promedio").val(promedio.toMoney(0));
+            })
+
+
+            /*$('.depurar-renta').on('keyup', function () {
+                //renta_depurada_calculada = haberes - bonos_extraordinarios - descuentos_legales_promedio
+
+                var renta_depurada_calculada = 0,
+                    haberes = !isNaN(parseInt($('#haberes').val().replace(/\./g, ''))) ? parseInt($('#haberes').val().replace(/\./g, '')) : 0,
+                    bonos_extraordinarios = !isNaN(parseInt($('#bonos-extraordinarios').val().replace(/\./g, ''))) ? parseInt($('#bonos-extraordinarios').val().replace(/\./g, '')) : 0,
+                    descuentos_legales_promedio = !isNaN(parseInt($('#descuentos_legales_promedio').val().replace(/\./g, ''))) ? parseInt($('#descuentos_legales_promedio').val().replace(/\./g, '')) : 0;
+
+                renta_depurada_calculada = haberes - (bonos_extraordinarios + descuentos_legales_promedio);
+                renta_depurada_calculada = renta_depurada_calculada < 0 ? 0 : renta_depurada_calculada;
+                console.log({ renta_depurada_calculada })
+                $('#renta_depurada_calculada').val(renta_depurada_calculada.toMoney(0));
+
+            })*/
+
+
+            $.getJSON(BASE_URL + "/Motor/Assets/data/RolVerificador.json", function (response) {
+                $.each(response.Cotiza, function (i, e) {
+                    $("#slCotiza").append($('<option>').text(e.respuesta).val(e.id))
+                })
+            })
+
+            $('.clc-otros-descuentos').on('keyup', function () {
+
+                try {
+                    var totalDescuentos = parseInt($('#total-descuentos').val().replace(/\./g, ''));
+                    var descuentosLegales = parseInt($('#descuentos_legales_promedio').val().replace(/\./g, ''));
+                    var otrosDecuentos = totalDescuentos - descuentosLegales;
+
+                    if (isNaN(otrosDecuentos) || otrosDecuentos < 0) {
+                        otrosDecuentos = 0;
+                    }
+
+                    $('#otros-descuentos').val(otrosDecuentos);
+                } catch{
+                    $('#otros-descuentos').val(0);
+                }
+
+            });
+
+            $('#formulario_calculadora').on({
+                submit: function (e) {
+                    e.preventDefault();
+                    return false;
+                },
+                reset: function (event) {
+                    $(this).bootstrapValidator('resetForm', true);
+                }
+            })
+
+            $("#rut_afiliado").on("keyup", function () {
+                $('#formulario_calculadora').bootstrapValidator('updateStatus', 'rut_afiliado', 'NOT_VALIDATED').bootstrapValidator('validateField', 'rut_afiliado');
+            })
+
+            $("#rut_empresa").on("keyup", function () {
+                $('#formulario_calculadora').bootstrapValidator('updateStatus', 'rut_empresa', 'NOT_VALIDATED').bootstrapValidator('validateField', 'rut_empresa');
+            })
+
+            $(".solo-numeros").on({
+                keydown: function (e) {
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                        (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        return;
+                    }
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                },
+                blur: function (event) {
+                    var number = parseInt($(this).val().replace(/\./g, ''));
+                    if (!isNaN(number))
+                        $(this).val(number.toMoney(0));
+                }
+            });
+
+            $('#formulario_calculadora').bootstrapValidator({
+                excluded: [':disabled'], //, ':not(:visible)'
+                fields: {
+                    rut_afiliado: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Rut'
+                            },
+                            callback: {
+                                message: 'Rut Invalido',
+                                callback: function (value, validator, $field) {
+
+                                    /*if ($.rut.validar(value)) {
+                                        $field.trigger("calculadora.onRutValidado");
+                                    }*/
+                                    var rutFormateado = $.rut.formatear(value);
+                                    return $.rut.validar(rutFormateado);
+
+                                }
+                            }
+                        }
+                    },
+                    rut_empresa: {
+                        threshold: 9,
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Rut'
+                            },
+                            callback: {
+                                message: 'Rut Invalido',
+                                callback: function (value, validator, $field) {
+                                    return $.rut.validar(value);
+                                }
+
+
+                            }
+                            //remote: {
+                            //    message: 'El rut de la Empresa No corresponde a la publicas que operan con el 15%',
+                            //    url: BASE_URL + "/Motor/api/Gestion/existe-empresas-15-porciento",
+                            //    type: 'GET'
+                            //}
+
+                        }
+                    },
+                    haberes: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    bonos_extraordinarios: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    descuentos_legales: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    total_descuentos_liquidacion: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    valor_cuota: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe Ingresar un Valor'
+                            }
+                        }
+                    },
+                    tiene_descuentos_planilla: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar una opción'
+                            }
+                        }
+                    },
+                    descuentos_creditos_planilla: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe ingresar los descuentos de creditos por planilla',
+                            },
+                        }
+                    },
+
+                    nombre_empresa: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar una Municipalidad'
+                            }
+                        }
+                    },
+                    departamento: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe ingresar un departamento'
+                            }
+                        }
+                    },
+                    //cotiza: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'Debe seleccionar cotiza'
+                    //        }
+                    //    }
+                    //},
+                    grado: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Debe seleccionar grado'
+                            }
+                        }
+                    },
+                    //seguro_cesantia: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'Debe seleccionar seguro'
+                    //        }
+                    //    }
+                    //},
+
+                }
+
+            }).on('success.form.bv', function (e) {
+                // Prevén que se mande el formulario
+                e.preventDefault();
+                var $form = $(e.target);
+
+
+                sumatoria.parseObjects($('#haberes').val(), $('#bonos-extraordinarios').val(), $('#descuentos_legales_promedio').val(), $('#otros-descuentos').val(), $('#valor-cuota').val(), $('#descuentos_creditos_planilla').val())
+
+                var resultado = sumatoria.calcularEstado();
+
+                console.log({
+                    sumatoria,
+                    resultado
+                });
+                $("#elresultadofinal").text("");
+                $('#calculadora_result_placeholder').html("");
+                $('.imprimire').hide();
+                var _tx_r = "";
+                if (resultado) {
+                    //alert("Calculo Aprobado, Acepta para Imprimir");
+
+                    $("#calculadora_result_placeholder").append($('<div>').addClass(`alert alert-success`).html('<b>OK</b>, No Excede maximo endeudamiento'))
+                    $("#elresultadofinal").text("OK, No Excede maximo endeudamiento");
+                    _tx_r = "OK, No Excede maximo endeudamiento";
+                    $('.imprimire').show();
+
+                    //window.print();
+                } else {
+                    $("#calculadora_result_placeholder").append($('<div>').addClass(`alert alert-danger`).html('<b>Alerta</b>, Excede maximo endeudamiento'))
+                    $("#elresultadofinal").text("Alerta, Excede maximo endeudamiento");
+                    _tx_r = "Alerta, Excede maximo endeudamiento";
+                }
+
+
+
+                var objeto_envio_rol_verificadorCalculo = {
+                    Id: $('#Id').val(),
+                    TotalHaberes: $("#haberes").val(),
+                    BonosExtras: $("#bonos-extraordinarios").val(),
+                    DescuentoLegalMes1: null,
+                    DescuentoLegalMes2: null,
+                    DescuentoLegalMes3: null,
+                    Promedio: $("#descuentos_legales_promedio").val(),
+                    RentaDepurada: $("#renta_depurada_calculada").val(),
+                    RentaDepuradaCMR: $("#renta_depurada_crm").val(),
+                    TotalDescuento: $("#total-descuentos").val(),
+                    OtrosDescuentos: $("#otros-descuentos").val(),
+                    ValorCuotaCredito: $("#valor-cuota").val(),
+                    ValorCuotaCreditoComp: $("#descuentos_creditos_planilla").val(),
+                    Resultado2: _tx_r,
+                }
+                $.SecPostJSON(BASE_URL + "/Motor/api/Gestion/guarda-rol-verificador-calculo", objeto_envio_rol_verificadorCalculo, function (datos) {
+                    console.log({ datos })  
+                });
+
+            });
+
+
+            $('#desmarcar_todos').on('click', function () {
+                $('input[type="checkbox"]').prop('checked', false);
+            });
+
+
+        });
+    </script>
+
+
+
+
+}
+

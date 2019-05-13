@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Instalador";
+    Layout = null;
+}
+
+<!--STYLESHEET-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<link href="~/Assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/Assets/css/nifty.min.css" rel="stylesheet">
+<link href="~/Assets/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+<link href="~/Assets/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+<div class="eq-height clearfix" style="table-layout: inherit; height: inherit;">
+    <div class="col-md-7 eq-box-md text-center box-vmiddle-wrap" style="height: inherit;">
+        <br />
+        <div class="panel-body" id="panelwel" style="display:block">
+            <img src="~/Img_Install/Incio_instalador/000_inst_bienvenida.jpg" style="width: 65%;" />
+            <hr />
+            <button class="btn btn-primary btn-labeled demo-psi-gear" style="border-radius: 4px; height: 34px;" id="wlc">Empezar con la actualización</button>
+        </div>
+        <div class="panel panel-bordered panel-primary" style="border-radius: 17px; height: 645px; width:760px; display:none" id="panelInst">
+            <div class="panel-heading" style="border-radius: 13px 13px 0px 0px;">
+                <h3 class="panel-title" style=" border-radius: 32px; text-align: left;" id="mesjHead">
+                    <i class="demo-psi-gear icon-lg" style="line-height: inherit; font-style: inherit;" id="lbMS_Mejoras">   Se estan instalando nuevas actualizaciones</i>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12 eq-box-md eq-no-panel">
+                    <div id="demo-main-wz">
+                        <div id="demo-carousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators out"></ol>
+                            <div class="carousel-inner" id="pruebaCur" style="text-align: center;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="col-sm-9 col-lg-3" style="width: 70%;">
+                    <div class="progress progress-striped active">
+                        <div style="width: 0%; border-radius: 4px;" class="progress-bar progress-bar-info" id="bar"></div>
+                    </div>
+                    <label id="barLb" style="font-weight: bold; font-size: 20px;">0%</label>
+                </div>
+                <div class="col-sm-3 col-lg-3">
+                    <ul class="pager pager-rounded">
+                        <li><button class="btn btn-primary" data-slide="next" href="#demo-carousel" type="button" disabled id="btNext">Siguiente</button><button class="btn btn-primary" type="button" id="UltSig" style="display:none">Siguiente</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body" id="panelFinal" style="display:none">
+            <img src="~/Img_Install/Incio_instalador/009 inst_final.jpg" style="width: 65%;" />
+            <hr />
+            <button class="btn btn-primary btn-labeled demo-psi-gear" style="border-radius: 4px; height: 34px;" id="InstalFinal">Finalizar</button>
+        </div>
+
+    </div>
+</div>
+
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+<!--JAVASCRIPT-->
+
+<link href="~/Assets/plugins/pace/pace.min.css" rel="stylesheet">
+<script src="~/Assets/plugins/pace/pace.min.js"></script>
+<script src="~/Assets/js/jquery.min.js"></script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<script src="~/Assets/js/nifty.min.js"></script>
+<script src="~/Assets/js/demo/bg-images.js"></script>
+<script src="~/Assets/js.App/Conf.js"></script>
+<script src="~/Assets/js.App/Ext.js"></script>
+<script>
+    $(function () {
+        $('body').css('background', '#ffffff')
+        $('#demo-carousel').carousel('pause');
+        var instalacion_codigo = httpGet('i');
+        $.SecGetJSON(BASE_URL + "/motor/api/instalador-actualizacion/obtener-actualizacion", { instalacion: instalacion_codigo }, function (menus) {
+            const contador = menus.length - 1;
+            $.each(menus, function (i, e) {
+                var __li = $('<li>').prop({ 'data-slide-to': i, 'data-target': '#demo-carrousel' }).addClass('li-sergio')
+                if (i === 0) {
+                    __li.addClass('active')
+                }
+                $('.carousel-indicators').append(__li);
+                //var __h4 = $('<h4>').addClass('text-main').text(e.Titulo)
+                //var __p = $('<blockquote>').addClass('text-muted').css("text-align", "justify").css("font-size", "13px").css('color', '#181918').text(e.Glosa);
+                //var _divBlock1 = $('<div>').addClass('col-sm-5').append(__h4).append(__p)
+
+                var __img = $('<img>').prop({ 'src': e.Ruta }).css('width', '533px').css('margin-left', '73px')
+                var __divImg = $('<div>').addClass('col-sm-12').append(__img).css('width', '564px').css('height', '394px')
+                var __div = $('<div>').prop({ 'id': 'itemSlider' + i }).addClass('item').append(__divImg)//append(_divBlock1).
+
+                if (i === 0) {
+                    __div.addClass('active')
+                }
+                $('#pruebaCur').append(__div)
+            })
+
+            $('#btNext').on('click', function () {
+                var progreso = 0;
+
+                var idIterval = setInterval(function () {
+                    $('#btNext').attr("disabled", true);
+                    progreso += 1;
+                    $('#bar').css('width', progreso + '%');
+                    document.getElementById("barLb").innerText = progreso + '%'
+                    const indice = $('.li-sergio.active').index();
+
+                    if (progreso == 100) {
+
+                        if (contador === indice && progreso === 100) {
+                            document.getElementById("lbMS_Mejoras").innerText = '  Instalación Finalizada'
+                            document.getElementById('btNext').style.display = 'none'
+                            document.getElementById('UltSig').style.display = 'block'
+
+                        }
+                        else { $('#btNext').attr("disabled", false); }
+                        if (contador != indice && progreso == 100) { $('#btNext').attr("disabled", false); }
+                        clearInterval(idIterval);
+                    }
+                }, 100);
+            });
+            $('#demo-carousel').carousel('pause');
+
+        });
+
+        $('#UltSig').on('click', function () {
+            document.getElementById('panelInst').style.display = 'none'
+            $('body').css('background', '#ffffff')
+            document.getElementById('panelFinal').style.display = 'block'
+        });
+
+        $('#wlc').on('click', function () {
+            document.getElementById('panelwel').style.display = 'none'
+            document.getElementById('panelInst').style.display = 'block'
+            $('body').css('background', '#ecf0f5')
+            $('#btNext').click();
+        });
+
+        $('#InstalFinal').on('click', function () {
+            //update - intalador
+            $.SecPostJSON(BASE_URL + "/motor/api/instalador-actualizacion/update-intalador", function (respuesta) {
+                if (respuesta.Estado === 'OK') {
+                    location.href = '/motor/App/Inicio';
+                }
+                console.log('Respsuesta', respuesta)
+            });
+        });
+    });
+
+</script>
+

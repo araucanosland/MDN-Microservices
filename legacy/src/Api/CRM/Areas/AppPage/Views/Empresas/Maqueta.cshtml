@@ -1,0 +1,423 @@
+﻿@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Bootstrap Table [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_visados" class="tab-principal">Prospectos Visados</a>
+                    </li>
+
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table class="table table-striped" id="tabla_fidelizacion">
+                                        <thead>
+                                            <tr>
+                                                <th>Rut</th>
+                                                <th>Razon Social</th>
+                                                <th>Nro. de Empleados</th>
+                                                <th>Clasificacion</th>
+                                                <th>Caja Origen</th>
+                                                <th>Hito Actual</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr v-for="item in prospectosVisados">
+                                                <td><a class="btn-link" data-toggle="modal" data-target="#modalGestion" href="#">{{item.rut}}</a></td>
+                                                <td>{{ item.razonSocial }}</td>
+                                                <td>{{ item.empleados }}</td>
+                                                <td>{{ item.clasificacion }}</td>
+                                                <td>{{ item.caja }}</td>
+                                                <td>{{ item.hito }}</td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalGestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Gestión de Prospectos Visados</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <div>
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#company-data" aria-controls="company-data" role="tab" data-toggle="tab">Empresa</a></li>
+                                    <li role="presentation"><a href="#history-info" aria-controls="history-info" role="tab" data-toggle="tab">Historial de Gestión</a></li>
+                                    <li role="presentation"><a href="#contact-info" aria-controls="contact-info" role="tab" data-toggle="tab">Contactos</a></li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="company-data">
+                                        <div class="row mar-top">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Rut</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.rut" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label><strong>Razón Social</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.razonSocial" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label><strong>Nro. Empleados</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.empleados" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label><strong>Caja Actual</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.caja" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                <div class="form-group">
+                                                    <label><strong>Holding</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.holding" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label><strong>Segmento</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.segmento" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label><strong>Rubro</strong></label>
+                                                    <input type="text" class="form-control" v-bind:value="seleccionadoModal.rubro" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="history-info">
+                                        <div class="row mar-top">
+
+                                            <div class="col-md-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span class="badge">Ini: 10-11-2019</span>
+                                                        <span class="badge alert-warning">Comp: 10-11-2019</span>
+                                                        <table>
+                                                            <tr>
+                                                                <td style="padding-right: 5px;"><strong>Ejecutivo</strong></td>
+                                                                <td style="padding-right: 5px;">:</td>
+                                                                <td>17042783-1 | Carlos Pradenas Pérez</td>
+                                                            </tr>
+                                                           
+                                                        </table>
+                                                        <p class="mar-top">Se dijo todo lo que querian saber Se dijo todo lo que querian saber Se dijo todo lo que querian saber Se dijo todo lo que querian saber Se dijo todo lo que querian saber Se dijo todo lo que querian saber Se dijo todo lo que querian saber Se dijo todo lo que querian saber.......</p>
+                                                        <span class="label label-info">Tubo Comercial</span>
+                                                        <span class="label label-primary">001003 - Se encuietra con mucho texto \ Se agendara nueva reunion</span>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="contact-info">
+                                        <div class="row mar-top">
+                                            <ul class="media-list">
+                                                <li class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img class="media-object" style="width: 54px; height: 54px;" src="/Motor/Assets/img/profile-photos/1.png" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">Carlos Antonio Esposito Pradenas Pérez (Fullstack Dev)</h4>
+                                                        <table style="width: 90%;">
+                                                            <tr>
+                                                                <td><strong>Telefono</strong></td>
+                                                                <td>:</td>
+                                                                <td>+56945189023</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Email</strong></td>
+                                                                <td>:</td>
+                                                                <td>charlie.pradenas@gmail.com</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </li>
+
+                                                <li class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img class="media-object" style="width: 54px; height: 54px;" src="/Motor/Assets/img/profile-photos/1.png" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">Alexandra The Great (Fullstack Dev)</h4>
+                                                        <table style="width: 90%;">
+                                                            <tr>
+                                                                <td><strong>Telefono</strong></td>
+                                                                <td>:</td>
+                                                                <td>+56945189023</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Email</strong></td>
+                                                                <td>:</td>
+                                                                <td>ale.pradenas@gmail.com</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="row">
+                                <div v-bind:class="clasificacionClass">
+                                    <p class="text-center">Clasificación</p>
+                                    <p class="text-center" style="font-size:22px !important;">{{ seleccionadoModal.clasificacion }}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="alert alert-info">
+                                    <p class="text-center">Hito Actual</p>
+                                    <p class="text-center" style="font-size:18px !important;">{{ seleccionadoModal.hito }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <form id="datos-gestion" action="#" method="post">
+                        <div class="row" style="text-align: left;">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Estado</label>
+                                    <select class="form-control" id="parentStatus" name="parentStatus">
+                                        <option value="">Seleccione</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Sub Estado</label>
+                                    <select class="form-control" id="childStatus" name="childStatus" disabled="disabled">
+                                        <option value="">Seleccione</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" id="fpg">
+                                    <label class="control-label">Fecha Próxima Gestión</label>
+                                    <div id="demo-dp-component">
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" id="nextCommitmentDate" name="nextCommitmentDate">
+                                            <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="text-align: left;">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Comentarios</label>
+                                    <textarea placeholder="Comentarios" rows="3" class="form-control" id="comments" name="comments"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                       
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </form>
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<!--===================================================-->
+<!--End page content-->
+
+
+@section script{
+
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-table/locale/bootstrap-table-es-ES.min.js"></script>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        var prospectoDefaults = {
+            rut: 'Sin Información',
+            razonSocial: 'Sin Información',
+            empleados: 0,
+            clasificacion: 'Z',
+            caja: 'Sin Información',
+            holding: '',
+            segmento: '',
+            rubro: '',
+            hito: '',
+            historial: [],
+            contactos: []
+        };
+
+        var app = new Vue({
+            el: '#page-content',
+            data: {
+                prospectosVisados: [
+                    {
+                        rut: '1111-1',
+                        razonSocial: 'I. Municipalidad del Desarrollo',
+                        empleados: 20,
+                        clasificacion: 'A',
+                        caja: 'Los Andes',
+                        holding: '',
+                        segmento: 'Pública - No Afecta',
+                        rubro: 'Administracion Pública',
+                        hito: 'Tubo Comercial',
+                        historial: [],
+                        contactos: []
+                    },
+                    {
+                        rut: '1111-3',
+                        razonSocial: 'Aserraderos M.O.',
+                        empleados: 670,
+                        clasificacion: 'B',
+                        caja: 'Los Andes',
+                        holding: '2222-2 - CMPC',
+                        segmento: 'Privada',
+                        rubro: 'Industria de la Madera',
+                        hito: 'Tubo Comercial',
+                        historial: [],
+                        contactos: []
+                    },
+                    {
+                        rut: '1111-4',
+                        razonSocial: 'Thor SA',
+                        empleados: 345,
+                        clasificacion: 'C',
+                        caja: 'Los Andes',
+                        holding: '',
+                        segmento: 'Pública - Afecta',
+                        rubro: 'Administracion Pública',
+                        hito: 'Tubo Comercial',
+                        historial: [],
+                        contactos: []
+                    }
+                ],
+                seleccionadoModal: prospectoDefaults,
+
+            },
+            mounted: function () {
+                console.log('App mounted')
+
+            },
+            updated: function () {
+                console.log('updated')
+            },
+            methods: {
+
+            },
+            computed: {
+                clasificacionClass: function () {
+                    return {
+                        'alert': true,
+                        'alert-success': this.seleccionadoModal.clasificacion === 'A',
+                        'alert-warning': this.seleccionadoModal.clasificacion === 'B',
+                        'alert-danger': this.seleccionadoModal.clasificacion === 'C',
+                    }
+                }
+            }
+        });
+
+
+       
+
+        //Eventos JQUERY
+        $('#modalGestion').on('show.bs.modal', function (event) {
+            var $opener = $(event.relatedTarget);
+
+            var empresaRut = $opener.text();
+            var idx = app.$data.prospectosVisados.findIndex(function (pv) {
+                return pv.rut === empresaRut;
+            });
+            app.$data.seleccionadoModal = app.$data.prospectosVisados[idx];
+        })
+
+
+        $('#modalGestion').on('hidden.bs.modal', function (event) {
+            app.$data.seleccionadoModal = prospectoDefaults;
+        })
+    </script>
+}
+

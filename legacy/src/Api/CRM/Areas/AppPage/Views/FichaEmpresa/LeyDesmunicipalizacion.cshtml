@@ -1,0 +1,1008 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+
+<!--Magic Checkbox [ OPTIONAL ]-->
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<script src="js/demo/nifty-demo.min.js"></script>
+
+<style type="text/css">
+    #container .table th {
+        font-size: 11px !important;
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>
+<div id="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-empresa" aria-expanded="true" id="tab_empresa" class="tab-principal">Ficha Empresa <span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+
+                    <div id="tab-empresa" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row mar-btm">
+                                <button type="button" id="btnvolver" class="btn btn-default btn-success-basic">Volver Atras</button>
+                            </div>
+                            <form id="FichaEmpresa">
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Rut Empresa</label>
+                                            <input class="form-control" id="rut_empresa" type="text" name="rut_empresa" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Empresa</label>
+                                            <input class="form-control" type="text" id="nombre_empresa" name="nombre_empresa" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Sucursal</label>
+                                            <input class="form-control" id="sucursal_empresa" name="sucursal_empresa" type="text" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Estamento</label>
+                                            <select id="estamento_empresa" class="form-control" name="estamento_empresa">
+                                                <option value="">Seleccione</option>
+                                                <option value="Empresas">Empresas</option>
+                                                <option value="Sindicato">Sindicato</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" id="divHolding" style="display:none;">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Holding</label>
+                                            <input class="form-control" id="nombre_holding_empresa" type="text" name="nombre_holding_empresa">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre Funcionario</label>
+                                            <input class="form-control" id="nombre_funcionario" type="text" name="nombre_funcionario">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Cargo Funcionario</label>
+                                            <input class="form-control" type="text" id="cargo_funcionario" name="cargo_funcionario">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">N° de Empleados</label>
+                                            <input class="form-control" id="numero_empleados_empresa" type="text" placeholder="Ingresar N° Empleados" name="numero_empleados_empresa">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Entrevista</label>
+                                            <div id="dp_fecha_entrevista">
+                                                <div class="input-group date">
+                                                    <input type="text" id="fecha_entrevista" class="form-control">
+                                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <br />
+                                <div class="row mar-btm">
+                                    <div class="col-sm-5">
+                                        <h3>I- Relación con la Empresa</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                    <div class="col-sm-5">
+                                        <label style="text-align:center;font-weight: bold;" class="control-label">1.1- ¿Cómo evaluarias la relación con la persona que sostuviste la reunión?</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <select id="opciones_11" class="form-control larespuesta" data-id="1" name="opciones_11">
+                                                <option value="">Seleccione</option>
+                                                <option value="4">Excelente</option>
+                                                <option value="5">Muy Buena</option>
+                                                <option value="6">Normal</option>
+                                                <option value="7">Deficiente</option>
+                                                <option value="8">Mala</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <textarea placeholder="Explique brevemente su respuesta" rows="5" class="form-control larespuesta" id="texto_11" data-id="2" name="texto_11"></textarea>
+                                            <small>Máximo 500 caracteres.</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr />
+
+                                @*pregunta 2*@
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                       <h3>II- Antecedentes de avances de aplicación de Ley Desmunicipalización</h3>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-5">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">2.1- ¿El Daem o Corporación tiene definida una fecha propuesta por el Mineduc para el traspaso?</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label for="radio1_si" class="radio-inline">
+                                                    <input id="radio1_si" class="pregunta2 larespuesta" type="radio" data-id="3" name="opciones_21" value="2">
+                                                    Si
+                                                </label>
+
+
+                                                <label for="radio1_no" class="radio-inline">
+                                                    <input id="radio1_no" class="pregunta2 larespuesta" type="radio" data-id="3" name="opciones_21" value="3">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="p2rsi" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">2.2- ¿Cómo evaluarias la posibilidad de continuar afiliado a nuestra Caja?</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <select id="sslOption2" class="form-control larespuesta" data-id="4" name="sslOption2">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="9">Buena</option>
+                                                    <option value="6">Regular</option>
+                                                    <option value="8">Mala</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <textarea placeholder="Explique brevemente su respuesta" rows="5" class="form-control larespuesta" data-id="6" id="text-2Obs" name="textObs2"></textarea>
+                                                <small>Máximo 500 caracteres.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="p2rno" style="display:none;">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-sm-5">
+                                                <label style="text-align:center;font-weight: bold;" class="control-label">2.2- Detalle el motívo y las acciones comprometidas para revertir dicha situación</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <textarea placeholder="Detalle el motivo y las acciones comprometidas para revertir dicha situación" rows="5" class="form-control larespuesta" data-id="5" id="text_2_3" name="textObs2_3"></textarea>
+                                                <small>Máximo 500 caracteres.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+
+
+                                @*pregunta 4*@
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label style="text-align:center;font-weight: bold;" class="control-label">2.3- ¿Se encuentra contratado el nuevo Director Ejecutivo del Servicio Local de Educación?</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div>
+
+                                            <label for="radio23_si" class="radio-inline">
+                                                <input id="radio23_si" class="pregunta23 larespuesta" type="radio" data-id="7" name="respuesta23" value="2">
+                                                Si
+                                            </label>
+
+
+                                            <label for="radi23_no" class="radio-inline">
+                                                <input id="radio23_no" class="pregunta23 larespuesta" type="radio" data-id="7" name="respuesta23" value="3">
+                                                No
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row respuesta23_si" style="display:none;">
+                                    <div class="col-sm-4">
+                                        <h4>2.4 Datos de contacto</h4>
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre</label>
+                                            <input class="form-control" id="nombre_director_ejecutivo" type="text" name="nombre_director_ejecutivo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Teléfono</label>
+                                            <input class="form-control" id="telefono_director_ejecutivo" type="text" name="telefono_director_ejecutivo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input class="form-control" id="email_director_ejecutivo" type="text" name="email_director_ejecutivo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Dirección</label>
+                                            <input class="form-control" id="direccion_director_ejecutivo" type="text" name="direccion_director_ejecutivo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row respuesta23_no" style="display:none;">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">2.4- Explique en que estado se encuentra el proceso y compromisos de acciones para mantenernos informados de su contratación</label>
+                                            <textarea placeholder="" rows="5" class="form-control larespuesta" data-id="8" id="tx_res_3" name="tx_res_3"></textarea>
+                                            <small>Máximo 500 caracteres.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $(".pregunta23").on("click", function () {
+                                            if ($(this).val() == 2) {
+                                                $(".respuesta23_si").show();
+                                                $(".respuesta23_no").hide();
+                                            }
+                                            else {
+                                                $(".respuesta23_si").hide();
+                                                $(".respuesta23_no").show();
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <hr />
+                                @*En caso de SI, agregue antecedentes de contacto, nombre, teléfono, mail, direcciones, etc., en caso de NO, en que estado se encuentra el proceso y compromisos de acciones para mantenernos informados de su contratación.
+                                pregunta 3 *@
+  
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label style="text-align:center;font-weight: bold;" class="control-label">2.5- ¿Se encuentra creado el nuevo Servicio de Educación Local "Persona Juridica"?</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div>
+
+                                            <label for="radio25_si" class="radio-inline">
+                                                <input id="radio25_si" class="pregunta25 larespuesta" data-id="10" type="radio" name="respuesta25" value="2">
+                                                Si
+                                            </label>
+
+
+                                            <label for="radio25_no" class="radio-inline">
+                                                <input id="radio25_no" class="pregunta25 larespuesta" data-id="10" type="radio" name="respuesta25" value="3">
+                                                No
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row respuesta25_si" style="display:none;">
+                                    <div class="col-sm-4">
+                                        <h4>2.6 Datos de contacto</h4>
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre</label>
+                                            <input class="form-control" id="nombre_persona_juridica" type="text" name="nombre_persona_juridica">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Teléfono</label>
+                                            <input class="form-control" id="telefono_persona_juridica" type="text" name="telefono_persona_juridica">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input class="form-control" id="email_persona_juridica" type="text" name="email_persona_juridica">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Dirección</label>
+                                            <input class="form-control" id="direccion_persona_juridica" type="text" name="direccion_persona_juridica">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row respuesta25_si" style="display:none;">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label class="control-label">Compromisos de acciones de cercania, generación de reuniones, etc.</label>
+                                            <textarea placeholder="" rows="5" class="form-control" id="compromisos_persona_juridica" name="compromisos_persona_juridica"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row respuesta25_no" style="display:none;">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">2.6- Explique en que estado se encuentra su creación y compromisos para mantenernos informados del avance de este proceso</label>
+                                            <textarea placeholder="" rows="5" class="form-control larespuesta" data-id="12" id="tx_res_3" name="tx_res_3"></textarea>
+                                            <small>Máximo 500 caracteres.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $(".pregunta25").on("click", function () {
+                                            if ($(this).val() == 2) {
+                                                $(".respuesta25_si").show();
+                                                $(".respuesta25_no").hide();
+                                            }
+                                            else {
+                                                $(".respuesta25_si").hide();
+                                                $(".respuesta25_no").show();
+                                            }
+                                        });
+                                    });
+                                </script>
+                               
+                                <hr />
+                                
+
+
+                                @*pregunta 5*@
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <h3>III- Aspectos futuros de la institución.</h3>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-7">
+                                            <label style="text-align:left;font-weight: bold;" class="control-label">3.1- ¿Dado los traspasos en la aplicación de Desmunicipalización, existen cambios que afectarán la empleabilidad de los trabajadores (desvinculaciones)?</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="radio-inline" for="radio_si_31"><input id="radio_si_31" class="radio31 larespuesta" data-id="13" type="radio" name="respuesta31" value="2"> Si</label>
+                                                <label class="radio-inline" for="radio_no_31"><input id="radio_no_31" class="radio31 larespuesta" data-id="13" type="radio" name="respuesta31" value="3"> No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row radio31si" style="display:none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-7">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">3.2- ¿Se ha cuantificado algún porcentaje o número de ellos?</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="radio-inline" for="radio_si_32"><input id="radio_si_32" class="radio32 larespuesta" data-id="14" type="radio" name="respuesta32" value="2"> Si</label>
+                                                <label class="radio-inline" for="radio_no_32"><input id="radio_no_32" class="radio32 larespuesta" data-id="14" type="radio" name="respuesta32" value="3"> No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row radio32si" style="display:none;">
+                                    <div class="col-sm-6 mar-btm">
+                                        <div class="form-group">
+                                            <label class="control-label">Indique cuantos y el tipo de conteo</label>
+                                            <br />
+                                            <div class="col-sm-3">
+                                                <input class="form-control" id="cantidad_desvinculacion" type="text" name="">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select class="form-control" id="tipo_conteo_desvinculacion">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="12">N°</option>
+                                                    <option value="13">%</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                @*
+    <div class="row radio5si" style="display:none;">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label style="text-align:center;font-weight: bold;" class="control-label">Explique impactos en detalle y las acciones coordinadas con la institución para evitar impactos en la Caja y funcionarios de la institución.</label>
+                <textarea placeholder="..." rows="5" class="form-control"  id="text_5" name="textObs5"></textarea>
+                <small>Máximo 500 caracteres.</small>
+            </div>
+        </div>
+    </div>*@
+                                <div class="row radio5no" style="display:none;">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">Indicar compromisos en el corto plazo  y acciones para informar estado de avances de este proceso.</label>
+                                            <textarea placeholder="..." rows="5" class="form-control larespuesta" data-id="16" id="text_5" name="textObs5"></textarea>
+                                            <small>Máximo 500 caracteres.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $(".radio31").on("click", function () {
+
+                                            if ($(this).val() == 2) {
+                                                $(".radio31si").show();
+                                                $(".radio5si").show();
+                                                $(".radio5no").hide();
+                                            }
+                                            else {
+                                                $(".radio31si").hide();
+                                                $(".radio5si").hide();
+                                                $(".radio5no").show();
+                                                $(".radio32si").hide();
+                                            }
+
+                                            $(".radio32").trigger("click")
+                                        });
+
+
+                                        $(".radio32").on("click", function () {
+                                            if ($(this).val() == 2) {
+                                                $(".radio32si").show();
+                                                $(".radio5si").show();
+                                                $(".radio5no").hide();
+                                            }
+                                            else {
+                                                $(".radio32si").hide();
+                                                $(".radio5si").hide();
+                                                $(".radio5no").show();
+                                            }
+                                        });
+                                    })
+                                </script>
+                                <hr />
+                                    @*pregunta 6*@
+                                <div class="row mar-btm">
+                                    <div class="col-sm-7">
+                                        <h3>IV- Antecedentes de acceso a financiamiento</h3>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-sm-7">
+                                                <label style="text-align:center;font-weight: bold;" class="control-label">4.1- La institución tiene alguna medida restrictiva en el aceso al financiamiento y/o Seguros?, Ej.: No otorga créditos hasta el 25%</label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div>
+                                                    <label class="radio-inline" for="radio_si_33"><input id="radio_si_33" class="radio33 larespuesta" data-id="17" type="radio" name="respuesta33" value="2"> Si</label>
+                                                    <label class="radio-inline" for="radio_no_33"><input id="radio_no_33" class="radio33 larespuesta" data-id="17" type="radio" name="respuesta33" value="3"> No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                <div class="row rdvoluntad" style="display:none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-7">
+                                            <label style="text-align:center;font-weight: bold;" class="control-label">4.2- ¿Existe voluntad de la Empresa de eliminar la restricción?</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="radio-inline" for="radio_si_34"><input id="radio_si_34" class="radio34 larespuesta" data-id="18" type="radio" name="respuesta34" value="2"> Si</label>
+                                                <label class="radio-inline" for="radio_no_34"><input id="radio_no_34" class="radio34 larespuesta" data-id="18" type="radio" name="respuesta34" value="3"> No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                    <div class="row rd33si" style="display:none;">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label class="control-label">Explique en detalle la medida restrictiva y acciones para revertir la situación.</label>
+                                                <textarea placeholder="..." rows="5" class="form-control larespuesta" data-id="19" id="text_6" name="textObs6"></textarea>
+                                                <small>Máximo 500 caracteres.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row rd33no" style="display:none;">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label class="control-label">Explique en detalle el motivo y otras instancias que se visualicen.</label>
+                                                <textarea placeholder="..." rows="5" class="form-control larespuesta" data-id="20" id="text_6" name="textObs6"></textarea>
+                                                <small>Máximo 500 caracteres.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $(function(){
+                                            $(".radio33").on("click", function () {
+
+                                                if ($(this).val() == 2) {
+                                                    $(".rdvoluntad").show();
+                                                }
+                                                else {
+                                                    $(".rdvoluntad").hide();
+                                                    $(".rd33si").hide();
+                                                    $(".rd33no").hide();
+                                                }
+                                            })
+
+                                            $(".radio34").on("click", function () {
+                                                if ($(this).val() == 2) {
+                                                    $(".rd33si").show();
+                                                    $(".rd33no").hide();
+                                                }
+                                                else {
+                                                    $(".rd33si").hide();
+                                                    $(".rd33no").show();
+                                                    
+                                                }
+                                            })
+                                        })
+                                    </script>
+                                    <hr />
+                                    @*pregunta 7*@
+                                <div class="row mar-btm">
+                                    <div class="col-sm-7">
+                                        <h3>V- Próxima Reunión</h3>
+                                    </div>
+                                </div>
+                                    <div class="row mar-btm">
+                                        <div class="col-sm-2">
+                                            <label class="control-label">Fecha</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div id="dp_fecha_entrevista">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control" id="fecha_proxima_reunion_agenda" name="fecha_proxima_reunion_agenda">
+                                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row mar-btm">
+                                        <div class="col-sm-2">
+                                            <label class="control-label">Estamento</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select id="sl_estamento_agenda" class="form-control" name="sl_estamento_agenda">
+                                                <option value="">Seleccione</option>
+                                                <option value="Empresas">Empresas</option>
+                                                <option value="Sindicato">Sindicato</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mar-btm">
+                                        <div class="col-sm-2">
+                                            <label class="control-label">Nombre del Funcionario de la Empresa</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" type="text" id="nombre_funcionario_empresa_agenda" name="nombre_funcionario_empresa_agenda">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label class="control-label">Cargo del Funcionario</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" type="text" id="cargo_funcionario_empresa_agenda" name="cargo_funcionario_empresa_agenda">
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+
+                                    <div class="row">
+
+                                        <div class="panel-footer text-right">
+                                            <button class="btn btn-primary" type="button" id="btn_guardar">Guardar</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row charlyNTF" style="display:none;">
+                                        <div class="col-sm-12 charlyNTFContainer">
+
+                                        </div>
+                                    </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/Assets/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Assets/plugins/chosen/chosen.jquery.min.js"></script>
+    <script>
+
+        var esNueva = false;
+
+
+        var CargadorEncabezado = {
+            CargaEncabezadoTotal: function (p_id) {
+
+                $.SecGetJSON(BASE_URL + "/Motor/api/FichaEmpresas/empresa-ficha-data", { id: p_id}, function (resuelve) {
+
+                    //Encabezado
+                    $("#rut_empresa").val(resuelve.encabezado.rut_empresa)
+                    $("#nombre_empresa").val(resuelve.encabezado.nombre_empresa)
+                    $("#estamento_empresa").val(resuelve.encabezado.estamento)
+
+                    $("#nombre_funcionario").val(resuelve.encabezado.nombre_funcionario)
+                    $("#cargo_funcionario").val(resuelve.encabezado.cargo_funcionario)
+                    $("#numero_empleados_empresa").val(resuelve.encabezado.cantidad_empleados)
+                    $("#fecha_entrevista").val(resuelve.encabezado.fecha_entrevista.toFecha())
+
+                    //Las Generales
+                    $.each(resuelve.respuestas, function (i, e) {
+                        $(".larespuesta").each(function (x, htel) {
+                            if ($(htel).data("id") == e.respuesta.pregunta_id)
+                            {
+                                //**Por tipo de control
+                                if($(htel).is("input") && $(htel).prop("type") == "radio")
+                                {
+                                    if (e.respuesta.nuberespuesta_id == $(htel).val())
+                                    {
+                                        $(htel).prop("checked", true).trigger("click");
+                                        
+                                    }
+                                }
+                                else if($(htel).is("select"))
+                                {
+                                    $(htel).val(e.respuesta.nuberespuesta_id)
+                                }
+                                else
+                                {
+                                    $(htel).val(e.desarrollo.texto)
+                                }
+                            }
+                        })
+
+                        
+                        if (e.respuesta.pregunta_id == 15)
+                        {
+                            $("#cantidad_desvinculacion").val(e.desarrollo.texto);
+                            $("#tipo_conteo_desvinculacion").val(e.respuesta.nuberespuesta_id)
+                        }
+
+                    });
+
+
+                    //Contactos
+                    if (resuelve.personalidad != null)
+                    {
+                        $("#nombre_persona_juridica").val(resuelve.personalidad.nombre)
+                        $("#telefono_persona_juridica").val(resuelve.personalidad.telefono)
+                        $("#email_persona_juridica").val(resuelve.personalidad.email)
+                        $("#direccion_persona_juridica").val(resuelve.personalidad.direccion)
+                        $("#compromisos_persona_juridica").val(resuelve.personalidad.compromisos)
+                    }
+
+                    if (resuelve.director != null) {
+                        $("#nombre_director_ejecutivo").val(resuelve.director.nombre)
+                        $("#telefono_director_ejecutivo").val(resuelve.director.telefono)
+                        $("#email_director_ejecutivo").val(resuelve.director.email)
+                        $("#direccion_director_ejecutivo").val(resuelve.director.direccion)
+                    }
+
+                    //Agenda
+                    if (resuelve.agenda != null) {
+                        $("#fecha_proxima_reunion_agenda").val(resuelve.agenda.fecha.toFecha());
+                        $("#sl_estamento_agenda").val(resuelve.agenda.estamento);
+                        $("#nombre_funcionario_empresa_agenda").val(resuelve.agenda.nombre_funcionario);
+                        $("#cargo_funcionario_empresa_agenda").val(resuelve.agenda.cargo_funcionario);
+                    }
+
+                   
+                });
+
+            },
+
+
+        }
+
+
+        $(document).ready(function () {
+
+
+            $('#dp_fecha_entrevista .input-group.date').datepicker({
+                autoclose: true,
+                format: "dd-mm-yyyy",
+            });
+
+
+            if (httpGet("id") == 'NEW')
+            {
+                esNueva = true;
+
+
+                $.SecGetJSON(BASE_URL + "/Motor/api/FichaEmpresas/empresa-data", { re: httpGet("re") }, function (resuelve) {
+
+                    //Encabezado
+                    $("#rut_empresa").val(resuelve.rut_empresa)
+                    $("#nombre_empresa").val(resuelve.nombre_empresa)
+                    
+                    $("#numero_empleados_empresa").val(resuelve.cantidad_empleados)
+                    
+                });
+
+
+            }
+            else
+            {
+                //Cargas iniciales
+                CargadorEncabezado.CargaEncabezadoTotal(httpGet("id"))
+            }
+
+
+            
+
+            //Eventos
+            $("#btn_guardar").on("click", function () {
+
+                var objetoFormulario = new Array();
+                
+                
+                $(".larespuesta").each(function (i, e) {
+                    
+                    if ($(e).prop("type") == "radio")
+                    {
+                        if($(e).is(":checked"))
+                        {
+                            objetoFormulario.push({ id: $(e).data("id"), valor: $(e).val(), tipo: 'boleano' })
+                        }
+                    }
+                    else if ($(e).is("select"))
+                    {
+                        objetoFormulario.push({ id: $(e).data("id"), valor: $(e).val(), tipo: 'multiopcion' });
+                    }
+                    else 
+                    {
+                        objetoFormulario.push({ id: $(e).data("id"), valor: $(e).val(), tipo: 'texto' });
+                    }
+                });
+
+                var objetoEnvio = {
+
+                    sucursal: getCookie("Oficina"),
+                    encabezado: {
+                        id_ficha: httpGet("id"),
+                        rut_empresa: $("#rut_empresa").val(),
+                        nombre_empresa: $("#nombre_empresa").val(),
+                        sucursal_empresa: $("#sucursal_empresa").val(),
+                        estamento_empresa: $("#estamento_empresa").val(),
+                        nombre_funcionario: $("#nombre_funcionario").val(),
+                        cargo_funcionario: $("#cargo_funcionario").val(),
+                        numero_empleados_empresa: $("#numero_empleados_empresa").val(),
+                        fecha_entrevista: $("#fecha_entrevista").val(),
+                    },
+                    director: {
+                        nombre_director_ejecutivo: $("#nombre_director_ejecutivo").val(),
+                        telefono_director_ejecutivo: $("#telefono_director_ejecutivo").val(),
+                        email_director_ejecutivo: $("#email_director_ejecutivo").val(),
+                        direccion_director_ejecutivo: $("#direccion_director_ejecutivo").val(),
+                    },
+                    personalidad: {
+                        nombre_persona_juridica: $("#nombre_persona_juridica").val(),
+                        telefono_persona_juridica: $("#telefono_persona_juridica").val(),
+                        email_persona_juridica: $("#email_persona_juridica").val(),
+                        direccion_persona_juridica: $("#direccion_persona_juridica").val(),
+                        compromisos_persona_juridica: $("#compromisos_persona_juridica").val(),
+                    },
+                    desvinculacion: {
+                        cantidad_desvinculacion: $("#cantidad_desvinculacion").val(),
+                        tipo_conteo_desvinculacion: $("#tipo_conteo_desvinculacion").val(),
+                    },
+                    agenda: {
+                        fecha_prox_reunion: $("#fecha_proxima_reunion_agenda").val(),
+                        estamento: $("#sl_estamento_agenda").val(),
+                        nombre_funcionario_empresa: $("#nombre_funcionario_empresa_agenda").val(),
+                        cargo_funcionario_empresa: $("#cargo_funcionario_empresa_agenda").val()
+                    },
+                    data: objetoFormulario
+                }
+
+
+                $.SecPostJSON(BASE_URL + "/motor/api/FichaEmpresas/guardar-formulario", objetoEnvio, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+                        $.niftyNoty({
+                            type: 'success',
+                            container: 'floating',
+                            html: '<strong>OK</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000,
+                            onHidden: function () {
+                                //history.back(-1);
+                                location.href = BASE_URL + '/motor/App/FichaEmpresa/Listado?RE=' + $("#rut_empresa").val();
+                            }
+                        });
+
+                    } else {
+                        $.niftyNoty({
+                            type: 'danger',
+                            container: 'floating',
+                            html: '<strong>Error</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000,
+                            onHidden: function () {
+                                //history.back(-1);
+                                //location.href = "/motor/App/Gestion/Empresas"
+                            }
+                        });
+                    }
+                });
+
+            })
+
+
+
+            $(".pregunta2").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".p2rno").hide();
+                    $(".p2rsi").show();
+                } else {
+                    $(".p2rno").show();
+                    $(".p2rsi").hide();
+                }
+            });
+
+            $(".radio2").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio2no").hide();
+                    $(".radio2si").show();
+                } else {
+                    $(".radio2no").show();
+                    $(".radio2si").hide();
+                }
+            })
+
+            $(".radio3").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio3si").show();
+                } else {
+                    $(".radio3si").hide();
+                }
+            })
+
+            $(".radio4").on("click", function () {
+
+                if ($(this).val() === "3") {
+                    $(".radio4no").show();
+                } else {
+                    $(".radio4no").hide();
+                }
+            })
+
+
+            $(".radio4_1").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio4_1si").show();
+                    $(".radio4_1no").hide();
+                } else {
+                    $(".radio4_1si").hide();
+                    $(".radio4_1no").show();
+                }
+            })
+
+            $(".radio5").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio5si").show();
+                    $(".radio5no").hide();
+                } else {
+                    $(".radio5si").hide();
+                    $(".radio5no").show();
+                }
+            })
+
+
+            $(".radio6").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio6si").show();
+                    $(".radio6no").hide();
+                } else {
+                    $(".radio6si").hide();
+                    $(".radio6no").show();
+                }
+            })
+
+            $(".radio7").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio7si").show();
+                } else {
+                    $(".radio7si").hide();
+                }
+            })
+
+            $(".radio9").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio9si").show();
+                } else {
+                    $(".radio9si").hide();
+                }
+            })
+
+
+            $(".radio9_1").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio9_1no").hide();
+                } else {
+                    $(".radio9_1no").show();
+                }
+            })
+
+
+            $(".radio10").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio10si").show();
+                } else {
+                    $(".radio10si").hide();
+                }
+            })
+
+            $(".radio10_1").on("click", function () {
+
+                if ($(this).val() === "2") {
+                    $(".radio10_1si").show();
+                } else {
+                    $(".radio10_1si").hide();
+                }
+            })
+        });
+
+
+        $("#cod_sucursal").val(getCookie("Oficina"))
+        $("#pub").val(getCookie("Usuario"))
+        $("#btnvolver").click(function (event) {
+            event.preventDefault();
+            //history.back(-1);
+            location.href = BASE_URL + '/motor/App/FichaEmpresa/Listado?RE=' + $("#rut_empresa").val();
+        });
+    </script>
+}

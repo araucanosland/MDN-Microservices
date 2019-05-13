@@ -1,0 +1,323 @@
+﻿<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+
+
+<style type="text/css">
+    #container .table th {
+        font-size: 11px !important;
+    }
+
+    #container .table td {
+        font-size: 11px !important;
+    }
+
+    #col-xs-3 {
+        width: 33%;
+    }
+
+    .oculto {
+        visibility: collapse;
+    }
+
+    .oculto2 {
+        visibility: collapse;
+    }
+</style>
+
+<div id="page-content">
+
+
+    @* perfil ejecutivo de zonal *@
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="tab-base">
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_Tracking" class="tab-principal">Normalización<span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                </ul>
+                <!--Tabs Content-->
+                <div class="tab-content">
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div>
+                            Fecha Actualización: <b><label style="font-weight:bold;" id="idFechaActualizacion"></label></b>  Día Habil: <b><label style="font-weight:bold;" id="IdDiaHAbil_Normalizacion"></label></b>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="demo-weather-widget-lg" class="panel panel-info">
+                                    <div class="panel-body">
+                                        @*<div class="col-md-2">
+                                                <div class="row pad-top">
+                                                    <div class="col-md-4">
+                                                        <p class="text-2x mar-no"></p>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row pad-btm">
+                                                    <div class="col-md-4">
+
+                                                        <p class="text-2x mar-no"><label style="font-weight:bold;" id="idPorcentajeGestionados1"></label></p>
+                                                        <p><label style="font-weight:bold;" id="idSucursal"></label></p>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        <div class="col-md-2">
+
+                                            <div class="row pad-btm">
+                                                <div class="col-md-4">
+                                                    <p class="text-2x mar-no"><label style="font-weight:bold;" id="idPorcentajeGestionados1"></label></p>
+                                                    Gestión
+                                                    <p><label style="font-weight:bold;" id="idSucursal"></label></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-10">
+                                            <div class="list-unstyled text-center clearfix">
+
+                                                <table class="table  table-condensed">
+                                                    <thead>
+                                                        <tr style="text-align:center">
+                                                            <th style="text-align:center">Asignados</th>
+                                                            <th style="text-align:center">Gestionados</th>
+                                                            <th style="text-align:center">Contactados</th>
+                                                            <th style="text-align:center">Presentados</th>
+                                                            <th style="text-align:center">Aprobados</th>
+                                                            <th style="text-align:center">Cursados</th>
+                                                            <th style="text-align:center">Monto Bruto Promedio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalAsignados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalGestionados"></label> - <label style="font-weight:bold;" id="idPorcentajeGestionados2"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalContactados"></label> - <label style="font-weight:bold;" id="idPorcentajeContactados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalPresentados"></label> - <label style="font-weight:bold;" id="idPorcentajePresentados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalAprobados"></label> - <label style="font-weight:bold;" id="idPorcentajeAprobados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalCursados"></label> - <label style="font-weight:bold;" id="idPorcentajeCursados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idPromedioNeto"></label></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <table id="demo-foo-filtering" class="table table-bordered table-hover toggle-circle" data-page-size="30">
+                            <thead>
+                                <tr>
+                                    <th style="background-color:dodgerblue;color:white;">Ejecutivo</th>
+                                    <th data-hide="all" data-ignore="true">Cargo</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Asignados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Gestionados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Gestionados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Contactados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Contactados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Interesados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Interesados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Presentados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Presentados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Aprobados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Aprobados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Cursados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Cursados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Monto Bruto Prom</th>
+                                </tr>
+                            </thead>
+                            <div class="pad-btm">
+                                <div class="row">
+                                    <div class="col-sm-2 text-xs-center">
+                                        <label class="control-label">&nbsp;&nbsp;</label>
+                                        <div class="form-group">
+                                            <button type="button" id="btnvolver" class="btn btn-default btn-success-basic">Volver Atras</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Cargo</label>
+                                            <select id="demo-foo-filter-status" class="form-control">
+                                                <option value="">Todos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 text-xs-center">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Búsqueda</label>
+                                        <div class="input-group">
+                                            <input id="demo-foo-search" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <tbody id="bdy_datos"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="16">
+                                        <div class="text-right">
+                                            <ul class="pagination"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                
+                    <input type="hidden" id="PrincipalTabActivo" value="2" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@section script{
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        var Cargador = {
+            CargaTrakingSucursal: function (p_codoficina, p_periodo) {
+                //Pre Aprobados
+                $("#bdy_datos").html("");
+                $.SecGetJSON(BASE_URL + "/motor/api/Informes/Lista-Traking-Normalizacion-perfzonal", { CodOficina: p_codoficina, Periodo: p_periodo }, function (menus) {
+                    $.each(menus, function (i, e) {
+                        $("#bdy_datos")
+                            .append(
+                                $("<tr>")
+                                    .append($("<td>").append('<a href="/motor/App/Informes/DetalleEjecutivoNormalizacion?RutEjecutivo=' + e.EjecAsign_Rut + '&Periodo=' + p_periodo + '" class="btn-link">' + e.EjecutivoNombre + '</a>')) //link
+                                    .append($("<td>").append(e.EjecutivoCargo).hide())
+                                    .append($("<td>").append(e.SumaAsignados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaGestionados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaPorcentajeGestionado.toMoney(0)+'%'))
+                                    .append($("<td>").append(e.SumaContactados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaPorcentajeContactados.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumaInteresados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaPorcentajeInteresados.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumaPresentados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaPorcentajePresentados.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumaAprobados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaPorcentajeAprobados.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumaCursados.toMoney(0)))
+                                    .append($("<td>").append(e.SumaPorcentajeCursados.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.MontoPromedio.toMoney(0)))
+                            );
+                    });
+                    //////////////////////////////////////////////////////////////////////////////////
+                    // Filtros
+                    var filtering = $('#demo-foo-filtering');
+                    filtering.footable().on('footable_filtering', function (e) {
+                    });
+                    $('#demo-foo-search').on('input', function (e) {
+                        e.preventDefault();
+                        if ($(this).val().length >= 5 || $(this).val().length == 0) {
+                            filtering.trigger('footable_filter', { filter: $(this).val() });
+                        }
+                    });
+                });
+            },
+
+        }
+        
+        var CargadorTotales = {
+            CargaTrakingSucursalTotales: function (p_codoficina,p_periodo) {
+                //Pre Aprobados
+                $.SecGetJSON(BASE_URL + "/motor/api/Informes/lista-trackNorm-perf-zonal", { CodOficina: p_codoficina, Periodo: p_periodo }, function (menus) {
+
+                    $("#idTotalAsignados").html(menus.SumaAsignadosWid.toMoney());
+                    $("#idTotalGestionados").text(menus.SumaGestionadosWid);
+                    $("#IdDiaHAbil").text(menus.diaHabilActual);
+                    $("#idFechaActualizacion").text(menus.Actualizacion);
+                    $("#idSucursal").text(menus.Oficina);
+                    $("#idPorcentajeGestionados2").text((menus.SumaPorcentajeGestionadoWid).toMoney(0) + '%');
+                    $("#idPorcentajeGestionados1").text((menus.SumaPorcentajeGestionadoWid).toMoney(0) + '%');
+                    $("#idTotalContactados").text(menus.SumaContactadosWid);
+                    $("#idPorcentajeContactados").text((menus.SumaPorcentajeContactadosWid).toMoney(0) + '%');
+                    $("#idTotalPresentados").text(menus.SumaPresentadosWid);
+                    $("#idPorcentajePresentados").text((menus.SumaPorcentajePresentadosWid).toMoney(0) + '%');
+                    $("#idTotalAprobados").text(menus.SumaAprobadosWid);
+                    $("#idPorcentajeAprobados").text((menus.SumaPorcentajeAprobadosWid).toMoney(0) + '%');
+                    $("#idTotalCursados").text(menus.SumaCursadosWid);
+                    $("#idPorcentajeCursados").text((menus.SumaPorcentajeCursadosWid).toMoney(0) + '%');
+                    $("#idPromedioNeto").text(menus.MontoBrutoPromWid.toMoney());
+
+                    // <label id=""></label> - <label id=""></label>
+                    //.text(menus.SumaAsignadosWid);
+
+                });
+                $.SecGetJSON(BASE_URL + "/motor/api/Informes/lista-traking-combobox-perfZonal-Normalizacion", { CodOficina: p_codoficina, Periodo: p_periodo }, function (datos) {
+                    $("#demo-foo-filter-status").html("");
+                    $("#demo-foo-filter-status").append($("<option>").attr("value", "").html("Todos"));
+                    $.each(datos, function (i, e) {
+                        $("#demo-foo-filter-status").append($("<option>").attr("value", e.EjecutivoCargo).html(e.EjecutivoCargo))
+                    });
+                });
+
+                var filtering = $('#demo-foo-filtering');
+                filtering.footable().on('footable_filtering', function (e) {
+                    var selected = $('#demo-foo-filter-status').find(':selected').html();
+
+                    if (selected !== "Todos") {
+                        e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
+
+                    }
+                    e.clear = !e.filter;
+                });
+
+                $('#demo-foo-filter-status').change(function (e) {
+                    e.preventDefault();
+                    filtering.trigger('footable_filter', { filter: '' });
+
+                });
+
+
+            },
+
+        }
+        
+
+        if (httpGet("tb") === "2")
+        {
+            $("#tab_TrackingNormalizacion").tab("show");
+        }
+
+        $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+            if ($(e.target).hasClass("tab-principal")) {
+                if ($(e.target).attr("id") === "tab_Tracking") {
+                    $("#PrincipalTabActivo").val("1")
+                }
+                else if ($(e.target).attr("id") === "tab_TrackingNormalizacion") {
+                    $("#PrincipalTabActivo").val("2")
+                }
+            }
+        });
+
+
+
+        $("#btnvolver").click(function (event) {
+            event.preventDefault();
+            history.back(-1);
+        });
+
+        $("#btnvolvernormalizacion").click(function (event) {
+            event.preventDefault();
+            history.back(-1);
+        });
+
+        Cargador.CargaTrakingSucursal(httpGet("CodOficina"), httpGet("Periodo"))
+        CargadorTotales.CargaTrakingSucursalTotales(httpGet("CodOficina"), httpGet("Periodo"))
+
+    </script>
+}

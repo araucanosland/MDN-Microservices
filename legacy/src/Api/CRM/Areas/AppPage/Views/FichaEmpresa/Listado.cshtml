@@ -1,0 +1,163 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Bootstrap Table [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<style>
+
+    .fixed-table-container thead th .both
+    {
+        background-color:dodgerblue;
+        color:white;
+    }
+</style>
+
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_" class="tab-principal">Gestión Fichas Empresa</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+                    
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row mar-btm">
+                                        <a href="/motor/App/FichaEmpresa" class="btn btn-default">Volver</a>
+                                        <button type="button" id="bt_nueva" class="btn btn-default btn-success-basic">Nueva Ficha</button>
+                                    </div>
+                                    <div class="row mar-btm">
+
+                                        <table id="fichas_table" class="table"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+
+    <script>
+        $("#fichas_table").bootstrapTable({
+            url: "/Motor/api/FichaEmpresas/listar-fichas?rut=" + httpGet("RE"),
+            pagination: false,
+            locale: 'es-CL',
+            striped: true,
+            columns: [
+                {
+                    field: 'nombre_funcionario',
+                    title: 'Entrevista Con',
+                    sortable: true,
+                    formatter: function(value, row, index)
+                    {
+                        var dondeir = BASE_URL + "/motor/App/FichaEmpresa/LeyDesmunicipalizacion";
+                        switch (row.cuestionario_id)
+                        {
+                            case 1:
+                                dondeir = BASE_URL + "/motor/App/FichaEmpresa/LeyDesmunicipalizacion";
+                                break;
+                            case 2:
+                                dondeir = BASE_URL + "/motor/App/FichaEmpresa/OtrasEmpresas";
+                                break;
+                            case 3:
+                                dondeir = BASE_URL + "/motor/App/FichaEmpresa/OtrasPublicas";
+                                break;
+                        }
+
+                        var leyenda = value.length == 0 ? 'Sin completar' : value;
+                        return '<a href="' + dondeir + '?id=' + row.enc_id + '">' + leyenda + '</a>';
+                    }
+                },
+                {
+                    field: 'cargo_funcionario',
+                    title: 'Cargo',
+                    sortable: true
+                    
+                },
+                {
+                    field: 'fecha_entrevista',
+                    title: 'Fecha Entrevista',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        var leyenda = value.toFecha() == '01-01-0001' || value.toFecha() == '01-01-1900' ? '' : value.toFecha();
+                        return leyenda;
+                    }
+                },
+                {
+                    field: 'estamento',
+                    title: 'Estamento',
+                    sortable: true
+                }
+            ]
+        })
+
+
+        $(function () {
+            $("#bt_nueva").on("click", function () {
+                $(this).text("Redireccionando a nueva ficha........");
+                $(this).prop("disabled", true);
+                $.SecGetJSON(BASE_URL + "/Motor/api/FichaEmpresas/empresa-data", { re: httpGet("RE") }, function (resuelve) {
+
+
+                    var dondeir = BASE_URL + "/motor/App/FichaEmpresa/LeyDesmunicipalizacion";
+
+
+                    switch (resuelve.cuestionario_id) {
+                        case 1:
+                            dondeir = BASE_URL + "/motor/App/FichaEmpresa/LeyDesmunicipalizacion";
+                            break;
+                        case 2:
+                            dondeir = BASE_URL + "/motor/App/FichaEmpresa/OtrasEmpresas";
+                            break;
+                        case 3:
+                            dondeir = BASE_URL + "/motor/App/FichaEmpresa/OtrasPublicas";
+                            break;
+                    }
+
+
+                    location.href = dondeir + "?id=NEW&re=" + resuelve.rut_empresa
+                    
+                    
+
+                });
+            });
+        });
+    </script>
+
+}
+

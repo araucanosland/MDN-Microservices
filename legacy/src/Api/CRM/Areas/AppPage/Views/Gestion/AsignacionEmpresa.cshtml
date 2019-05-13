@@ -1,0 +1,175 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+<style type="text/css">
+    #container .table th {
+        font-size: 11px !important;
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>
+<div id="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-empresa" aria-expanded="true" id="tab_empresa" class="tab-principal">Reasignacion Empresa <span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-empresa" class="tab-pane fade active in">
+                        <div class="row">
+
+                            <div class="col-sm-2 text-xs-center">
+                                <h5>
+                                    Rut: <label id="encRut" name="encRut"></label>
+
+                                </h5>
+                            </div>
+                            <div class="col-sm-10 text-xs-center">
+                                <h5>
+                                    Nombre Empresa: <label id="nombrempresa"></label>
+                                </h5>
+                            </div>
+                            <div class="col-sm-2 text-xs-center">
+                                <div class="form-group">
+                                    <button type="button" id="btnvolver" class="btn btn-default btn-success-basic">Volver Atras</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form id="AsignacionEmpresa">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione Sucursal si la conoce: </label>
+                                            <select id="sslOficina" class="form-control" name="sslOficina"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <label class="control-label">Ingrese Comentario: </label>
+                                            <textarea  rows="5" class="form-control" id="text_observacion" name="text_observacion"></textarea>
+                                        </div>
+                                        <input class="form-control" id="rut" type="text" name="rut" style="display:none;">
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="panel-footer text-right">
+                                        <button class="btn btn-success" type="submit" id="btGuardar">Guardar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        $.SecGetJSON(BASE_URL + "/motor/api/Gestion/listar-oficinas", function (datos) {
+
+            $("#sslOficina").html("");
+            $("#sslOficina").append($("<option>").attr("value", "").html("Seleccione"));
+            $.each(datos, function (i, e) {
+                $("#sslOficina").append($("<option>").attr("value", e.Id).html(e.Nombre))
+            });
+
+        });
+        var CargadorEncabezado = {
+            CargaEncabezadoTotal: function (p_rutempresa, p_periodo) {
+
+                //Pre Aprobados
+                $.SecGetJSON(BASE_URL + "/motor/api/Gestion/lista-emp-nombres", { RutEmpresa: p_rutempresa, Periodo: p_periodo }, function (menus) {
+                    $("#encRut").html(menus.EmpresaRut + '-' + menus.EmpresaDV);
+                    $("#nombrempresa").html(menus.EmpresaNombre);
+                    $("#rut").val(menus.EmpresaRut);
+                    //encRut
+                });
+
+            },
+        }
+
+        $(document).ready(function () {
+            CargadorEncabezado.CargaEncabezadoTotal(httpGet("RutEmpresa"), httpGet("Periodo"))
+
+            $('#AsignacionEmpresa').bootstrapValidator({
+                excluded: [':disabled'],
+                fields: {
+                 
+
+
+
+
+                }
+            }).on('success.form.bv', function (e) {
+                e.preventDefault();
+                var $form = $(e.target);
+
+                var webDato = {
+                    wsslOficina: $("#sslOficina").val(),
+                    wtext_observacion: $("#text_observacion").val(),
+                    wencRut:   $("#rut").val(),
+                    wsslOficinaAnterior: getCookie("Oficina")
+                };
+
+                $.SecPostJSON(BASE_URL + "/motor/api/Gestion/guardar-reasignacion-empresa", webDato, function (respuesta) {
+
+                    if (respuesta.Estado === "OK") {
+                        $.niftyNoty({
+                            type: 'success',
+                            container: 'floating',
+                            html: '<strong>OK</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000,
+                            onHidden: function () {
+                                //history.back(-1);
+                            location.href = "/motor/App/Gestion/Empresas"
+                            }
+                        });
+
+                        /*$("fdatos").trigger("reset");
+                        $("#fdatos")[0].reset();
+                        $(".lista-empresas").trigger("chosen:updated");*/
+
+
+
+
+                    } else {
+                        $.niftyNoty({
+                            type: 'danger',
+                            container: 'floating',
+                            html: '<strong>Error</strong> ' + respuesta.Mensaje,
+                            focus: false,
+                            timer: 3000
+                        });
+                    }
+
+                    $form.bootstrapValidator('resetForm', true);
+                });
+
+            });
+
+        });
+        $("#btnvolver").click(function (event) {
+            event.preventDefault();
+            history.back(-1);
+        });
+
+    </script>
+}
+

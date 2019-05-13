@@ -1,0 +1,158 @@
+﻿@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+
+
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+
+
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_preaprobados" class="tab-principal">Campaña</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <table id="demo-foo-filtering" class="table table-bordered table-hover toggle-circle" data-page-size="30">
+                                <thead>
+                                    <tr id="trhead">
+                                        <th data-toggle="true">Rut</th>
+                                        <th>Nombre</th>
+
+                                    </tr>
+                                </thead>
+                                <div class="pad-btm">
+                                    <div class="row">
+                                        <div class="col-md-4 text-xs-center">
+                                            <div class="form-group">
+                                                <label class="control-label">Búsqueda</label>
+                                                <input id="demo-foo-search" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <tbody id="bdy_datos"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="text-right">
+                                                <ul class="pagination"></ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="PrincipalTabActivo" value="1" />
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script>
+
+        $(function () {
+
+            var cmp = httpGet("cc");
+
+
+            $.SecGetJSON(BASE_URL + "/CPEngine/api/camp/lista-attrs-camp", { cc: cmp }, function (attrs) {
+                $.each(attrs, function (i, e) {
+                    if (e.MostrarEnLista) {
+                        $("#trhead").append('<th data-hide="phone, tablet">' + e.Etiqueta + '</th>');
+                    }
+                });
+
+                $("#trhead").append('<th data-hide="phone, tablet">Fecha Próx.<br/>Gestión</th>');
+                $("#trhead").append('<th data-hide="phone, tablet">Estado</th>');
+                $("#trhead").append('<th data-hide="phone, tablet">Sub Estado</th>');
+
+                $.SecGetJSON(BASE_URL + "/CPEngine/api/camp/lista-attrval-camp", { cc: cmp, re: getCookie("Token") }, function (attrvals) {
+
+                    
+                    $.each(attrvals, function (i, e) {
+                        var tr =  $("<tr>");
+                        tr.append($("<td>").append('<a href="/motor/App/Engine/Detalle?ca=' + e.CodAsignacion + '&cc=' + cmp + '" class="btn-link">' + e.RutEntidad.toMoney(0) + '-' + e.DvEntidad + '</a>'))
+                          .append($("<td>").append(e.Nombre))
+
+                        $.each(attrs, function (inc, en) {
+                            if (en.MostrarEnLista) {
+
+                                var valor = eval("e." + en.CodAttr) != null ? eval("e." + en.CodAttr) : "";
+                                if (en.TipoDato == "MONEDA") {
+                                    valor = parseFloat(valor).toMoney(0)
+                                }
+
+                                tr.append($("<td>").append(valor))
+                            }
+                            
+                        });
+
+                        tr.append($("<td>").append(e.FechaProximaGestion.toFecha())).append($("<td>").append(e.Estado)).append($("<td>").append(e.SubEstado));
+
+                        $("#bdy_datos").append(tr);
+                    });
+                });
+
+
+
+                //FOOTABLE
+                var filtering = $('#demo-foo-filtering');
+                filtering.footable().on('footable_filtering', function (e) {
+
+                    e.clear = !e.filter;
+
+                });
+
+                // Search input
+                $('#demo-foo-search').on('input', function (e) {
+                    e.preventDefault();
+                    if ($(this).val().length >= 5 || $(this).val().length == 0) {
+                        filtering.trigger('footable_filter', { filter: $(this).val() });
+                    }
+                });
+            });
+            
+            
+        });
+
+    </script>
+}

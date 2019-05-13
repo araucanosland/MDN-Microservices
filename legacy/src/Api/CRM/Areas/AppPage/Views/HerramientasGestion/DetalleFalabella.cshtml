@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Falabella";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<style>
+    .ocultus {
+        display: none;
+    }
+
+    .help-block {
+        color: #b71e1e !important;
+    }
+
+    .invisal {
+        display: none;
+    }
+
+    .inf-d {
+        cursor: pointer;
+    }
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Historial de Afiliados consultados por Falabella</h3>
+                </div>
+                <div class="panel-body">
+                    <a class="btn btn-primary" href="/motor/App/HerramientasGestion/Falabella">Registrar Nueva Gestión</a>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Rut Afiliado</th>
+                                <th>Teléfono</th>
+                                <th>Correo</th>
+                                <th>Tipo Gestión</th>
+                                <th>Observación</th>
+                                <th>Monto Ref.</th>
+                                <th>Beneficios</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var itm in ViewBag.ListaGestiones)
+                            {
+                                <tr>
+                                    <td>@itm.RutAfiliado</td>
+                                    <td>@itm.Telefono</td>
+                                    <td>@itm.Correo</td>
+                                    <td>@itm.TipoGestion</td>
+                                    <td>@itm.Observacion</td>
+                                    <td>@itm.MontoRef</td>
+                                    <td>@itm.Beneficios.Replace("[","").Replace("]","").Replace(",", ", ")</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <script>
+       
+    </script>
+
+}
+

@@ -1,0 +1,680 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+
+<style>
+    .ocultus{
+        display:none;
+    }
+
+
+    hr.delim {
+        margin-top: 10px;
+        margin-bottom: 1px;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+
+    .icono-down {
+        display: inline-block;
+        position: relative;
+        float: left;
+        margin-right: 7px;
+        margin-top: 5px;
+    }
+
+    .caret.caret-reversed {
+        border-top-width: 0;
+        border-bottom: 4px solid #000000;
+    }
+
+    .seleccionabless{
+        cursor: pointer;
+    }
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_" class="tab-principal">Nueva Fidelizacion Empresa</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form name="formIngreso" id="form-ingreso" action="#" method="post">
+                                        
+                                        <div class="row empresa-data">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Rut</label>
+                                                    <input type="text" class="form-control" id="Rut" name="Rut" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label class="control-label">Razón Social</label>
+                                                    <input type="text" class="form-control inusable" id="RazonSocial" name="RazonSocial" readonly="readonly" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Holding</label>
+                                                    <input type="text" class="form-control inusable" id="Holding" name="Holding" readonly="readonly" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row fidelizacion">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Áreas</label>
+
+                                                    <div id="areas_fideliza">
+                                                        
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Ambitos de Acción</label>
+
+                                                    <div id="ambitos_fideliza">
+                                                        
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Estamento</label>
+                                                    <select class="form-control esestamento" id="Estamento" name="Estamento">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Empresa">Empresa</option>
+                                                        <option value="Sindicato">Sindicato</option>
+                                                        <option value="Empresa y Sindicato">Empresa y Sindicato</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Actividad</label>
+                                                    <select class="form-control" id="Actividad" name="Actividad">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Empresa">Empresa</option>
+                                                        <option value="Sindicato">Sindicato</option>
+                                                        <option value="Empresa y Sindicato">Empresa y Sindicato</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Cobertura</label>
+                                                    <input type="text" class="form-control" id="Cobertura" name="Cobertura" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Nombre Representante Empresa</label>
+                                                    <input type="text" class="form-control" id="NombreRepresentante" name="NombreRepresentante" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Cargo</label>
+                                                    <input type="text" class="form-control" id="CargoRepresentante" name="CargoRepresentante" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Fecha</label>
+                                                    <div id="Calendario_Fecha_Fidelizacion">
+                                                        <div class="input-group date">
+                                                            <input type="text" class="form-control" id="Fecha_Fidelizacion" name="Fecha_Fidelizacion">
+                                                            <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row mar-btm enc-resultado-gestion form-inline">
+                                            <h4>Resultado de Gestión</h4>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="TipoRG" name="TipoRG">
+                                                        <option value="">Seleccione Tipo Resultado</option>
+                                                        <option value="1">Compromiso</option>
+                                                        <option value="2">Comentario</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div id="resultado-gestion-compromiso" class="row mar-btm hidden">
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Compromiso</label>
+                                                        <textarea class="form-control compromiso" id="ta_compromiso"></textarea>
+                                                        <small>Máximo 100 caracteres</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Fecha</label>
+                                                        <div id="Calendario_Fecha_Compromiso">
+                                                            <div class="input-group date">
+                                                                <input type="text" class="form-control fecha-compromiso" id="fecha_compromiso">
+                                                                <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-primary bt-accion compromiso" data-edita="-1" type="button">Agregar Resultado Gestión</button>
+                                                </div>
+                                        </div>
+
+                                        <div id="resultado-gestion-comentario" class="row mar-btm hidden">
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comentarios</label>
+                                                    <textarea class="form-control comentario" id="ta_comentario"></textarea>
+                                                    <small>Máximo 100 caracteres</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-primary bt-accion comentario" data-edita="-1" type="button">Agregar Resultado Gestión</button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row">
+
+                                            <h4>Listado</h4>
+                                        </div>
+                                        <div id="resultado-gestion-listado" class="row mar-btm mar-lft">
+                                           
+                                        </div>
+
+                                        <div class="row acciones">
+                                            <hr />
+                                            <a class="btn btn-primary" href="/motor/App/Empresas/">Volver</a>
+                                            <button class="btn btn-success" type="submit" id="btn-guardar" data-target="document.body">Guardar</button>
+                                            <input type="hidden" name="IdRepresentante" id="IdRepresentante" value="0" />
+                                            <input type="hidden" name="IdFidelizacion" id="IdFidelizacion" value="@Html.Raw(ViewBag.id != null ? ViewBag.id : "0")" />
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+@section metas{
+    <meta name="id" content="@Html.Raw(ViewBag.id != null ? ViewBag.id : "0")" />
+}
+
+
+@section script{
+   <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+   <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+   <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+   <script>
+       var rs_GestionList = [];
+       var elm_Form = {};
+       var herramientas = {
+           actualizaVistaLista: function (rs_gstL) {
+               
+               $("#resultado-gestion-listado").html("");
+               $.each(rs_gstL, function (i, o) {
+
+                   var __container = $('<div>').addClass('media col-md-8 mar-btm seleccionabless').on("click", function (e) {
+                       $(this).find(".media-buttons").toggle("slow");
+                       if (!$(this).find(".caret").hasClass("caret-reversed")) {
+                           $(this).find(".caret").addClass("caret-reversed")
+                       } else {
+                           $(this).find(".caret").removeClass("caret-reversed")
+                       }
+                   });
+                   var __media_body = $('<div>').addClass('media-body')
+                                                .append($("<span>").addClass("caret icono-down"))
+                                                .append($('<h5>').addClass('media-heading').text(o.tipo + " " + (o.fecha != null ? "(" + o.fecha + ")" : "")))
+                                                .append($("<p>").addClass("mar-lft").text(o.contenido))
+                   var __media_buttons = $('<div>').addClass('media-buttons').css('display', 'none');
+                   var __edit_button = $('<button>').addClass('btn btn-default btn-icon btn-circle editar').prop({ title: 'Editar', type: 'button' }).append($('<i>').addClass('ion-edit icon-sm')).on("click", function () {
+
+                       var index = $(".editar").index(this);
+                       var gest = rs_GestionList[index];
+
+                       if (gest.tipo == "compromiso") {
+                           $("#TipoRG").val("1");
+                           $("#fecha_compromiso").val(gest.fecha);
+                           $("#ta_compromiso").val(gest.contenido);
+                       }
+                       else if (gest.tipo == "comentario") {
+                           $("#TipoRG").val("2");
+                           $("#ta_comentario").val(gest.contenido);
+                       }
+                       else {
+                           $("#TipoRG").val("");
+                       }
+                       $(".bt-accion").data("edita", index);
+                       $("#TipoRG").trigger("change");
+
+
+                   });
+
+                   var __delete_button = $('<button>').addClass('btn btn-default btn-icon btn-circle eliminar').prop({ title: 'Eliminar', type: 'button' }).append($('<i>').addClass('ion-trash-a icon-sm')).on("click", function () {
+
+                       var index = $(".eliminar").index(this);
+                       rs_GestionList.splice(index, 1);
+                       herramientas.actualizaVistaLista(rs_GestionList);
+
+                   });
+
+                   __media_buttons.append(__edit_button).append(__delete_button);
+                   __container.append(__media_body).append(__media_buttons);
+                   $("#resultado-gestion-listado").append(__container);
+               });
+           },
+           renderizaFormulario: function (e) {
+
+               $('#Rut').val(e.Empresa.emp_rut).mask('99.999.999-*');
+               $('#RazonSocial').val(e.Empresa.emp_nombre);
+               $('#Holding').val(e.Empresa.emp_holding);
+
+               $("#Estamento").val(e.Fidelizacion.fide_estamento);
+               $("#Actividad").val(e.Fidelizacion.fide_actividad);
+               $("#Cobertura").val(e.Fidelizacion.fide_cobertura);
+               $("#NombreRepresentante").val(e.Representante.rep_nombre);
+               $("#CargoRepresentante").val(e.Representante.rep_cargo);
+               $("#IdRepresentante").val(e.Representante.rep_id);
+               $("#Fecha_Fidelizacion").val(e.Fidelizacion.fide_fecha_calendario.toFecha());
+
+               
+               
+               var areasExisten = e.Ambitos.map(function (x) {
+                   return x.Area.area_id
+               });
+
+               var ambitosExisten = e.Ambitos.map(function (x) {
+                   return x.AmbitoArea.ambito_id;
+               });
+
+               $.ajaxSetup({ async: false });
+               $('.chk-padres').each(function(i,e) {
+                   if($.inArray(parseInt($(e).val()),areasExisten) > -1)
+                   {
+                       $(e).trigger("click");
+                   }
+               });
+
+               $('.chk-hijos').each(function (i, e) {
+                   if ($.inArray(parseInt($(e).val()), ambitosExisten) > -1) {
+                       $(e).prop('checked', true);
+                   }
+               });
+               $.ajaxSetup({ async: true });
+
+
+           },
+           cargarDatos: function () {
+               var id = $("#IdFidelizacion").val();
+
+               if(id > 0)
+               {
+                   $.SecGetJSON(BASE_URL + "/Motor/api/Empresas/data-fidelizacion", { id: id }, function (response) {
+                       herramientas.renderizaFormulario(response)
+
+                       rs_GestionList = response.ResultadoGestion.map(function (e) {
+                           return {
+                               tipo: e.resg_tipo,
+                               fecha: e.resg_fecha.toFecha(),
+                               contenido: e.resg_comentarios
+                           }
+                       });
+                       herramientas.actualizaVistaLista(rs_GestionList)
+
+
+                   }).fail(function () { })
+               }
+           }
+       }
+
+
+       $(function () {
+           
+           herramientas.cargarDatos();
+
+           $('#Rut').mask('99.999.999-*');
+
+           $(".bt-accion").on("click", function () {
+
+               const indix = $(this).data("edita");
+
+               if( $(this).hasClass("compromiso") )
+               {
+                   var ob_Inject = {
+                       tipo: 'compromiso',
+                       fecha: $("#fecha_compromiso").val(),
+                       contenido: $("#ta_compromiso").val()
+                   }
+                   
+
+                   if (indix > -1)
+                   {
+                       rs_GestionList[indix] = ob_Inject;
+                   }
+                   else
+                   {
+                       rs_GestionList.push(ob_Inject);
+                   }
+                   herramientas.actualizaVistaLista(rs_GestionList);
+
+                   $("#fecha_compromiso").val("")
+                   $("#ta_compromiso").val("")
+                   $("#resultado-gestion-compromiso").hide();
+                   
+               }
+               else if( $(this).hasClass("comentario") )
+               {
+                   var ob_Inject = {
+                       tipo: 'comentario',
+                       fecha: null,
+                       contenido: $("#ta_comentario").val()
+                   }
+                   
+                   
+                   if (indix > -1) {
+                       rs_GestionList[indix] = ob_Inject;
+                   }
+                   else {
+                       rs_GestionList.push(ob_Inject);
+                   }
+                   herramientas.actualizaVistaLista(rs_GestionList);
+
+                   $("#ta_comentario").val("")
+                   $("#resultado-gestion-comentario").hide();
+               }
+
+               //Reseteo de Variables y Elementos
+               $("#TipoRG").val("");
+               $(".bt-accion").data("edita", -1);
+               
+           });
+
+           $("#TipoRG").on("change", function () {
+
+               if($(this).val() == 1)
+               {
+                   $("#resultado-gestion-compromiso").removeClass("hidden");
+                   $("#resultado-gestion-compromiso").show();
+                   $("#resultado-gestion-comentario").hide();
+               }
+               else if ($(this).val() == 2) {
+                   $("#resultado-gestion-comentario").removeClass("hidden");
+                   $("#resultado-gestion-compromiso").hide();
+                   $("#resultado-gestion-comentario").show();
+               }
+               else {
+                   $("#resultado-gestion-compromiso").hide();
+                   $("#resultado-gestion-comentario").hide();
+               }
+           });
+
+
+           $.SecGetJSON(BASE_URL + "/Motor/Assets/data/areas.json", function (respuesta) {
+               $.each(respuesta, function (i, e) {
+                   var dv_contenedor = $('<div>').addClass('checkbox');
+                   var _lbl = $('<label>').prop({ for: 'area-fdlz-' + i }).text(e.nombre);
+                   var _chk_box = $('<input>').addClass('magic-checkbox chk-padres').prop({ type: 'checkbox', id: 'area-fdlz-' + i, name: 'Areas__' }).val(e.id).on("click", function () {
+                       $that = $(this);
+                       var _class_name = e.nombre;
+                       var _cluster = $('<div>').addClass('cluster').addClass(_class_name).append($('<hr>').addClass('delim')).append($('<p>').addClass('text-main').text(_class_name));
+                       if ($that.is(":checked"))
+                       {
+                           $.SecGetJSON(BASE_URL + "/Motor/Assets/data/ambitos.json", function (respuesta) {
+                               $.each(respuesta, function (ni, ne) {
+
+                                   if (ne.padre == $that.val()) {
+                                       var dv_sb_contenedor = $('<div>').addClass('checkbox');
+                                       var _sb_lbl = $('<label>').prop({ for: 'ambito-fdlz-' + ni }).text(ne.nombre);
+                                       var _sb_chk_box = $('<input>').addClass('magic-checkbox chenv chk-hijos').prop({ type: 'checkbox', id: 'ambito-fdlz-' + ni }).val(ne.id);
+                                       _cluster.append(dv_sb_contenedor.append(_sb_chk_box).append(_sb_lbl));
+                                   }
+                               });
+                           });
+                           $("#ambitos_fideliza").append(_cluster);
+                       }
+                       else
+                       {
+                           $('.' + _class_name).remove();
+                       }
+                   });
+                   
+                   $("#areas_fideliza").append(dv_contenedor.append(_chk_box).append(_lbl));
+               });
+           });
+
+
+           $('#Calendario_Fecha_Fidelizacion .input-group.date').datepicker(
+                { autoclose: true, format: 'dd-mm-yyyy', startDate: "0d", language: "es", daysOfWeekDisabled: [6, 0], todayHighlight: true }
+            ).on('changeDate', function (e) {
+                $('#form-ingreso').bootstrapValidator('updateStatus', 'Fecha_Fidelizacion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'Fecha_Fidelizacion');
+            });
+
+           $('#Calendario_Fecha_Compromiso .input-group.date').datepicker(
+                { autoclose: true, format: 'dd-mm-yyyy', startDate: "0d", language: "es", daysOfWeekDisabled: [6, 0], todayHighlight: true }
+            ).on('changeDate', function (e) {
+                //$('#datos-gestion').bootstrapValidator('updateStatus', 'ges_prox_gestion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'ges_prox_gestion');
+
+                console.log(e)
+
+            });
+
+
+
+           $('#form-ingreso').bootstrapValidator({
+               excluded: [':disabled'],
+               fields: {
+                   Rut: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar un Rut'
+                           },
+                           callback: {
+                               message: 'Rut Invalido',
+                               callback: function (value, validator, $field) {
+
+                                   if ($.rut.validar(value))
+                                   {
+                                       $field.trigger("empresa.onRutValidado");
+                                   }
+
+                                   return $.rut.validar(value);
+                                   
+                               }
+                           }
+                       }
+                   },
+                   Estamento: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Seleccionar un Estamento'
+                           }
+                       }
+                   },
+                   Actividad: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Seleccionar una Actividad'
+                           }
+                       }
+                   },
+                   Cobertura: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar una Cobertura'
+                           }
+                       }
+                   },
+                   NombreRepresentante: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar el Nombre del Representante de la Empresa'
+                           }
+                       }
+                   },
+                   CargoRepresentante: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar el Cargo del Representante de la Empresa'
+                           }
+                       }
+                   },
+                   Fecha_Fidelizacion: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar el Cargo del Representante de la Empresa'
+                           }
+                       }
+                   }
+               }
+
+           }).on('success.form.bv', function (e) {
+               // Prevén que se mande el formulario
+               e.preventDefault();
+               var $form = $(e.target);
+               var __Ambitos = [];
+
+
+               $('.chenv').each(function (i,e) {
+                   if($(e).is(":checked"))
+                   {
+                       var amb = {
+                           id: 0,
+                           valor: $(e).val()
+                       }
+                       __Ambitos.push(amb);
+                   }
+               })
+               
+               var envio = {
+                   IdFidelizacion: $('#IdFidelizacion').val(),
+                   Rut: $('#Rut').val(),
+                   Nombre: Evalua($('#RazonSocial').val()),
+                   Holding: Evalua($('#Holding').val()),
+                   Estamento: $('#Estamento').val(),
+                   Actividad: $('#Actividad').val(),
+                   Cobertura: $('#Cobertura').val(),
+                   IdRepresentante: $('#IdRepresentante').val(),
+                   NombreRepresentante: $('#NombreRepresentante').val(),
+                   CargoRepresentante: $('#CargoRepresentante').val(),
+                   FechaFidelizacion: $('#Fecha_Fidelizacion').val(),
+                   Ambitos: __Ambitos,
+                   ResultadosGestion: rs_GestionList
+               }
+
+               $.SecPostJSON(BASE_URL + "/Motor/api/Empresas/guardar-fidelizacion", envio, function (response) {
+
+                   $('#btn-guardar').niftyOverlay('hide');
+                   $.niftyNoty({
+                       type: 'success',
+                       container: 'floating',
+                       title:'OK',
+                       message: response.Mensaje,
+                       focus: false,
+                       closeBtn: true
+                   });
+
+               }).fail(function (jqxhr, textStatus, error) {
+                   $.niftyNoty({
+                       type: 'danger',
+                       container: 'floating',
+                       title: 'Error',
+                       message: jqxhr.responseJSON.ExceptionMessage,
+                       focus: false,
+                       closeBtn: true
+                   });
+               });
+           });
+
+
+           $('#form-ingreso').on("submit", function (e) {
+               e.preventDefault();
+               return false;
+           })
+
+           $("#Rut").on("keyup", function () {
+               $('#form-ingreso').bootstrapValidator('updateStatus', 'Rut', 'NOT_VALIDATED').bootstrapValidator('validateField', 'Rut');
+           })
+
+           $("#Rut").on("empresa.onRutValidado", function (event) {
+               const rutEmpresa = $(this).val().replace(/\./g, '');
+               $.SecGetJSON(BASE_URL + "/Motor/api/Empresas/data-empresa/" + rutEmpresa, function (respuesta) {
+                   $('#RazonSocial').val(respuesta.NombreEmpresa);
+                   $('#Holding').val(respuesta.NombreHolding);
+               });
+           });
+
+           
+
+
+       });
+   </script>
+   
+
+
+
+}
+

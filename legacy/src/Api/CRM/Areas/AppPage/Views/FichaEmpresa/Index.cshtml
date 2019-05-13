@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Bootstrap Table [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<style>
+    .fixed-table-container thead th .both {
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_" class="tab-principal">Gestión Empresas</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <table id="empresas_table" class="table"></table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+
+    <script>
+        $("#empresas_table").bootstrapTable({
+            url: "/Motor/api/FichaEmpresas/listar-empresas",
+            pagination: false,
+            locale: 'es-CL',
+            striped: true,
+            columns: [
+                {
+                    field: 'rut_empresa',
+                    title: 'Rut',
+                    sortable: true,
+                    formatter: function(value, row, index)
+                    {
+                        var dondeir = BASE_URL + "/motor/App/FichaEmpresa/Listado";
+                        return '<a href="' + dondeir + '?RE='+value+'">' + value + '</a>';
+                    }
+                },
+                {
+                    field: 'nombre_empresa',
+                    title: 'Nombre',
+                    sortable: true
+                },
+            ]
+        })
+    </script>
+
+}
+

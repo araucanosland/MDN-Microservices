@@ -1,0 +1,287 @@
+﻿@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+
+
+<style type="text/css">
+    #container .table th {
+        font-size: 11px !important;
+    }
+
+    #container .table td {
+        font-size: 11px !important;
+    }
+
+    #col-xs-3 {
+        width: 33%;
+    }
+
+    .oculto {
+        visibility: collapse;
+    }
+
+    .oculto2 {
+        visibility: collapse;
+    }
+</style>
+
+<div id="page-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="tab-base">
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_Tracking" class="tab-principal">Comercial<span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                </ul>
+                <!--Tabs Content-->
+                <div class="tab-content">
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div>
+                            Fecha Actualización: <b><label style="font-weight:bold;" id="idFechaActualizacion"></label></b>  Día Habil: <b><label style="font-weight:bold;" id="IdDiaHAbil_Normalizacion"></label></b>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="demo-weather-widget-lg" class="panel panel-info">
+                                    <div class="panel-body">
+                                        @*<div class="col-md-2">
+                                                <div class="row pad-top">
+                                                    <div class="col-md-4">
+                                                        <p class="text-2x mar-no"></p>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row pad-btm">
+                                                    <div class="col-md-4">
+
+                                                        <p class="text-2x mar-no"><label style="font-weight:bold;" id="idPorcentajeGestionados1"></label></p>
+                                                        <p><label style="font-weight:bold;" id="idSucursal"></label></p>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        <div class="col-md-2">
+
+                                            <div class="row pad-btm">
+                                                <div class="col-md-4">
+                                                    <p class="text-2x mar-no"><label style="font-weight:bold;" id="idPorcentajeGestionados1"></label></p>
+                                                    Gestión
+                                                    <p><label style="font-weight:bold;" id="idSucursal"></label></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-10">
+                                            <div class="list-unstyled text-center clearfix">
+
+                                                <table class="table  table-condensed">
+                                                    <thead>
+                                                        <tr style="text-align:center">
+                                                            <th style="text-align:center">Asignados</th>
+                                                            <th style="text-align:center">Gestionados</th>
+                                                            <th style="text-align:center">Contactados</th>
+                                                            <th style="text-align:center">Interesados</th>
+                                                            <th style="text-align:center">Presentados</th>
+                                                            <th style="text-align:center">Aprobados</th>
+                                                            <th style="text-align:center">Cursados</th>
+                                                            <th style="text-align:center">Monto Neto Promedio</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalAsignados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalGestionados"></label> - <label style="font-weight:bold;" id="idPorcentajeGestionados2"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalContactados"></label> - <label style="font-weight:bold;" id="idPorcentajeContactados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalInteresados"></label> - <label style="font-weight:bold;" id="idPorcentajeInteresados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalPresentados"></label> - <label style="font-weight:bold;" id="idPorcentajePresentados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalAprobados"></label> - <label style="font-weight:bold;" id="idPorcentajeAprobados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idTotalCursados"></label> - <label style="font-weight:bold;" id="idPorcentajeCursados"></label></td>
+                                                            <td><label style="font-weight:bold;text-align:center" id="idPromedioNeto"></label></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <table id="demo-foo-filtering" class="table table-bordered table-hover toggle-circle" data-page-size="30">
+                            <thead>
+                                <tr>
+                                    <th style="background-color:dodgerblue;color:white;">Oficina</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Asignados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Gestionados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Gestionados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Contactados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Contactados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Interesados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Interesados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Presentados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Presentados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Aprobados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Aprobados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Cursados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">% Cursados</th>
+                                    <th data-hide="phone, tablet" style="background-color:dodgerblue;color:white;">Monto Neto Prom</th>
+                                </tr>
+                            </thead>
+                            <div class="pad-btm">
+                                <div class="row">
+                                    <div class="col-sm-2 text-xs-center">
+                                        <label class="control-label">&nbsp;&nbsp;</label>
+                                        <div class="form-group">
+
+                                            <a href="/motor/App/Informes/TrackingPais?tb=1" class="btn btn-default btn-success-basic">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-arrow-left"></i>
+                                                </span>Volver Atrás
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        @*<div class="form-group">
+    <label class="control-label">Periodo</label>
+    <select id="slPeriodo" class="form-control">
+        <option value="201708">agosto 2017</option>
+        <option value="201707">Julio 2017</option>
+        <option value="201706">Junio 2017</option>
+        <option value="201705">Mayo 2017</option>
+        <option value="201704">Abril 2017</option>
+    </select>
+                                        </div>*@
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+
+                                    </div>
+                                    <div class="col-sm-5 text-xs-center">
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <tbody id="bdy_datos"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="16">
+                                        <div class="text-right">
+                                            <ul class="pagination"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                   
+
+
+
+                        <input type="hidden" id="PrincipalTabActivo" value="1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        var CargadorTotales = {
+
+            CargaPreAprobadoTotalZona: function (p_periodo,p_codzona) {
+                //Pre Aprobados
+                $.SecGetJSON(BASE_URL + "/motor/api/Informes/lista-traking-total-zona", { periodo: p_periodo, Zona: p_codzona }, function (menus) {
+
+                    $("#idTotalAsignados").html(menus.SumAsignado.toMoney());
+                    $("#idTotalGestionados").text(menus.SumGestionado.toMoney());
+                    $("#IdDiaHAbil_Normalizacion").text(menus.DiaHabil);
+                    $("#idFechaActualizacion").text(menus.FechaActualizacion);
+                    $("#idSucursal").text(menus.Zona);
+                    $("#idPorcentajeGestionados2").text((menus.PorcentajeGestionado).toMoney(0) + '%');
+                    $("#idPorcentajeGestionados1").text((menus.PorcentajeGestionado).toMoney(0) + '%');
+                    $("#idTotalContactados").text(menus.SumContactado.toMoney());
+                    $("#idPorcentajeContactados").text((menus.PorcentajeContactado).toMoney(0) + '%');
+                    $("#idTotalInteresados").text(menus.SumInteresado.toMoney());
+                    $("#idPorcentajeInteresados").text((menus.PorcentajeInteresado).toMoney(0) + '%');
+                    $("#idTotalPresentados").text(menus.SumPresentado.toMoney());
+                    $("#idPorcentajePresentados").text((menus.PorcentajePresentado).toMoney(0) + '%');
+                    $("#idTotalAprobados").text(menus.SumAprobado.toMoney());
+                    $("#idPorcentajeAprobados").text((menus.PorcentajeAprobado).toMoney(0) + '%');
+                    $("#idTotalCursados").text(menus.SumCursado.toMoney());
+                    $("#idPorcentajeCursados").text((menus.PorcentajeCursado).toMoney(0) + '%');
+                    $("#idPromedioNeto").text(menus.PromNeto.toMoney());
+
+                    // <label id=""></label> - <label id=""></label>
+                    //.text(menus.SumaAsignadosWid);
+
+                });
+              
+
+                var filtering = $('#demo-foo-filtering');
+                filtering.footable().on('footable_filtering', function (e) {
+                    var selected = $('#demo-foo-filter-status').find(':selected').html();
+
+                    if (selected !== "Todos") {
+                        e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
+
+                    }
+                    e.clear = !e.filter;
+                });
+                $('#demo-foo-filter-status').change(function (e) {
+                    e.preventDefault();
+                    filtering.trigger('footable_filter', { filter: '' });
+                });
+
+
+            },
+            CargaTrakingPreAprobadoZona: function (p_periodo,p_codzona) {
+                //Pre Aprobados
+                $("#bdy_datos").html("");
+                $.SecGetJSON(BASE_URL + "/motor/api/Informes/lista-traking-sucursal-zonal", { periodo: p_periodo, CodZona:p_codzona }, function (menus) {
+                    $.each(menus, function (i, e) {
+                        $("#bdy_datos")
+                            .append(
+                                $("<tr>")
+                                    .append($("<td>").append('<a href="/motor/App/Informes/Tracking?CodOficina=' + e.CodOficina + '&Periodo=' + p_periodo + '&tab=' + $("#PrincipalTabActivo").val() + '" class="btn-link">' + e.Oficina + '</a>')) //link
+                                    .append($("<td>").append(e.SumAsignado.toMoney(0)))
+                                    .append($("<td>").append(e.SumGestionado.toMoney(0)))
+                                    .append($("<td>").append(e.PorcentajeGestionado.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumContactado.toMoney(0)))
+                                    .append($("<td>").append(e.PorcentajeContactado.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumInteresado.toMoney(0)))
+                                    .append($("<td>").append(e.PorcentajeInteresado.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumPresentado.toMoney(0)))
+                                    .append($("<td>").append(e.PorcentajePresentado.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumAprobado.toMoney(0)))
+                                    .append($("<td>").append(e.PorcentajeAprobado.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.SumCursado.toMoney(0)))
+                                    .append($("<td>").append(e.PorcentajeCursado.toMoney(0) + '%'))
+                                    .append($("<td>").append(e.PromNeto.toMoney(0)))
+                            );
+                    });
+                });
+            },
+
+
+        }
+        CargadorTotales.CargaPreAprobadoTotalZona(httpGet("Periodo"), httpGet("CodZona"))
+        CargadorTotales.CargaTrakingPreAprobadoZona(httpGet("Periodo"), httpGet("CodZona"))
+    </script>
+
+
+
+}

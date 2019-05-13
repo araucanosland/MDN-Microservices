@@ -1,0 +1,398 @@
+﻿
+@{
+    ViewBag.Title = "Falabella";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<style>
+    .ocultus {
+        display: none;
+    }
+
+    .help-block {
+        color: #b71e1e !important;
+    }
+
+    .invisal {
+        display: none;
+    }
+
+    .inf-d{
+        cursor:pointer;
+    }
+
+
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Consulta Afiliado Trabajador Falabella</h3>
+                </div>
+                <div class="panel-body">
+                    <a class="btn btn-primary" href="/motor/App/HerramientasGestion/DetalleFalabella">Volver al Historial</a>
+                    <form id="formulario-falabella">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Rut Afiliado</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="RutAfiliado" id="rut-afiliado" autocomplete="off" />
+                                        <div class="alert mar-top alert-info inf-d" role="alert">Ingresa el Rut del Afiliado y pincha aquí para Buscar...</div>
+                                        <div class="alert mar-top alert-success" style="display:none;" role="alert">El Afiliado es: <strong id="afil-name">Carlos Pradenas Perez</strong> y Pertenece a Falabella.</div>
+                                        <div class="alert mar-top alert-danger" style="display:none;" role="alert">El Afiliado No se ecuentra en la base de datos, puedes guardar sus datos de contacto y una observación si lo consideras necesario.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Teléfono</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="Telefono" id="telefono-afiliado" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="row mar-top">
+                                    <div class="col-lg-4">Correo</div>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="Correo" id="email-afiliado" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="row mar-top elobservador">
+                                    <div class="col-lg-4">Observación</div>
+                                    <div class="col-lg-8">
+                                        <textarea class="form-control" name="Observacion" id="obs-general" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+
+                                <br class="invisal" />
+                                <h4 class="invisal">Selección de Prestación de Afiliado</h4>
+                                <hr class="invisal" />
+                                <div class="row mar-top invisal">
+                                    <div class="col-lg-4">
+                                        <label for="option-credito">
+                                            <input type="radio" value="credito" id="option-credito" name="TipoGestion" />
+                                            Credito
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 ref-cred" style="display:none;">
+                                        Observación
+                                        <textarea class="form-control" name="Observacion" id="obs-credito" autocomplete="off"></textarea><br />
+                                        Monto Referencia
+                                        <input type="text" class="form-control" name="MontoRef" id="monto-referencia" autocomplete="off" />
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top invisal">
+                                    <div class="col-lg-4">
+                                        <label for="option-sil">
+                                            <input type="radio" value="sil" id="option-sil" name="TipoGestion" />
+                                            SIL
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 ref-sil" style="display: none;">
+                                        Observación
+                                        <textarea class="form-control" name="Observacion" id="obs-sil" autocomplete="off"></textarea><br />
+                                        <div class="alert alert-info" role="alert">Debes Generar un ticket en solman para que se procesar esta solicitud</div>
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top invisal">
+                                    <div class="col-lg-4">
+                                        <label for="option-asfam">
+                                            <input type="radio" value="asfam" id="option-asfam" name="TipoGestion" />
+                                            Asfam
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 ref-asfam" style="display: none;">
+                                        Observación
+                                        <textarea class="form-control" name="Observacion" id="obs-asfam" autocomplete="off"></textarea><br />
+                                        <div class="alert alert-info" role="alert">Debes Generar un ticket en solman para que se procesar esta solicitud</div>
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top invisal">
+                                    <div class="col-lg-4">
+                                        <label for="option-beneficios">
+                                            <input type="radio" value="beneficios" id="option-beneficios" name="TipoGestion" />
+                                            Beneficios
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 ref-bene" style="display: none;">
+                                        Observación
+                                        <textarea class="form-control" name="Observacion" id="obs-beneficios" autocomplete="off"></textarea><br />
+                                        <strong>Selecciona Beneficios</strong>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mar-top invisal">
+                                    <div class="col-lg-4">
+                                        <label for="option-otros">
+                                            <input type="radio" value="otros" id="option-otros" name="TipoGestion" />
+                                            Otros
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-8 ref-otros" style="display: none;">
+                                        Observación
+                                        <textarea class="form-control" name="Observacion" id="obs-otros" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mar-top botonera ocultus">
+                                    <div class="col-lg-4">
+                                        <button type="button" class="btn btn-mint reload">Buscar Otro</button>
+                                        <button type="submit" class="btn btn-primary">Guardar Gestión</button>
+                                        <input type="hidden" name="Oficina" id="oficina" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+    <script>
+        $(function () {
+
+            $("#oficina").val(getCookie('Oficina'));
+                
+            var benefs = [  'Asignación de Nacimiento (Filiación)',
+                            'Asignación Fallecimiento del Trabajador',
+                            'Asignación Fallecimiento Hijo Carga Familiar',
+                            'Asignación Fallecimiento Cónyuge Carga Familiar',
+                            'Nupcialidad o Unión Civil',
+                            'Bono Aniversario de Matrimonio o Unión Civil',
+                            'Reembolso Matrícula Educación Superior Trabajador y Carga Familiar',
+                            'Beca Enseñanza Básica 1° a 6° año',
+                            'Beca Enseñanza Básica 7° a 8° año',
+                            'Beca Enseñanza Media 1° a 4° año',
+                            'Beca Universidad',
+                            'Beca Instituto Profesional',
+                            'Beca Centro de Formación Técnica',
+                            'Beca Mejores Puntajes PSU',
+                            'Apoyo Escolar Enseñanza Básica y Media',
+                            'Asignación de Estudios para Personas con Capacidades Diferentes',
+                            'Asignación de Perfeccionamiento Docente',
+                            'Asignación de Perfeccionamiento Trabajadores de la Salud',
+                            'Bonificaciones y Becas Instituto Profesional La Araucana (IPLA)',
+                            'Bonificación Vacaciones Familiares',
+                            'Programa de Salud Universal Trabajadores',
+                            'Fondo Solidario',
+                            'Programas Beneficios Universales (PBU)',
+                            'Convenios con Terceros',
+                            'Esparcimiento',
+                            'Campeonatos y Escuelas Deportivas',
+                            'Paseos',
+                            'Turismo Laboral',
+                            'Capacitación y Perfeccionamiento',
+                            'Programas de Salud',
+                            'Seguros'];
+
+            $.each(benefs, function (i, e) {
+
+                $(".ref-bene").append(
+                    $('<div>').append(
+                        $('<label>').prop('for', `opt-${i}`).addClass('calugoncito').append(
+                            $('<input>').prop({
+                                'type': 'checkbox',
+                                'id': `opt-${i}`,
+                                'name': 'Beneficios'
+                            }).val(e)
+
+                        ).append(e)
+                    )
+                )
+
+            });
+
+
+            $(".reload").on("click", function () {
+                location.reload();
+            })
+            
+
+
+           $('#rut-afiliado').mask('99.999.999-*');
+           
+           $("#rut-afiliado").on("keydown, change", function () {
+               $('#formulario-falabella').bootstrapValidator('updateStatus', 'RutAfiliado', 'NOT_VALIDATED').bootstrapValidator('validateField', 'RutAfiliado');
+           });
+
+            function resetear() {
+                $(".ref-cred").hide();
+                $(".ref-sil").hide();
+                $(".ref-asfam").hide();
+                $(".ref-bene").hide();
+                $(".ref-otros").hide();
+                $('#formulario-falabella').bootstrapValidator('enableFieldValidators', 'Telefono', true, 'notEmpty');
+            }
+
+            $("#option-credito").on("click", function (event) {
+                resetear()
+               if ($(this).is(':checked')) {
+                   $(".ref-cred").show();
+               }
+            });
+
+            $("#option-sil").on("click", function (event) {
+                resetear()
+                if ($(this).is(':checked')) {
+                    $(".ref-sil").show();
+                    $('#formulario-falabella').bootstrapValidator('enableFieldValidators', 'Telefono', false, 'notEmpty');
+                } 
+            });
+
+            $("#option-asfam").on("click", function (event) {
+                resetear()
+                if ($(this).is(':checked')) {
+                    $(".ref-asfam").show();
+                } 
+            });
+
+            $("#option-beneficios").on("click", function (event) {
+                resetear()
+                if ($(this).is(':checked')) {
+                    $(".ref-bene").show();
+                } 
+            });
+
+            $("#option-otros").on("click", function (event) {
+                resetear()
+                if ($(this).is(':checked')) {
+                    $(".ref-otros").show();
+                }
+            });
+           
+           $('#formulario-falabella').bootstrapValidator({
+               excluded: [':not(:visible)'], 
+               fields: {
+                   RutAfiliado: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debes Ingresar un Rut'
+                           },
+                           callback: {
+                               message: 'Rut Invalido',
+                               callback: function (value, validator, $field) {
+                                   var retorno = $.rut.validar(value);
+                                   if (retorno) {
+
+                                       const urlenvio = BASE_URL + '/motor/api/Afiliados/afiliado-falabella/' + value.replace(/\./g, '');
+
+                                       console.log({ urlenvio, value, $field })
+                                       $('.inf-d').text("Buscando afiliado....");
+
+                                       $.ajax({
+                                           type: 'get',
+                                           url: urlenvio
+                                       }).done(function (d) {
+                                           $('#afil-name').text(d.Nombres);
+                                           $('.alert-success').show();
+                                           $(".invisal").show();
+                                           $(".elobservador").hide();
+                                       }).fail(function (e) {
+                                           $('.alert-danger').show();
+                                       }).always(function () {
+                                           $('.inf-d').hide();
+                                           $field.prop({ disabled: true })
+                                           $('.botonera').show();
+                                       });
+                                   }
+                                   return retorno;
+                               }
+                           }
+                       }
+                   },
+                   Telefono: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debes Ingresar un Telefono'
+                           },
+                       }
+                   },
+                   Observacion: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debes Ingresar una Observación'
+                           },
+                       }
+                   }
+               }
+
+           }).on('success.form.bv', function (e) {
+              
+               e.preventDefault();
+               var $form = $(e.target);
+               var model = $form.serializeFormJSON()
+               var typew = $('input[name=TipoGestion]:checked').val();
+
+               if (typeof typew == 'undefined') {
+                   model.Observacion = $("#obs-general").val();
+               }
+               else {
+                   model.Observacion = $(`#obs-${typew}`).val();
+               }
+
+               if (typeof model.Beneficios != 'undefined') {
+                   model.Beneficios = JSON.stringify(model.Beneficios);
+               }
+
+               model.RutAfiliado = $('#rut-afiliado').val().replace(/\./g, '');
+               const urlenvio = `${BASE_URL}/motor/api/Afiliados/afiliado-falabella/${model.RutAfiliado}/add-gestion`
+
+               $.ajax({
+                   type: 'post',
+                   url: urlenvio,
+                   data: JSON.stringify(model),
+                   contentType: "application/json; charset=utf-8",
+                   headers: {
+                       "Token": getCookie("Token"),
+                       "TokenExpiry": "900",
+                       "Access-Control-Expose-Headers": "Token,TokenExpiry"
+                   },
+               }).done(function (d) {
+                   $.niftyNoty({
+                       type: "success",
+                       container: "floating",
+                       title: "Gestión Exitosa",
+                       message: "Gestión generada con éxito",
+                       closeBtn: true
+                   });
+               }).fail(function (e) {
+                   $.niftyNoty({
+                       type: "danger",
+                       container: "floating",
+                       title: "Gestión Erronea",
+                       message: "Hay inconvenientes al guardar, porfavor intentalo denuevo o genera ticket con incidencia ",
+                       closeBtn: true
+                   });
+               });
+
+           });
+
+       });
+    </script>
+
+
+
+
+}
+

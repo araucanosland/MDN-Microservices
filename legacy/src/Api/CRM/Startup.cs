@@ -61,6 +61,11 @@ namespace CRM
                     areaName: "AppPage",
                     template: "App/{controller=Home}/{action=Index}/{id?}");
 
+                routes.MapAreaRoute(
+                    name: "MyAreaEmpresas",
+                    areaName: "EmpresasPage",
+                    template: "Empresas/{controller=Home}/{action=Index}/{id?}");
+
 
                 routes.MapRoute(
                     name: "default",

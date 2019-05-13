@@ -1,0 +1,251 @@
+﻿@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<!--Bootstrap Select [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+<style type="text/css">
+    #container .table th {
+        font-size: 11px !important;
+    }
+
+    #container .table td {
+        font-size: 11px !important;
+    }
+
+    #col-xs-3 {
+        width: 33%;
+    }
+
+    .oculto {
+        visibility: collapse;
+    }
+
+    .oculto2 {
+        visibility: collapse;
+    }
+</style>
+<div id="page-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="tab-base">
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_GestionEmpresa" class="tab-principal">Gestión Empresa<span class="badge badge-purple" style="display:none;">15</span></a>
+                    </li>
+                </ul>
+                <!--Tabs Content-->
+                <div class="tab-content">
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="row">
+
+                            <div class="col-sm-2 text-xs-center">
+                                <h5>
+                                    Rut: <label id="encRut"></label>
+
+                                </h5>
+                            </div>
+                            <div class="col-sm-5 text-xs-center">
+                                <h5>
+                                    Nombre Empresa: <label id="nombrempresa"></label>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <br />
+                        <br />
+
+                        <table id="demo-foo-filtering" class="table table-bordered table-hover toggle-circle" data-page-size="30">
+                            <thead>
+                                <tr>
+                                    <th style="background-color:dodgerblue;color:white;">Sucursal</th>
+                                    <th style="background-color:dodgerblue;color:white;">Ejecutivo Caja</th>
+                                    <th style="background-color:dodgerblue;color:white;">Estamento</th>
+                                    <th style="background-color:dodgerblue;color:white;">Funcionario Empresa</th>
+                                    <th style="background-color:dodgerblue;color:white;">Cargo Func. Empresa</th>
+                                    <th style="background-color:dodgerblue;color:white;">Estado</th>
+                                    <th style="background-color:dodgerblue;color:white;">Trimestre</th>
+                                    <th style="background-color:dodgerblue;color:white;">Nombre Local Holding</th>
+                                    <th style="background-color:dodgerblue;color:white;">Fecha Creación</th>
+                                    <th style="background-color:dodgerblue;color:white;">Fecha Modificación</th>
+                                </tr>
+                            </thead>
+                            <div class="pad-btm">
+                                <div class="row">
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Trimestre</label>
+                                            <select id="slPeriodo" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="20173T">3 Trimestre 2017</option>
+                                                @*<option value="20172T">2 Trimestre 2017</option>
+                                                    <option value="20171T">1 Trimestre 2017</option>*@
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label">Estamento</label>
+                                            <select id="slEstamento" class="form-control">
+                                                <option value="">Todos</option>
+                                                <option value="Empresa">Empresa</option>
+                                                <option value="Sindicato">Sindicato</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <button class="btn btn-default btn-mint-basic form-control" type="button" id="btn_nuevo">Nueva Ficha</button>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <button class="btn btn-default btn-info-basic" type="button" id="btn_asignacion">Reasignación Oficina</button>
+                                        </div>
+                                    </div>*@
+                                    <div class="col-sm-2 text-xs-center">
+                                        <div class="form-group">
+                                            <button type="button" id="btnvolver" class="btn btn-default btn-success-basic">Volver Atras</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 text-xs-center">
+                                    </div>
+                                    @*<div class="col-sm-3">
+                                            <label class="control-label">Búsqueda</label>
+                                            <div class="input-group">
+                                                <input id="demo-foo-search" type="text" placeholder="Ej. 11.111.111-1" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>*@
+                                </div>
+                            </div>
+                            <tbody id="bdy_datos"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="16">
+                                        <div class="text-right">
+                                            <ul class="pagination"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script src="~/Assets/plugins/fooTable/dist/footable.all.min.js"></script>
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <!--Bootstrap Select [ OPTIONAL ]-->
+    <script src="~/Assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        var Cargador = {
+            CargaGestionEmpresaDetalle: function (p_rut, p_periodo, p_isHolding) {
+                $("#bdy_datos").html("");
+
+                $("#btn_nuevo").on("click", function () {
+                    //console.log(p_isHolding)
+                    location.href = '/motor/App/Gestion/EmpresaDetalle?Id=' + 0 + '&RutEmpresa=' + p_rut + '&Periodo=' + p_periodo + '&isHolding=' + p_isHolding
+                });
+                $("#btn_asignacion").on("click", function () {
+                    //console.log(p_isHolding)
+                    location.href = '/motor/App/Gestion/AsignacionEmpresa?RutEmpresa=' + p_rut + '&Periodo=' + p_periodo
+                });
+
+                $.SecGetJSON(BASE_URL + "/motor/api/Gestion/lista-gestion-detalle-empresa-admin", { RutEmpresa: p_rut, Periodo: p_periodo  }, function (menus) {
+
+
+
+                    $.each(menus, function (i, e) {
+
+
+
+                        $("#bdy_datos")
+                            .append(
+                                $("<tr>")
+                                   .append($("<td align=center>").append(e.OficinaEmpDetalle))
+                              .append($("<td align=center>").append(e.NombreEjecEmpDetalle))
+                                    .append($("<td align=center>").append(e.EstamentoEmpDetalle))
+                                    .append($("<td>").append('<a href="/motor/App/Gestion/EmpresaDetalle?Id=' + e.idEmpresaDetalle + '&RutEmpresa=' + p_rut + '&Periodo=' + p_periodo + '&isHolding=' + e.isHolding + '" class="btn-link">' + e.NombreEmpDetalle + '</a>')) //link
+                                    .append($("<td align=center>").append(e.CargoEjecEmpresa))
+                                    .append($("<td align=center>").append(e.EstadoEmpDetalle))
+                                    .append($("<td align=center>").append(e.TrimentreEmpDetalle))
+                                    .append($("<td align=center>").append(e.NombreSucursal))
+                                    .append($("<td align=center>").append(e.FechaIngreso))
+                                    .append($("<td align=center>").append(e.FechaModificacion))
+                            );
+                    });
+
+
+
+
+
+                    //////////////////////////////////////////////////////////////////////////////////
+                    // Filtros
+                    var filtering = $('#demo-foo-filtering');
+                    filtering.footable().on('footable_filtering', function (e) {
+
+                        var selectedX1 = $('#slPeriodo').find(':selected').val();
+                        if (selectedX1 != "Todos") {
+                            e.filter += (e.filter && e.filter.length > 0) ? ' ' + selectedX1 : selectedX1;
+                        }
+
+                        var selectedX = $('#slEstamento').find(':selected').val();
+                        if (selectedX != "Todos") {
+                            e.filter += (e.filter && e.filter.length > 0) ? ' ' + selectedX : selectedX;
+                        }
+
+                        e.clear = !e.filter;
+                    });
+                    $('#slPeriodo').change(function (e) {
+                        e.preventDefault();
+                        filtering.trigger('footable_filter', { filter: '' });
+                    });
+                    $('#slEstamento').change(function (e) {
+                        e.preventDefault();
+                        filtering.trigger('footable_filter', { filter: '' });
+                    });
+                    $('#demo-foo-filtering').on('input', function (e) {
+                        e.preventDefault();
+                        if ($(this).val().length >= 5 || $(this).val().length == 0) {
+                            filtering.trigger('footable_filter', { filter: $(this).val() });
+                        }
+                    });
+                });
+            },
+        }
+        var CargadorEncabezado = {
+            CargaEncabezadoTotal: function (p_rutempresa, p_periodo) {
+
+                //Pre Aprobados
+                $.SecGetJSON(BASE_URL + "/motor/api/Gestion/lista-emp-nombres", { RutEmpresa: p_rutempresa, Periodo: p_periodo }, function (menus) {
+                    $("#encRut").html(menus.EmpresaRut + '-' + menus.EmpresaDV);
+                    $("#nombrempresa").html(menus.EmpresaNombre);
+                    //encRut
+                });
+
+            },
+
+
+        }
+        Cargador.CargaGestionEmpresaDetalle(httpGet("RutEmpresa"), httpGet("Periodo"), httpGet("isHolding"))
+        CargadorEncabezado.CargaEncabezadoTotal(httpGet("RutEmpresa"), httpGet("Periodo"))
+        $("#btnvolver").click(function (event) {
+            event.preventDefault();
+            history.back(-1);
+        });
+
+
+    </script>
+}

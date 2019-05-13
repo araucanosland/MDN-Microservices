@@ -1,9 +1,12 @@
-﻿using CDK.Data;
+﻿using System;
+using CDK.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace CDK.Integration
 {
     public class DBHelper
     {
+
         #region Instancias Privadas
 
         private static DBHelperBase _instanceBusiness;
@@ -13,13 +16,16 @@ namespace CDK.Integration
         private static DBHelperBase _instanceEngine;
         private static DBHelperBase _instanceMotorHerramientas;
 
+
         #endregion
 
         #region Instancias Singleton
 
         public static DBHelperBase InstanceCRM
         {
-            get { return (_instanceBusiness = _instanceBusiness ?? new DBHelperBase("CN_CRM")); }
+            get {
+                return (_instanceBusiness = _instanceBusiness ?? new DBHelperBase("CN_CRM")); 
+            }
         }
 
 

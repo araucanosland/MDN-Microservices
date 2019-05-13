@@ -1,0 +1,828 @@
+﻿@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_preaprobados">Administrador Dotación</a>
+                    </li>
+
+                </ul>
+
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+
+
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div id="demo-weather-widget-lg" class="panel panel-info">
+                                        <div class="panel-body">
+
+                                            <div class="col-md-2">
+
+                                                <div class="row pad-btm">
+                                                    <div class="col-md-8">
+                                                        <p class="text-2x mar-no"><label style="font-weight:bold;" id="p_capacity">80%</label></p>
+                                                        <p class="text">Dotación Activa Hoy</p>
+                                                        <p><label style="font-weight:bold;" id="lb_nombre_sucursal">Centro Cívico</label></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-10">
+                                                <div class="list-unstyled text-center clearfix">
+                                                    <table class="table  table-condensed">
+                                                        <thead>
+                                                            <tr style="text-align:center">
+                                                                <th style="text-align:center">Licencias</th>
+                                                                <th style="text-align:center">Perm. Legales</th>
+                                                                <th style="text-align:center">Vacaciones</th>
+                                                                <th style="text-align:center">Capacitaciones</th>
+                                                                <th style="text-align:center">Comision de Servicio</th>
+                                                                <th style="text-align:center">Desvinculaciones</th>
+                                                                <th style="text-align:center">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_licencia">1</label> - <label style="font-weight:bold;" id="p_licencia">10%</label></td>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_legales">1</label> - <label style="font-weight:bold;" id="p_legales">10%</label></td>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_vacaciones">0</label> - <label style="font-weight:bold;" id="p_vacaciones">0%</label></td>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_capacitaciones">0</label> - <label style="font-weight:bold;" id="p_capacitaciones">0%</label></td>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_comision">0</label> - <label style="font-weight:bold;" id="p_comision">0%</label></td>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_desvinculaciones">0</label> - <label style="font-weight:bold;" id="p_desvinculaciones">0%</label></td>
+                                                                <td><label style="font-weight:bold;text-align:center" id="n_total">2</label> - <label style="font-weight:bold;" id="p_total">20%</label></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="btn btn-primary" data-target="#modal-add-ejec" data-toggle="modal">Agregar Ejecutivo</button>
+                                <button class="btn btn-success" id="bt-confirma-dotacion">Confirmar Dotacion Hoy</button>
+                            </div>
+                            <br />
+
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="3">Ejecutivos</th>
+                                        <th id="thCountDias"></th>
+                                    </tr>
+                                    <tr id="trDiasSemana"></tr>
+                                    <tr id="trDiasMes"></tr>
+                                </thead>
+                                <tbody id="bdy_ejecutivos"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--Default Bootstrap Modal-->
+    <!--===================================================-->
+    <div class="modal fade" id="modal-ejecutivo-fault" role="dialog" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!--Modal header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                    <h4 class="modal-title" id="Leyenda_ef">Asignar Ausencia</h4>
+                </div>
+                <form id="form-registro-ausencia">
+                    <!--Modal body-->
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>Motivo</label>
+                            <select class="form-control desabilitable" id="slMotivo" name="motivo"></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="texto-cambiante">Rango de Fechas de Ausencia</label>
+                            <div id="demo-dp-range">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="form-control calendy desabilitable" name="start" id="fstart" />
+                                    <span class="input-group-addon">a</span>
+                                    <input type="text" class="form-control calendy" name="end" id="fend" readonly="readonly" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="dvCantidadDias">
+                            <label>Cantidad de Dias</label>
+                            <input type="text" id="tb-cantidad-dias" name="dias" class="form-control desabilitable" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Comentarios</label>
+                            <textarea class="form-control desabilitable" rows="5" id="ta-comentarios" name="comentarios"></textarea>
+                        </div>
+
+                        <!--===================================================-->
+
+                        <input type="hidden" id="hdRutEjec" />
+                        <input type="hidden" id="hdIdAusencia" value="0" />
+                        <div id="dvMensajes"></div>
+                    </div>
+
+                    <!--Modal footer-->
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                        <button class="btn btn-primary" id="bt-modificar-ausencia" style="display:none;" type="button">Modificar</button>
+                        <button class="btn btn-primary" id="bt-guardar-ausencia" type="submit">Guardar</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End Default Bootstrap Modal-->
+    <!--Default Bootstrap Modal-->
+    <!--===================================================-->
+    <div class="modal fade" id="modal-add-ejec" role="dialog" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!--Modal header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                    <h4 class="modal-title">Agregar Ejecutivo</h4>
+                </div>
+                <form id="form-registro-ejecutivo">
+                    <!--Modal body-->
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>Rut</label>
+                            <input type="text" class="form-control" id="tbRut" name="rut" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nombres</label>
+                            <input type="text" class="form-control" id="tbNombre" name="nombre" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Apellidos</label>
+                            <input type="text" class="form-control" id="tbApellido" name="apellido" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cargo</label>
+                            <select type="text" class="form-control" id="slCargos" name="cargo"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de Contrato</label>
+                            <select type="text" class="form-control" id="slTipoContrato" name="tipocontrato">
+                                <option value="">Seleccione</option>
+                                <option value="I">Indefinido</option>
+                                <option value="P">Plazo Fijo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fecha Ingreso</label>
+                            <div id="dp-component-inicio">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" id="tbFechaIngreso" name="fechaingreso">
+                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group rge-esconder" style="display:none;">
+                            <label>Fecha Finalización</label>
+                            <div id="dp-component-finalizacion">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" id="tbFechaFinal" name="fechaFinal">
+                                    <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div id="dvMensajes_e"></div>
+                    </div>
+
+                    <!--Modal footer-->
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                        <button class="btn btn-primary" id="bt-guardar-ejecutivo" name="dos" type="submit">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End Default Bootstrap Modal-->
+
+</div>
+
+<style>
+    .ausencia-general {
+        border-left-width: 0px !important;
+        border-right-width: 0px !important;
+        cursor: pointer;
+    }
+
+    .ausencia-permiso {
+        background-color: #fffa0f;
+    }
+
+    .ausencia-falta {
+        background-color: #f8a206;
+    }
+
+    .ausencia-licencia {
+        background-color: #f8a206;
+    }
+
+    .ausencia-desvinculacion {
+        background-color: #808080;
+    }
+
+    .ausencia-vacaciones {
+        background-color: #afed30;
+    }
+
+    .ausencia-capacitacion {
+        background-color: #f8a206;
+    }
+
+    .ausencia-comision {
+        background-color: #f8a206;
+    }
+
+    .chly-dia-inhabil {
+        background-color: rgba(225, 225, 225, 0.93);
+        /*border-color:#e6e6e6 !important; */
+    }
+
+    .charly-letra-chik {
+        font-size: 10px !important;
+    }
+
+    .charly-letra-chik-ejecutivo {
+        font-size: 11px !important;
+    }
+
+    .diactual {
+        background-color: #85bcf1;
+    }
+
+    .table > thead > tr > th {
+        padding: 4px !important;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+</style>
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script>
+        $(function () {
+
+            //Funcionalidadaes de controlador
+            var hoy = new Date();
+            var leyendaDias = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+            var leyendaMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            var feriados = [];
+
+            var cargador = {
+                CargaMes: function (fecha_vista) {
+                    this.ResetMes();
+
+                    var tperiodo = fecha_vista.getFullYear().toString() + (fecha_vista.getMonth() + 1).toString().paddingLeft("00");
+                    var diasMes = getDaysInMonth(fecha_vista.getMonth(), fecha_vista.getFullYear())
+                    $("#thCountDias").prop({ "colspan": diasMes.length }).html('<button class="btn btn-primary" style="float:left;" id="btn_atras"><</button>' + leyendaMeses[fecha_vista.getMonth()] + " " + fecha_vista.getFullYear() + '<button style="float:right;" class="btn btn-primary" id="btn_adelante">></button>').css({ "text-align": "center" })
+
+                    $.SecGetJSON(BASE_URL + "/motor/api/Config/dotacion-data-admin", { periodo: tperiodo, codOficina: httpGet("CodOficina") }, function (obj) {
+
+                        var dh = new Date()
+                        var FeriadosMes = $(obj.Feriados).map(function () {
+                            var d = new Date(this);
+                            return d.getFullYear().toString() + (d.getMonth() + 1).toString().paddingLeft("00") + d.getDate();
+                        }).get();
+                        feriados = FeriadosMes;
+
+                        //RESUMENES
+                        var ResumenesAusencia = []
+                        $(obj.ResumenAusencias).map(function () {
+                            ResumenesAusencia[this.ClaseAusencia] = this
+                            return this.ClaseAusencia
+                        }).get();
+
+
+                        $("#p_capacity").html(ResumenesAusencia['activos'].Porcentaje + "%")
+
+                        $("#n_licencia").html(ResumenesAusencia['licencia'].Numero)
+                        $("#p_licencia").html(ResumenesAusencia['licencia'].Porcentaje + "%")
+
+                        $("#n_legales").html(ResumenesAusencia['permiso'].Numero)
+                        $("#p_legales").html(ResumenesAusencia['permiso'].Porcentaje + "%")
+
+                        $("#n_vacaciones").html(ResumenesAusencia['vacaciones'].Numero)
+                        $("#p_vacaciones").html(ResumenesAusencia['vacaciones'].Porcentaje + "%")
+
+                        $("#n_capacitaciones").html(ResumenesAusencia['capacitacion'].Numero)
+                        $("#p_capacitaciones").html(ResumenesAusencia['capacitacion'].Porcentaje + "%")
+
+                        $("#n_comision").html(ResumenesAusencia['comision'].Numero)
+                        $("#p_comision").html(ResumenesAusencia['comision'].Porcentaje + "%")
+
+                        $("#n_desvinculaciones").html(ResumenesAusencia['desvinculacion'].Numero)
+                        $("#p_desvinculaciones").html(ResumenesAusencia['desvinculacion'].Porcentaje + "%")
+
+                        $("#n_total").html(ResumenesAusencia['ausentes'].Numero)
+                        $("#p_total").html(ResumenesAusencia['ausentes'].Porcentaje + "%")
+
+                        $("#lb_nombre_sucursal").html(obj.Oficina.Nombre);
+
+                        //ENCABEZADOS
+                        $.each(diasMes, function (i, e) {
+
+                            var d = e.getFullYear().toString() + (e.getMonth() + 1).toString().paddingLeft("00") + e.getDate();
+                            if (e.toString().charAt(0) === "S" || $.inArray(d, FeriadosMes) > -1) {
+                                $("#trDiasSemana").append($("<th>").html(leyendaDias[e.getDay()]).addClass("chly-dia-inhabil").css({ "text-align": "center" }).addClass("charly-letra-chik"))
+                                $("#trDiasMes").append($("<th>").html((i + 1).toString().paddingLeft("00")).addClass("chly-dia-inhabil").css({ "text-align": "center" }).addClass("charly-letra-chik"))
+                            } else {
+
+
+                                if (d === (dh.getFullYear().toString() + (dh.getMonth() + 1).toString().paddingLeft("00") + dh.getDate())) {
+                                    $("#trDiasSemana").append($("<th>").html(leyendaDias[e.getDay()]).css({ "text-align": "center" }).addClass("charly-letra-chik").addClass("diactual"))
+                                    $("#trDiasMes").append($("<th>").html((i + 1).toString().paddingLeft("00")).css({ "text-align": "center" }).addClass("charly-letra-chik").addClass("diactual"))
+                                } else {
+                                    $("#trDiasSemana").append($("<th>").html(leyendaDias[e.getDay()]).css({ "text-align": "center" }).addClass("charly-letra-chik"))
+                                    $("#trDiasMes").append($("<th>").html((i + 1).toString().paddingLeft("00")).css({ "text-align": "center" }).addClass("charly-letra-chik"))
+                                }
+
+                            }
+                        });
+
+
+                        //EJECUTIVOS
+                        $.each(obj.Ejecutivos, function (inej, ejecutivo) {
+
+                            $("#bdy_ejecutivos").append(
+                                $("<tr>").prop({ "id": ejecutivo.Ejecutivo.Rut }).addClass("ejecutivo-diario")
+                                .append($("<td>").append($('<a class="btn-link" data-target="#modal-ejecutivo-fault" data-toggle="modal" data-ejecutivo="' + ejecutivo.Ejecutivo.Rut + '">').prop({ "href": "#" }).html(ejecutivo.Ejecutivo.Nombres.OrdenaNombre())).append("<br> <small>" + ejecutivo.Ejecutivo.Cargo + "</small> ").addClass("charly-letra-chik-ejecutivo"))
+                             );
+
+                            var daus = [];
+                            $.each(ejecutivo.PeriodoAusencia, function (i, e) {
+                                daus = daus.concat(getDaysNoTrabajados(e.aus_fecha_inicio, e.aus_fecha_fin, e));
+                            })
+
+                            var arrayObjetoAusencia = [];
+                            var dAusencias = $(daus).map(function () {
+                                var t = this;
+                                var d = new Date(this.fecha);
+                                var clave = d.getFullYear().toString() + (d.getMonth() + 1).toString().paddingLeft("00") + d.getDate().toString().paddingLeft("00");
+                                var foj = cargador.ObtenerTipoAusencia(obj.TiposAusencia, this.ausencia.tipo_ausencia_id);
+                                arrayObjetoAusencia[clave] = {
+                                    Clave: clave,
+                                    Fecha: d,
+                                    Leyenda: foj.taus_nombre + ': \n' + t.ausencia.aus_comentarios,
+                                    Color: foj.taus_clase_color,
+                                    IdTipoAusencia: foj.taus_id,
+                                    EsRangoFechas: foj.taus_es_rango_fechas,
+                                    EsDiasCorridos: foj.taus_es_dias_corridos,
+                                    Ausencia: t.ausencia
+                                }
+                                return clave;
+                            }).get();
+
+
+
+                            var HitoNoRango;
+                            $.each(diasMes, function (i, dia) {
+                                var d = dia.getFullYear().toString() + (dia.getMonth() + 1).toString().paddingLeft("00") + dia.getDate().toString().paddingLeft("00");
+
+                                if (dia.toString().charAt(0) === "S" || $.inArray(d, FeriadosMes) > -1) {
+
+                                    if ($.inArray(d, dAusencias) > -1 && arrayObjetoAusencia[d].EsDiasCorridos) {
+                                        $("#" + ejecutivo.Ejecutivo.Rut).append($('<td title="' + arrayObjetoAusencia[d].Leyenda + '">').addClass(arrayObjetoAusencia[d].Color).addClass("ausencia-general").data({ "ausencia": arrayObjetoAusencia[d].Ausencia }).on("dblclick", cargador.EdicionAusencia))
+                                    } else {
+                                        $("#" + ejecutivo.Ejecutivo.Rut).append($("<td>").addClass("chly-dia-inhabil"))
+                                    }
+
+                                } else {
+
+                                    if ($.inArray(d, dAusencias) > -1 && !arrayObjetoAusencia[d].EsRangoFechas) {
+                                        $("#" + ejecutivo.Ejecutivo.Rut).append($('<td title="' + arrayObjetoAusencia[d].Leyenda + '">').addClass(arrayObjetoAusencia[d].Color).addClass("ausencia-general").data({ "ausencia": arrayObjetoAusencia[d].Ausencia }).on("dblclick", cargador.EdicionAusencia))
+                                        HitoNoRango = arrayObjetoAusencia[d];
+                                    } else if ($.inArray(d, dAusencias) > -1) {
+                                        $("#" + ejecutivo.Ejecutivo.Rut).append($('<td title="' + arrayObjetoAusencia[d].Leyenda + '">').addClass(arrayObjetoAusencia[d].Color).addClass("ausencia-general").data({ "ausencia": arrayObjetoAusencia[d].Ausencia }).on("dblclick", cargador.EdicionAusencia))
+                                    } else if (typeof HitoNoRango != "undefined") {
+                                        $("#" + ejecutivo.Ejecutivo.Rut).append($('<td title="' + HitoNoRango.Leyenda + '">').addClass(HitoNoRango.Color).addClass("ausencia-general").data({ "ausencia": HitoNoRango.Ausencia }).on("dblclick", cargador.EdicionAusencia))
+                                    } else {
+                                        $("#" + ejecutivo.Ejecutivo.Rut).append($("<td>"))
+                                    }
+                                }
+                            });
+                        });
+
+                        //CARGOS
+                        $("#slCargos").html("");
+                        $("#slCargos").append($("<option>").text("Seleccione").val(""));
+                        $.each(obj.Cargos, function (ica, cargo) {
+                            $("#slCargos").append($("<option>").text(cargo.Nombre).val(cargo.Nombre));
+                        });
+
+                        //TIPOS AUSENCIAS
+                        $("#slMotivo").html("");
+                        $("#slMotivo").append($("<option>").text("Seleccione").val(""));
+                        $.each(obj.TiposAusencia, function (ita, tpausen) {
+                            $("#slMotivo").append($("<option>").text(tpausen.taus_nombre).val(tpausen.taus_id).data({ "esRango": tpausen.taus_es_rango_fechas, "color": tpausen.taus_clase_color, "esDiasCorridos": tpausen.taus_es_dias_corridos }));
+                        });
+
+                        $("#slMotivo").on("change", function (e) {
+
+                            if ($(this).find(":selected").data("esRango")) {
+                                $(".input-group-addon").show();
+                                $("#fend").show();
+                                $(".texto-cambiante").text("Rango de Fechas de Ausencia");
+                                $("#tb-cantidad-dias").prop("disabled", false);
+                                $("#dvCantidadDias").show();
+                            } else {
+                                $(".input-group-addon").hide();
+                                $("#fend").hide();
+                                $(".texto-cambiante").text("Fecha de Ausencia");
+                                $("#tb-cantidad-dias").prop("disabled", true);
+                                $("#dvCantidadDias").hide();
+                            }
+                        });
+                    });
+
+
+                    $("#btn_adelante").on("click", function () {
+                        cargador.SiguienteMes()
+                    })
+
+                    $("#btn_atras").on("click", function () {
+                        cargador.AnteriorMes()
+                    })
+                },
+                ResetMes: function () {
+                    $("#thCountDias").html("");
+                    $("#trDiasSemana").html("");
+                    $("#trDiasMes").html("");
+                    $("#bdy_ejecutivos").html("");
+                },
+                SiguienteMes: function () {
+                    hoy.setMonth(hoy.getMonth() + 1)
+                    cargador.CargaMes(hoy);
+                },
+                AnteriorMes: function () {
+                    hoy.setMonth(hoy.getMonth() - 1)
+                    cargador.CargaMes(hoy);
+                },
+                GuardarAusencia: function (WebAusenciaDot) {
+
+                    $.SecPostJSON(BASE_URL + "/motor/api/Config/guardar-ausencia-dotacion", WebAusenciaDot, function (obj) {
+
+                        if (obj.Estado === "ER") {
+                            $.niftyNoty({
+                                type: 'danger',
+                                container: '#dvMensajes',
+                                html: '<strong>' + obj.Mensaje + '</strong> ' + obj.Objeto.Message,
+                                focus: false,
+                                timer: 3000
+                            });
+                        } else {
+
+                            $("#modal-ejecutivo-fault").modal("toggle")
+                            $.niftyNoty({
+                                type: 'success',
+                                container: 'floating',
+                                html: '<strong>OK</strong> ' + obj.Mensaje,
+                                focus: false,
+                                timer: 3000
+                            });
+                            cargador.CargaMes(hoy);
+                        }
+                        $("#bt-confirma-dotacion").trigger("click");
+                    });
+                },
+                GuardarEjecutivo: function (webDotacionEjecutivo) {
+
+                    $.SecPostJSON(BASE_URL + "/motor/api/Config/guardar-dotacion-ejecutivo", webDotacionEjecutivo, function (obj) {
+                        if (obj.Estado === "ER") {
+                            $.niftyNoty({
+                                type: 'danger',
+                                container: '#dvMensajes',
+                                html: '<strong>' + obj.Mensaje + '</strong> ' + obj.Objeto.Message,
+                                focus: false,
+                                timer: 3000
+                            });
+                        } else {
+
+                            $("#modal-add-ejec").modal("toggle")
+                            $.niftyNoty({
+                                type: 'success',
+                                container: 'floating',
+                                html: '<strong>OK</strong> ' + obj.Mensaje,
+                                focus: false,
+                                timer: 3000
+                            });
+                            cargador.CargaMes(hoy);
+                        }
+                        $("#bt-confirma-dotacion").trigger("click");
+                    });
+
+                },
+                ObtenerTipoAusencia: function (x, y) {
+
+                    var ret;
+                    $.each(x, function (i, e) {
+
+                        if (e.taus_id === y) {
+                            ret = e;
+                        }
+                    });
+
+                    return ret;
+                },
+                EdicionAusencia: function (e) {
+                    var Ausencia = $(e.target).data("ausencia");
+
+                    $("#Leyenda_ef").text("Visualizar Ausencia")
+                    $('#slMotivo option[value=' + Ausencia.tipo_ausencia_id + ']').prop('selected', true)
+                    $('#slMotivo').trigger("change").prop("disabled", true);
+                    $("#fstart").val(Ausencia.aus_fecha_inicio.toFecha());
+                    $("#fend").val(Ausencia.aus_fecha_fin.toFecha());
+                    $("#tb-cantidad-dias").val(Ausencia.aus_cantidad_dias);
+                    $("#ta-comentarios").val(Ausencia.aus_comentarios);
+                    $("#hdIdAusencia").val(Ausencia.aus_id);
+
+                    $(".desabilitable").prop("disabled", true);
+
+                    $('#modal-ejecutivo-fault').modal("toggle", $("<a>").data("ejecutivo", Ausencia.ejec_rut));
+
+                    $("#bt-guardar-ausencia").hide();
+                    $("#bt-modificar-ausencia").show();
+                },
+
+            }
+
+            //Funcionalidades de vista
+            cargador.CargaMes(hoy);
+
+
+            $('#modal-ejecutivo-fault').on('show.bs.modal', function (event) {
+                var link = $(event.relatedTarget);
+                if (typeof $(link).data("ejecutivo") != 'undefined') {
+                    $("#hdRutEjec").val($(link).data("ejecutivo"))
+                    $('#form-registro-ausencia').bootstrapValidator({
+                        excluded: [':disabled', ':not(:visible)'],
+                        fields: {
+                            start: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'fecha(s) no debe(n) ser vacía(s)'
+                                    }
+                                }
+                            },
+                            motivo: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Debe selecionar un Motivo'
+                                    }
+                                }
+                            },
+                            dias: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'La cantidad de días no puede ser vacía'
+                                    },
+                                    digits: {
+                                        message: 'El valor debe ser un digito'
+                                    },
+                                }
+                            },
+                            comentarios: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Este campo no puede ser vacío'
+                                    }
+                                }
+                            },
+                        }
+                    }).on('success.form.bv', function (e) {
+                        e.preventDefault();
+                        var $form = $(e.target);
+                        var WebAusenciaDot = {
+                            IdAusencia: $("#hdIdAusencia").val(),
+                            RutEjecutivo: $("#hdRutEjec").val(),
+                            FechaInicio: $("#fstart").val(),
+                            FechaFin: $("#fend").val(),
+                            CodigoMotivo: $("#slMotivo").val(),
+                            CantidadDias: $("#tb-cantidad-dias").val(),
+                            Comentarios: $("#ta-comentarios").val(),
+                        }
+                        cargador.GuardarAusencia(WebAusenciaDot);
+
+                    });
+
+
+                }
+            })
+
+            $('#modal-ejecutivo-fault').on('hidden.bs.modal', function (event) {
+                $('#form-registro-ausencia')[0].reset();
+                $("#form-registro-ausencia").bootstrapValidator('resetForm', true);
+                $('#form-registro-ausencia').data('bootstrapValidator').destroy();
+                $(".input-group-addon").show();
+                $("#fend").show();
+                $(".texto-cambiante").text("Rango de Fechas de Ausencia");
+                $("#bt-guardar-ausencia").show();
+                $("#bt-modificar-ausencia").hide();
+                $(".desabilitable").prop("disabled", false);
+                $("#Leyenda_ef").text("Registrar Ausencia");
+                $("#hdIdAusencia").val(0);
+            })
+
+            $('#fstart').datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                todayHighlight: true,
+            }).on('changeDate', function (e) {
+                $('#form-registro-ausencia').bootstrapValidator('updateStatus', 'start', 'NOT_VALIDATED').bootstrapValidator('validateField', 'start');
+
+                //$("#tb-cantidad-dias").val(CantidadDiasHabiles($("#fstart").val(), $("#fend").val())).trigger("keyup");
+                var fecha_final = CalcularDiasHabiles($("#fstart").val(), $("#tb-cantidad-dias").val())
+                $("#fend").val(fecha_final)
+
+            });
+
+            $('#modal-add-ejec').on('show.bs.modal', function (event) {
+                var link = $(event.relatedTarget);
+
+                if (typeof event.relatedTarget != 'undefined')
+                {
+                    $('#form-registro-ejecutivo').bootstrapValidator({
+                        excluded: [':disabled', ':not(:visible)'],
+                        fields: {
+                            rut: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Rut no puede ser vacío'
+                                    }
+                                }
+                            },
+                            nombre: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Nombre no puede ser vacío'
+                                    }
+                                }
+                            },
+                            apellido: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Apellido no puede ser vacío'
+                                    }
+                                }
+                            },
+                            tipocontrato: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Debe selecionar un Tipo de Contrato'
+                                    }
+                                }
+                            },
+                            fechaingreso: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Fecha De ingreso no puede ser vacía'
+                                    }
+                                }
+                            },
+                            fechaFinal: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Fecha De Finalización no puede ser vacía'
+                                    }
+                                }
+                            },
+                            cargo: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Debe selecionar un Cargo'
+                                    }
+                                }
+                            }
+                        }
+                    }).on('success.form.bv', function (e) {
+                        e.preventDefault();
+                        var $form = $(e.target);
+                        var webDotacionEjecutivo = {
+                            Rut: $("#tbRut").val(),
+                            Nombre: $("#tbApellido").val() + ", " + $("#tbNombre").val(),
+                            Cargo: $("#slCargos").val(),
+                            TipoContrato: $("#slTipoContrato").val(),
+                            FechaIngreso: $("#tbFechaIngreso").val(),
+                            FechaFinal: $("#tbFechaFinal").val(),
+                            Oficina: getCookie("Oficina")
+                        }
+                        cargador.GuardarEjecutivo(webDotacionEjecutivo);
+                    });
+                }
+
+            });
+
+            $('#modal-add-ejec').on('hidden.bs.modal', function (event) {
+                $('#form-registro-ejecutivo')[0].reset();
+                $("#form-registro-ejecutivo").bootstrapValidator('resetForm', true);
+                $('#form-registro-ejecutivo').data('bootstrapValidator').destroy();
+            })
+
+            $("#tb-cantidad-dias").on("keyup", function () {
+                //OJO QUE FALTAN LOS FERIADOS
+                var tipoCalculo = $("#slMotivo").find(":selected").data("esDiasCorridos");
+                var fecha_final = '';
+                if (tipoCalculo){
+                    fecha_final = CalcularDiasCorridos($("#fstart").val(), $(this).val())
+                } else {
+                    fecha_final = CalcularDiasHabilesFer($("#fstart").val(), $(this).val(), feriados)
+                }
+                $("#fend").val(fecha_final)
+            });
+
+            $('#dp-component-inicio .input-group.date').datepicker({ autoclose: true, format: "dd-mm-yyyy", todayHighlight: true }).on("changeDate", function () {
+                $('#form-registro-ejecutivo').bootstrapValidator('updateStatus', 'fechaingreso', 'NOT_VALIDATED').bootstrapValidator('validateField', 'fechaingreso');
+            });
+            $('#dp-component-finalizacion .input-group.date').datepicker({ autoclose: true, format: "dd-mm-yyyy", todayHighlight: true }).on("changeDate", function () {
+                $('#form-registro-ejecutivo').bootstrapValidator('updateStatus', 'fechaFinal', 'NOT_VALIDATED').bootstrapValidator('validateField', 'fechaFinal');
+            });
+
+            $("#slTipoContrato").on("change", function () {
+
+                if ($(this).val() === "P") {
+                    $(".rge-esconder").show();
+                } else {
+                    $(".rge-esconder").hide();
+                }
+
+            })
+
+            $("#bt-modificar-ausencia").on("click", function () {
+                $(".desabilitable").prop("disabled", false);
+                $("#bt-guardar-ausencia").show();
+                $(this).hide();
+                $("#Leyenda_ef").text("Modificar Ausencia");
+            });
+
+            $("#bt-confirma-dotacion").on("click", function () {
+
+                $.SecGetJSON(BASE_URL + "/motor/api/Config/marca-dotacion-hoy", function (obj) {
+                    $.niftyNoty({
+                        type: 'success',
+                        container: 'floating',
+                        html: '<strong>OK</strong> ' + obj.Mensaje,
+                        focus: false,
+                        timer: 3000
+                    });
+                });
+            });
+        });
+
+
+    </script>
+
+}

@@ -1,0 +1,329 @@
+﻿
+@{
+    ViewBag.Title = "Encuesta";
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/xde/bootstrap-tagsinput.css" rel="stylesheet">
+<style>
+    .ocultus {
+        display: none;
+    }
+
+    .help-block {
+        color: #b71e1e !important;
+    }
+
+    .invisal {
+        display: none;
+    }
+
+    .inf-d {
+        cursor: pointer;
+    }
+
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">EVALUACIÓN DE BIENESTAR EMPRESAS / SEGUROS </h3>
+                </div>
+                <div class="panel-body">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <form id="form-encuesta">
+
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="tipo-empresa">Tipo de Empresa (Rúbro)</label>
+                                    <input type="text" class="form-control" id="tipo-empresa" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="cantidad-trabajadores-empresa">Cantidad de Trabajadores de la empresa</label>
+                                    <input type="text" class="form-control" id="cantidad-trabajadores-empresa" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cargo-persona-encuestada">Cargo de la persona encuestada</label>
+                                    <input type="text" class="form-control" id="cargo-persona-encuestada" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <h4>I. Bienestar Empresa</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <p>¿Su empresa tiene bienestar?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="EmpresaTieneBienestar" id="empresa-bienestar-si" value="SI" class="empresa-bienestar" required> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="EmpresaTieneBienestar" id="empresa-bienestar-no" value="NO" class="empresa-bienestar" required> No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row bienestar-si ocultus">
+                                <div class="form-group col-md-12">
+                                    <label for="cuales-bienestar">¿Qué beneficios le gustaría tener adicionales y qué no tenga actualmente en su bienestar?</label>
+                                    <input type="text" class="form-control" id="que-beneficios-le-gustaria-tener-adicionales" data-role="tagsinput" required/>
+                                    <p class="help-block info">Tipea y presona enter para agregar.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="row bienestar-si ocultus">
+                                <div class="form-group col-md-12">
+                                    <label for="cuales-bienestar2">¿Cuáles son los beneficios del bienestar más valorados por usted?</label>
+                                    <input type="text" class="form-control" id="cuales-son-los-beneficios-de-bienestar-mas-valorados-por-usted" data-role="tagsinput" />
+                                    <p class="help-block info">Tipea y presona enter para agregar.</p>
+                                </div>
+                            </div>
+
+                            <div class="row bienestar-si ocultus">
+                                <div class="form-group col-md-12">
+                                    <label for="cuanto-paga-por-bienestar">¿Cuánto paga por pertenecer al bienestar?</label>
+                                    <input type="text" class="form-control" id="cuanto-paga-por-bienestar" />
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row bienestar-no ocultus">
+                                <div class="form-group col-md-12">
+                                    <p>¿Le gustaría contar con esta área?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="QuiereBienestar" class="gustaria-contar-con-bienestar" value="SI"> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="QuiereBienestar" class="gustaria-contar-con-bienestar" value="NO"> No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row si-quiere-tener-bienestar ocultus">
+                                <div class="form-group col-md-12">
+                                    <label for="cuales-bienestar2">¿Qué beneficios le gustaría tener en el bienestar?</label>
+                                    <input type="text" class="form-control" id="que-beneficios-le-gustaria-tener-en-bienestar" data-role="tagsinput" />
+                                    <p class="help-block info">Tipea y presona enter para agregar.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="row no-quiere-tener-bienestar ocultus">
+                                <div class="form-group col-md-12">
+                                    <label for="cuales-bienestar2">¿Por qué?</label>
+                                    <textarea class="form-control" id="por-que-no"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <h4>II. Seguros</h4>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <p>¿Su empresa tiene seguros asociados para los trabajadores?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="EmpresaTieneSegurosAsociados" class="empresa-tiene-seguros-asociados" value="SI"> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="EmpresaTieneSegurosAsociados" class="empresa-tiene-seguros-asociados" value="NO"> No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row con-seguros-asociados ocultus">
+                                <div class="form-group col-md-12">
+                                    <label for="cuales-bienestar2">¿Cuáles?</label>
+                                    <input type="text" class="form-control" id="cuales-servicios-tiene" data-role="tagsinput" />
+                                    <p class="help-block info">Tipea y presona enter para agregar.</p>
+                                </div>
+                            </div>
+
+                            <div class="row con-seguros-asociados ocultus">
+                                <div class="form-group col-md-12">
+                                    <p>¿Está conforme con ellos?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="ConformidadSeguros" class="conformidad-seguros" value="SI"> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="ConformidadSeguros" class="conformidad-seguros" value="NO"> No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row con-seguros-asociados ocultus">
+                                <div class="form-group col-md-12">
+                                    <p>¿Le gustaría tener adicional otros seguros?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="AdicionarSeguros" value="SI"> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="AdicionarSeguros" value="NO"> No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row con-seguros-asociados ocultus">
+                                <div class="form-group col-md-12">
+                                    <p>Los seguros los paga el empleador, usted o son cofinanciados:</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="QuienPagaSeguros" class="quien-paga-seguros" value="EMPLEADOR"> Empleador
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="QuienPagaSeguros" class="quien-paga-seguros" value="AFILIADO"> Afiliado
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="QuienPagaSeguros" class="quien-paga-seguros" value="COFINANCIADOS"> Cofinanciados
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="row sin-seguros-asociados ocultus">
+                                <div class="form-group col-md-12">
+                                    <p>¿Le gustaría tener seguros asociados?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="ConsultaSegurosAsociados" class="le-gustaria-tener-seguros-asociados" value="SI"> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="ConsultaSegurosAsociados" class="le-gustaria-tener-seguros-asociados" value="NO"> No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row ocultus si-le-gustaria-tener-seguros-asociados">
+                                <div class="form-group col-md-12">
+                                    <label for="que-seguros-le-gustaria-tener">¿Qué seguros le gustaría tener?</label>
+                                    <input type="text" class="form-control" id="que-seguros-le-gustaria-tener" data-role="tagsinput" />
+                                    <p class="help-block info">Tipea y presona enter para agregar.</p>
+                                </div>
+                            </div>
+
+                            <div class="row ocultus si-le-gustaria-tener-seguros-asociados">
+                                <div class="form-group col-md-12">
+                                    <p>¿Estaría de acuerdo en cofinanciar un seguro con su empleador?</p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="DeacuerdoEnCofinanciar" class="deacuerdo-en-cofinanciar" value="SI" required> Si
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="DeacuerdoEnCofinanciar" class="deacuerdo-en-cofinanciar" value="NO" required> No
+                                    </label>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-12 text-right">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+    <script src="~/Assets/plugins/xde/bootstrap-tagsinput.min.js"></script>
+    <script>
+
+        function reset(type = "1") {
+
+            switch (type) {
+                case "1":
+                    $(".bienestar-no").hide();
+                    $(".bienestar-si").hide();
+                    break;
+                case "2":
+                    $(".no-quiere-tener-bienestar").hide();
+                    $(".si-quiere-tener-bienestar").hide();
+                    break;
+                case "3":
+                    $(".con-seguros-asociados").hide();
+                    $(".sin-seguros-asociados").hide();
+                    break;
+                case "4":
+                    $(".si-le-gustaria-tener-seguros-asociados").hide();
+                    break;
+
+            }
+        }
+
+        $(function () {
+            $("#form-encuesta").on("submit", function () {
+                return false;
+            });
+
+            $(".empresa-bienestar").on("click", function () {
+                reset("1")
+                if ($(this).val() == "SI") {
+                    $(".bienestar-si").show('slow');
+                }
+                else if ($(this).val() == "NO") {
+                    $(".bienestar-no").show('slow');
+                }
+            });
+
+
+            $(".gustaria-contar-con-bienestar").on("click", function () {
+                reset("2")
+                if ($(this).val() == "SI") {
+                    $(".si-quiere-tener-bienestar").show('slow');
+                }
+                else if ($(this).val() == "NO") {
+                    $(".no-quiere-tener-bienestar").show('slow');
+                }
+            });
+
+
+            $(".empresa-tiene-seguros-asociados").on("click", function () {
+                reset("3")
+                if ($(this).val() == "SI") {
+                    
+                    $(".con-seguros-asociados").show('slow');
+                }
+                else if ($(this).val() == "NO") {
+                    
+                    $(".sin-seguros-asociados").show('slow');
+                }
+            });
+
+
+            $(".le-gustaria-tener-seguros-asociados").on("click", function () {
+                reset("4")
+                if ($(this).val() == "SI") {
+                    $(".si-le-gustaria-tener-seguros-asociados").show('slow');
+                }
+                
+            });
+        });
+    </script>
+}
+

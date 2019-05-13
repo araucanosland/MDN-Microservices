@@ -1,0 +1,594 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MdnLayout.cshtml";
+}
+
+<!--Bootstrap Table [ OPTIONAL ]-->
+<link href="~/Assets/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+<link href="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+<style>
+    .ocultus{
+        display:none;
+    }
+
+    hr.delim {
+        margin-top: 10px;
+        margin-bottom: 1px;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+
+</style>
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="tab-base">
+
+                <!--Nav Tabs-->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#demo-lft-tab-1" aria-expanded="true" id="tab_" class="tab-principal">Nueva Retención Empresa</a>
+                    </li>
+                </ul>
+
+                <!--Tabs Content-->
+                <div class="tab-content">
+
+
+                    <div id="demo-lft-tab-1" class="tab-pane fade active in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form name="form-ingreso" id="form-ingreso" action="#" method="post">
+                                        
+
+                                        <div class="row empresa-data">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">Rut</label>
+                                                    <input type="text" class="form-control" id="Rut" name="Rut" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                    <label class="control-label">Razón Social</label>
+                                                    <input type="text" class="form-control inusable" id="RazonSocial" name="RazonSocial" readonly="readonly" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Holding</label>
+                                                    <input type="text" class="form-control inusable" name="Holding" id="Holding" readonly="readonly" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row retenciones">
+
+                                            <div class="col-sm-12 pad-no">
+
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Área</label>
+                                                            <div id="areas_retiene"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ambito de Acción</label>
+                                                            <div id="ambitos_retiene"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Segmento</label>
+                                                            <input type="text" class="form-control" id="Segmento" name="Segmento" readonly/>
+                                                                
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Dotación</label>
+                                                            <input type="text" class="form-control" id="Dotacion" name="Dotacion" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Caja Destino</label>
+                                                            <select class="form-control" id="CajaDestino" name="CajaDestino">
+                                                                <option value="">Seleccione</option>
+                                                                <option value="Los Andes">Los Andes</option>
+                                                                <option value="Los Heroes">Los Heroes</option>
+                                                                <option value="18 de Septiembre">18 de Septiembre</option>
+                                                                <option value="Gabriela Mistral">Gabriela Mistral</option>
+                                                                <option value="IPS">IPS</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Estamento</label>
+                                                            <select class="form-control esestamento" id="Estamento" name="Estamento">
+                                                                <option value="">Seleccione</option>
+                                                                <option value="Empresa">Empresa</option>
+                                                                <option value="Sindicato">Sindicato</option>
+                                                                <option value="Empresa y Sindicato">Empresa y Sindicato</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                             </div>
+                                            
+                                        </div>
+
+                                        <div class="row historial-gestion">
+                                            <div class="col-sm-12">
+                                                <div class="bord-all">
+                                                    <h4 class="text-center">Historial de Gestión</h4>
+                                                    <table class="table table-hover table-vcenter">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center" style="width:10%;">Fecha Gestión</th>
+                                                                <th style="width:15%;">Etapa</th>
+                                                                <th class="text-center" style="width:15%;">% Estado de Avance</th>
+                                                                <th class="text-center" style="width:60%;">Comentarios</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="bdy_gestiones">
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="row mar-top acciones">
+                                            <div class="col-lg-12">
+                                                <a class="btn btn-primary" href="/motor/App/Empresas/">Volver</a>
+                                                <button data-target="#modal-gestion" data-toggle="modal" class="btn btn-info" type="button" id="bt-modal" disabled>Nueva Gestión</button>
+                                                <button class="btn btn-success" id="bt-guardar">Guardar</button>
+                                                <input type="hidden" name="IdRetencion" id="IdRetencion" value="@Html.Raw(ViewBag.id != null ? ViewBag.id : "0")" />
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!--Default Bootstrap Modal-->
+    <!--===================================================-->
+    <div class="modal fade" id="modal-gestion" role="dialog" tabindex="-1" aria-labelledby="modal-gestion" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="form-gestiones" name="formGestiones" method="post">
+                    <!--Modal header-->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                        <h4 class="modal-title">Gestión</h4>
+                    </div>
+
+                    <!--Modal body-->
+                    <div class="modal-body">
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Fecha</label>
+                                <div id="Calendario_Fecha_Retencion">
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" id="FechaRetencion" name="FechaRetencion">
+                                        <span class="input-group-addon"><i class="demo-pli-calendar-4"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Etapa</label>
+                                <select class="form-control" id="Etapa" name="Etapa">
+                                    <option value="">Seleccione</option>
+                                    <option value="Estudio Cajas">Estudio Cajas</option>
+                                    <option value="Acciones de Retención">Acciones de Retención</option>
+                                    <option value="Propuestas de Cajas">Propuestas de Cajas</option>
+                                    <option value="Proceso de Votación">Proceso de Votación</option>
+                                    <option value="Desafiliación">Desafiliación</option>
+                                    <option value="Se Logra Retención">Se Logra Retención</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Observaciones</label>
+                                <textarea class="form-control" name="Observaciones" id="Observaciones"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="row"></div>
+                    </div>
+
+                    <!--Modal footer-->
+                    <div class="modal-footer" id="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+                        <button class="btn btn-primary" id="bt-guardar-gestion">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End Default Bootstrap Modal-->
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+@section script{
+
+    <script src="~/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+    <script src="~/Assets/plugins/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/Assets/js/jquery.rut.chileno.min.js"></script>
+    <script>
+       $(function () {
+        
+           const estadosWF = [];
+           estadosWF['Estudio Cajas'] = { orden: 1, clase: 'text-success', porcentaje: 30 }
+           estadosWF['Acciones de Retención'] = { orden: 2, clase: 'text-warning', porcentaje: 50 }
+           estadosWF['Propuestas de Cajas'] = { orden: 3, clase: 'text-warning', porcentaje: 70 }
+           estadosWF['Proceso de Votación'] = {orden:4, clase:'text-danger', porcentaje:90 }
+           estadosWF['Desafiliación'] = { orden: 5, clase: 'text-danger', porcentaje: 100 }
+           estadosWF['Se Logra Retención'] = { orden: 6, clase: 'text-success', porcentaje: 0 }
+
+
+           $('#Rut').mask('99.999.999-*');
+
+
+           $('#form-ingreso').bootstrapValidator({
+               excluded: [':disabled'],
+               fields: {
+                   Rut: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar un Rut'
+                           },
+                           callback: {
+                               message: 'Rut Invalido',
+                               callback: function (value, validator, $field) {
+                                   if ($.rut.validar(value)) {
+                                       $field.trigger("empresa.onRutValidado");
+                                   }
+                                   return $.rut.validar(value);
+                               }
+                           }
+                       }
+                   },
+                   Estamento: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Seleccionar un Estamento'
+                           }
+                       }
+                   },
+                   Dotacion: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar la Dotación'
+                           }
+                       }
+                   }
+               }
+
+           }).on('success.form.bv', function (e) {
+               // Prevén que se mande el formulario
+               e.preventDefault();
+               var $form = $(e.target);
+               var __Ambitos = [];
+
+
+               $('.chenv').each(function (i, e) {
+                   if ($(e).is(":checked")) {
+                       var amb = {
+                           id: 0,
+                           valor: $(e).val()
+                       }
+                       __Ambitos.push(amb);
+                   }
+               })
+
+               var envio = {
+                   IdRetencion: $('#IdRetencion').val(),
+                   Rut: $('#Rut').val(),
+                   Nombre: Evalua($('#RazonSocial').val()),
+                   Holding: Evalua($('#Holding').val()),
+                   Segmento: $('#Segmento').val(),
+                   Estamento: $('#Estamento').val(),
+                   Dotacion: $("#Dotacion").val(),
+                   CajaDestino: Evalua($("#CajaDestino").val()),
+                   Ambitos: __Ambitos
+               }
+
+               $.SecPostJSON(BASE_URL + "/Motor/api/Empresas/guardar-retencion", envio, function (response) {
+
+                   $.niftyNoty({
+                       type: 'success',
+                       container: 'floating',
+                       title: 'OK',
+                       message: response.Mensaje,
+                       focus: false,
+                       closeBtn: true,
+                       onHidden: function () {
+                           location.href = '/motor/App/Empresas/'
+                       }
+                   });
+
+               }).fail(function (jqxhr, textStatus, error) {
+                   $.niftyNoty({
+                       type: 'danger',
+                       container: 'floating',
+                       title: 'Error',
+                       message: typeof jqxhr.responseJSON != 'undefined' ? jqxhr.responseJSON.ExceptionMessage : 'No se guardo la retención. Llamar al Anexo 5723, Carlos Pradenas P.',
+                       focus: false,
+                       closeBtn: true
+                   });
+               });
+           });
+
+
+           $.SecGetJSON(BASE_URL + "/Motor/Assets/data/areas.json", function (respuesta) {
+               $.each(respuesta, function (i, e) {
+                   var dv_contenedor = $('<div>').addClass('checkbox');
+                   var _lbl = $('<label>').prop({ for: 'area-fdlz-' + i }).text(e.nombre);
+                   var _chk_box = $('<input>').addClass('magic-checkbox chk-padres').prop({ type: 'checkbox', id: 'area-fdlz-' + i, name: 'Areas__' }).val(e.id).on("click", function () {
+                       $that = $(this);
+                       var _class_name = e.nombre;
+                       var _cluster = $('<div>').addClass('cluster').addClass(_class_name).append($('<hr>').addClass('delim')).append($('<p>').addClass('text-main').text(_class_name));
+                       if ($that.is(":checked")) {
+                           $.SecGetJSON(BASE_URL + "/Motor/Assets/data/ambitos.json", function (respuesta) {
+                               $.each(respuesta, function (ni, ne) {
+
+                                   if (ne.padre == $that.val()) {
+                                       var dv_sb_contenedor = $('<div>').addClass('checkbox');
+                                       var _sb_lbl = $('<label>').prop({ for: 'ambito-fdlz-' + ni }).text(ne.nombre);
+                                       var _sb_chk_box = $('<input>').addClass('magic-checkbox chenv chk-hijos').prop({ type: 'checkbox', id: 'ambito-fdlz-' + ni }).val(ne.id);
+                                       _cluster.append(dv_sb_contenedor.append(_sb_chk_box).append(_sb_lbl));
+                                   }
+                               });
+                           });
+                           $("#ambitos_retiene").append(_cluster);
+                       }
+                       else {
+                           $('.' + _class_name).remove();
+                       }
+                   });
+
+                   $("#areas_retiene").append(dv_contenedor.append(_chk_box).append(_lbl));
+               });
+           });
+
+           $('#form-ingreso').on("submit", function (e) {
+               e.preventDefault();
+               return false;
+           })
+
+           $("#Rut").on("keyup", function () {
+               $('#form-ingreso').bootstrapValidator('updateStatus', 'Rut', 'NOT_VALIDATED').bootstrapValidator('validateField', 'Rut');
+           })
+
+           $("#Rut").on("empresa.onRutValidado", function (event) {
+               const rutEmpresa = $(this).val().replace(/\./g, '');
+               $.SecGetJSON(BASE_URL + "/Motor/api/Empresas/data-empresa/" + rutEmpresa, function (respuesta) {
+                   $('#RazonSocial').val(respuesta.NombreEmpresa);
+                   $('#Holding').val(respuesta.NombreHolding);
+                   $("#Segmento").val(respuesta.TipoEmpresa)
+               });
+           });
+
+
+           $(document).on("empresas.onEdicion", function (event, params) {
+               $.SecGetJSON(BASE_URL + "/Motor/api/Empresas/data-retencion", { id: params.IdRetencion }, function (response) {
+                   $('#Rut').val(response.Empresa.emp_rut).mask('99.999.999-*').prop({readonly:true});
+                   $('#RazonSocial').val(response.Empresa.emp_nombre);
+                   $('#Holding').val(response.Empresa.emp_holding);
+                   $("#Estamento").val(response.Retencion.ret_estamento).prop({ disabled: true });
+                   $("#Segmento").val(response.Retencion.ret_segmento).prop({ disabled: true });
+                   $("#Dotacion").val(response.Retencion.ret_dotacion).prop({ disabled: true });
+                   $("#CajaDestino").val(response.Retencion.ret_caja_destino).prop({ disabled: true });
+
+                   $("#bdy_gestiones").html("");
+                   response.Gestiones.forEach(function (x) {
+                       const metadataEstado = estadosWF[x.gstr_etapa];
+                       $("#bdy_gestiones").append(
+                           $("<tr>").append(
+                                $("<td>").addClass("text-center").text(x.gstr_fecha.toFecha())
+                           ).append(
+                                $("<td>").append(
+                                    $("<span>").addClass("text-main text-semibold").text(x.gstr_etapa)
+                                )
+                           ).append(
+                                $("<td>").addClass("text-center").append(
+                                    $("<span>").addClass("text-semibold").addClass(metadataEstado.clase).text(metadataEstado.porcentaje + "%")
+                                )
+                           ).append(
+                                $("<td>").addClass("text-justify").append(
+                                    $("<p>").text(x.gstr_observaciones)
+                                )
+                           )
+                        );
+                   });
+
+                  
+                   $("#bt-modal").prop({ disabled: false });
+                   $("#bt-guardar").prop({ disabled: true });
+
+                   var areasExisten = response.Ambitos.map(function (x) {
+                       return x.Area.area_id
+                   });
+
+                   var ambitosExisten = response.Ambitos.map(function (x) {
+                       return x.AmbitoArea.ambito_id;
+                   });
+
+                   $.ajaxSetup({ async: false });
+                   $('.chk-padres').each(function (i, e) {
+                       if ($.inArray(parseInt($(e).val()), areasExisten) > -1) {
+                           $(e).trigger("click");
+                       }
+                   });
+
+                   $('.chk-hijos').each(function (i, e) {
+                       if ($.inArray(parseInt($(e).val()), ambitosExisten) > -1) {
+                           $(e).prop('checked', true);
+                       }
+                   });
+                   $("input[type=checkbox]").prop({ disabled: true });
+                   $.ajaxSetup({ async: true });
+               });
+           });
+
+
+           //Carga de datos si es que es edicion
+           const IdRetencion = $("#IdRetencion").val();
+           if (parseInt(IdRetencion) > 0) {
+               $(document).trigger("empresas.onEdicion", { IdRetencion });
+           }
+
+
+
+
+           /***=ACCIONES PARA MODAL=***/
+
+
+
+           $('#form-gestiones').bootstrapValidator({
+               excluded: [':disabled'],
+               fields: {
+                   FechaRetencion: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Seleccionar una Fecha'
+                           }
+                       }
+                   },
+                   Etapa: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Seleccionar una Etapa'
+                           }
+                       }
+                   },
+                   Observaciones: {
+                       validators: {
+                           notEmpty: {
+                               message: 'Debe Ingresar Observaciones'
+                           }
+                       }
+                   }
+               }
+           }).on('success.form.bv', function (e) {
+               // Prevén que se mande el formulario
+               e.preventDefault();
+               var $form = $(e.target);
+               $("#bt-guardar-gestion").prop({ disabled: true })
+             
+               var envio = {
+                   IdRetencion: $('#IdRetencion').val(),
+                   Fecha: $("#FechaRetencion").val(),
+                   Etapa: $("#Etapa").val(),
+                   Observaciones: $("#Observaciones").val()
+               }
+
+
+               $.SecPostJSON(BASE_URL + "/Motor/api/Empresas/guardar-gestion-retencion", envio, function (response) {
+
+                   $.niftyNoty({
+                       type: 'success',
+                       container: '#modal-footer',
+                       title: 'OK',
+                       message: response.Mensaje,
+                       focus: false,
+                       closeBtn: true,
+                       onHidden: function () {
+                           $("#bt-guardar-gestion").prop({ disabled: false });
+                           $("#form-gestiones").bootstrapValidator('resetForm', true);
+                           $("#form-gestiones").trigger("reset");
+                       }
+                   });
+                   $(document).trigger("empresas.onEdicion", { IdRetencion });
+                   
+
+               }).fail(function (jqxhr, textStatus, error) {
+                   $.niftyNoty({
+                       type: 'danger',
+                       container: '#modal-footer',
+                       title: 'Error',
+                       message: typeof jqxhr.responseJSON != 'undefined' ? jqxhr.responseJSON.ExceptionMessage : 'No se guardo la gestión. Llamar al Anexo 5723, Carlos Pradenas P.',
+                       focus: false,
+                       closeBtn: true,
+                       onHidden: function () {
+                           $("#bt-guardar-gestion").prop({ disabled: false });
+                           $("#form-gestiones").bootstrapValidator('resetForm', true);
+                           $("#form-gestiones").trigger("reset");
+                       }
+                   });
+               });
+           });
+
+
+           $('#modal-gestion').on('hidden.bs.modal', function (event) {
+               $("#bt-guardar-gestion").prop({ disabled: false });
+               $("#form-gestiones").bootstrapValidator('resetForm', true);
+               $("#form-gestiones").trigger("reset");
+               $(".panel-alert").remove();
+           });
+
+
+           $('#form-gestion').on("submit", function (e) {
+               e.preventDefault();
+               return false;
+           })
+
+
+           $('#Calendario_Fecha_Retencion .input-group.date').datepicker(
+                { autoclose: true, format: 'dd-mm-yyyy', startDate: "0d", language: "es", daysOfWeekDisabled: [6, 0], todayHighlight: true }
+            ).on('changeDate', function (e) {
+                $('#form-gestiones').bootstrapValidator('updateStatus', 'FechaRetencion', 'NOT_VALIDATED').bootstrapValidator('validateField', 'FechaRetencion');
+            });
+
+       });
+   </script>
+   
+
+
+
+}
+

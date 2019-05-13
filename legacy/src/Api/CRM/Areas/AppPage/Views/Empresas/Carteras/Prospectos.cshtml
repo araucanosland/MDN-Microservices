@@ -1,0 +1,263 @@
+﻿
+<div class="panel-body">
+    <div class="row listado-prospectos">
+        <div class="col-lg-12">
+
+            <div class="mar-btm">
+                <button type="button" id="nuevo-prospecto" class="btn btn-primary">
+                    <i class="ion-plus-circled"></i>
+                    Nuevo
+                </button>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Holding</th>
+                        <th>Caja Origen</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_prospectos"></tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="row detalle-prospectos" style="display:none;">
+        <div class="col-lg-12">
+            <form name="form-ingreso-prospecto" id="form-ingreso-prospecto" data-method="post" action="#" method="post">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">Rut Empresa</label>
+                            <input type="text" class="form-control" id="rut" name="rut" required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Razón Social</label>
+                            <input type="text" class="form-control inusable" id="nombre" name="nombre" required>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">Rut Holding</label>
+                            <input type="text" class="form-control inusable" name="rutHolding" id="rutHolding">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Nombre Holding</label>
+                            <input type="text" class="form-control inusable" name="nombreHolding" id="nombreHolding">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Región</label>
+                            <select id="region" name="region" class="form-control">
+                                <option value="">Selecciona</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Comuna</label>
+                            <select id="comuna" name="comuna" class="form-control">
+                                <option value="">Selecciona</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Dirección</label>
+                            <input type="text" class="form-control" name="direccion" id="direccion">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row prospecciones">
+
+                    <div class="col-sm-12 pad-no">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Dotación (Aproximada)</label>
+                                <input type="text" class="form-control" id="cantidadTrabajadores" name="cantidadTrabajadores">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Caja Origen</label>
+                                <select class="form-control" id="cajaOrigen" name="cajaOrigen" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="Los Andes">Los Andes</option>
+                                    <option value="Los Heroes">Los Heroes</option>
+                                    <option value="18 de Septiembre">18 de Septiembre</option>
+                                    <option value="IPS">IPS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Segmento</label>
+                                <select class="form-control" id="segmento" name="segmento" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="Publica">Pública</option>
+                                    <option value="Privada">Privada</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Categoria</label>
+                                <select class="form-control" id="categoria" name="categoria" disabled>
+                                    <option value="">Seleccione</option>
+                                    <option value="Afecta">Afecta</option>
+                                    <option value="NoAfecta">No Afecta</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Rubro</label>
+                            <select class="form-control" id="rubro" name="rubro" required>
+                                <option value="">Seleccione</option>
+                                <option value="Construccion">Construcción</option>
+                                <option value="Educacion">Educación</option>
+                                <option value="Financiero">Financiero</option>
+                                <option value="Mineria">Minería</option>
+                                <option value="Produccion">Producción</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Servicios">Servicios</option>
+                                <option value="Ventas">Ventas</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 otro-rubro" style="display:none;">
+                        <div class="form-group">
+                            <label class="control-label">Cual es?</label>
+                            <input type="text" class="form-control" id="otroRubro" name="otroRubro">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row listado-contactos">
+                    <div class="col-sm-12">
+                        <h4>Contactos</h4>
+                        <div class="bord-all">
+                            <table class="table table-hover table-vcenter">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:20%;">Cargo</th>
+                                        <th class="text-center" style="width:25%;">Nombre</th>
+                                        <th class="text-center" style="width:20%;">Email</th>
+                                        <th class="text-center" style="width:20%;">Celular</th>
+                                        <th class="text-center" style="width:20%;">Telefono</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-contactos"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mar-top acciones">
+                    <div class="col-lg-12">
+                        <button class="btn btn-primary" type="button" id="bt-cancelar">Cancelar</button>
+                        <button class="btn btn-info" type="button" id="bt-contacto" data-toggle="modal" data-target="#modal-contactos">Agregar Contacto</button>
+                        <button class="btn btn-info hidden" type="button" id="bt-gestion" data-toggle="modal" data-target="#modal-gestion">Registrar Gestión</button>
+                        <button class="btn btn-success" id="bt-guardar">Guardar Cambios</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@*MODALES*@
+
+<div id="modal-contactos" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Contactos</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-contacto">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Cargo</label>
+                                <select name="cargo" id="contacto-cargo" class="form-control">
+                                    <option value="">Selecciona</option>
+                                    <option value="Gerente General">Gerente General</option>
+                                    <option value="Gerente RRHH">Gerente RRHH</option>
+                                    <option value="Directiva Sindical">Directiva Sindical</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label class="control-label">Nombre</label>
+                                <input type="text" name="nombre" id="contacto-nombre" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Correo</label>
+                                <input type="text" name="correo" id="contacto-correo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Teléfono</label>
+                                <input type="text" name="telefono" id="contacto-telefono" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Celular</label>
+                                <input type="text" name="celular" id="contacto-celular" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="contacto-id" name="id" value="0" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="agregar-limpiar">Agregar y limpiar</button>
+                <button type="button" class="btn btn-primary" id="agregar-cerrar">Agregar y cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

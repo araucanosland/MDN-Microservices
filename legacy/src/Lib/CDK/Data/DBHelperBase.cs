@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace CDK.Data
 {
@@ -26,17 +28,27 @@ namespace CDK.Data
         /// </summary>
         /// <param name="connectionStringKey">Clave de cadena de conexión</param>
         /// <param name="isFullConnectionString">Dejar en <c>true</c> para indicar que el ConnectionString es el parámetro.</param>
-        //public DBHelperBase(string connectionStringKey, bool isFullConnectionString = false)
-        //{
-        //    ConnectionStringKey = !isFullConnectionString ? connectionStringKey : string.Empty;
-        //    ConnectionString = isFullConnectionString ? connectionStringKey : null;
-        //}
-
-
-        public DBHelperBase(string _conectionString)
+        public DBHelperBase(string connectionStringKey, bool isFullConnectionString = false)
         {
-            ConnectionString = _conectionString;
+            ConnectionStringKey = !isFullConnectionString ? connectionStringKey : string.Empty;
+            ConnectionString = isFullConnectionString ? connectionStringKey : Configuration.GetConnectionString(connectionStringKey);
         }
+        public static IConfigurationRoot Configuration { 
+            get
+            {
+                var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", false, true);
+
+                if(env != null){
+                    builder.AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true);
+                }
+                    
+                return builder.Build();
+            }
+        }
+
 
         /// <summary>
         /// Recupera una Entidad de la Base de Datos a partir de un procedimiento almacenado

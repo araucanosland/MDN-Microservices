@@ -1,0 +1,282 @@
+﻿<style type="text/css">
+    #add-enterprise {
+        display: none;
+    }
+
+    #btn-back {
+        display: none;
+    }
+
+    .result-item {
+        cursor: pointer;
+    }
+
+    .seleccionado {
+        color: #fff;
+        background-color: #2888d3;
+    }
+</style>
+
+<div class="panel-body">
+
+    <div class="row mar-btm" id="button-panel">
+        <div class="col-md-12">
+            <button class="btn btn-primary" id="btn-add-new-enterprise" type="button">Asignar nueva Empresa</button>
+
+        </div>
+    </div>
+
+    <div class="row" id="enterprises-added">
+        <div class="col-md-12">
+            <table id="tabla" class="table table-bordered table-hover toggle-circle table-striped">
+                <thead>
+                    <tr>
+                        <th>Rut Empresa</th>
+                        <th>Nombre Empresa</th>
+                        <th data-align="center" data-sortable="true">N° Trabajadores</th>
+                        <th data-align="center" data-sortable="true">Clasificación Empresa</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="bdy_datos"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" id="add-enterprise">
+        <div class="col-md-12">
+            <!-- Bubble Numbers Form Wizard -->
+            <!--===================================================-->
+            <div id="demo-step-wz">
+                <div class="wz-heading wz-w-label bg-primary">
+
+                    <!--Progress bar-->
+                    <div class="progress progress-xs">
+                        <div style="width: 15%;" class="progress-bar progress-bar-dark"></div>
+                    </div>
+
+                    <!--Nav-->
+                    <ul class="wz-steps wz-icon-bw wz-nav-off text-lg">
+                        <li class="col-xs-3">
+                            <a data-toggle="tab" href="#demo-step-tab1">
+                                <span class="icon-wrap icon-wrap-xs icon-circle bg-gray mar-ver">
+                                    <span class="wz-icon icon-txt text-bold">1</span>
+                                    <i class="wz-icon-done demo-psi-like"></i>
+                                </span>
+                                <small class="wz-desc box-block text-semibold">Buscar Empresa</small>
+                            </a>
+                        </li>
+                        <li class="col-xs-3">
+                            <a data-toggle="tab" href="#demo-step-tab2">
+                                <span class="icon-wrap icon-wrap-xs icon-circle bg-gray mar-ver">
+                                    <span class="wz-icon icon-txt text-bold">2</span>
+                                    <i class="wz-icon-done demo-psi-like"></i>
+                                </span>
+                                <small class="wz-desc box-block text-semibold">Agregar punto de atención</small>
+                            </a>
+                        </li>
+                        <li class="col-xs-3">
+                            <a data-toggle="tab" href="#demo-step-tab3">
+                                <span class="icon-wrap icon-wrap-xs icon-circle bg-gray mar-ver">
+                                    <span class="wz-icon icon-txt text-bold">3</span>
+                                    <i class="wz-icon-done demo-psi-like"></i>
+                                </span>
+                                <small class="wz-desc box-block text-semibold">Asignación y Carga de Afiliados</small>
+                            </a>
+                        </li>
+                        <li class="col-xs-3">
+                            <a data-toggle="tab" href="#demo-step-tab4">
+                                <span class="icon-wrap icon-wrap-xs icon-circle bg-gray mar-ver">
+                                    <span class="wz-icon icon-txt text-bold">4</span>
+                                    <i class="wz-icon-done demo-psi-like"></i>
+                                </span>
+                                <small class="wz-desc box-block text-semibold">Finalizar</small>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--Form-->
+                <form class="form-horizontal">
+                    <div class="panel-body">
+                        <div class="tab-content">
+
+                            <!--First tab-->
+                            <div id="demo-step-tab1" class="tab-pane">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Rut, Nombre o Holding de la Empresa</label>
+                                    <div class="col-lg-5">
+                                        <input type="text" class="form-control" name="query" id="query-company" placeholder="Criterio de Búsqueda de Empresa">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button class="btn btn-info" type="button" id="bt-search-company">Buscar</button>
+                                    </div>
+                                </div>
+
+                                <div class="show-results row">
+                                    <p id="lading-indicator" style="display:none;">Cargando resultados...</p>
+                                    <table id="table-results" class="table table-vcenter" style="display:none;">
+                                        <thead>
+                                            <tr>
+                                                <th>Empresa</th>
+                                                <th class="text-center">Holding</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="search-results"></tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                            <!--Second tab-->
+                            <div id="demo-step-tab2" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Es Empresa sin Sucursales</label>
+                                            <div class="col-lg-7">
+                                                <input type="checkbox" id="es-sin-sucursal" class="mar-top" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group bloqueable">
+                                            <label class="col-lg-2 control-label">Nombre Punto de Atención</label>
+                                            <div class="col-lg-7">
+                                                <input type="text" placeholder="" id="nombre-anexo" class="form-control no-vacio">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Calle</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" placeholder="" id="direccion-anexo-calle" class="form-control no-vacio">
+                                            </div>
+                                            <label class="col-lg-1 control-label">Nro.</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" placeholder="" id="direccion-anexo-numeracion" class="form-control no-vacio">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Depto o Local</label>
+                                            <div class="col-lg-3">
+                                                <input type="text" placeholder="" id="direccion-anexo-local" class="form-control no-vacio">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Region</label>
+                                            <div class="col-lg-4">
+                                                <select id="region-anexo" class="form-control no-vacio">
+                                                </select>
+                                            </div>
+                                            <label class="col-lg-1 control-label">Comuna</label>
+                                            <div class="col-lg-2">
+                                                <select id="comuna-anexo" class="form-control no-vacio" name="comuna-anexo"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">N Trabajadores (Aproximada)</label>
+                                            <div class="col-lg-5">
+                                                <input type="text" placeholder="" id="n-trabajadores-anexo" class="form-control no-vacio">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <button class="btn btn-primary bloqueable" id="bt-agregar-anexo" type="button">Agregar Punto de Atención</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-lg-12 bloqueable">
+                                            <h4>Mis Puntos de Atención</h4>
+                                        </div>
+                                        <table class="table bloqueable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Dirección</th>
+                                                    <th>Comuna</th>
+                                                    <th>N Trabajadores <br />(Aprox.)</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bdy-listado-anexos"></tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Third tab-->
+                            <div id="demo-step-tab3" class="tab-pane">
+
+                                <div class="row mar-btm bloqueable">
+                                    <strong>NOTA:</strong> El archivo a subir tiene un formato especifico, el cual puedes descargar <a class="btn-link" href="#">aquí</a>
+                                </div>
+
+                                <div class="row">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="bloqueable">Nombre</th>
+                                                <th>Dirección</th>
+                                                <th>Comuna</th>
+                                                <th>N Trabajadores <br />(Aprox.)</th>
+                                                <th class="bloqueable">Archivo Afiliados</th>
+                                                <th>Ejecutivos Asignados</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bdy-listado-anexos-carga"></tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <!--Fourth tab-->
+                            <div id="demo-step-tab4" class="tab-pane mar-btm text-center">
+                                <h3>Resumen</h3>
+                                <br />
+                                <div style="text-align: left;">
+                                    <strong>Empresa:</strong> <small id="tNombreEmpresa" style="margin-left: 6px;"></small> <strong style="margin-left: 20px;">Rut:</strong><small id="tRutEmpresa" style="margin-left: 6px;"> </small>
+                                </div>
+                                <hr />
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="">
+                                                <th>P. Atención</th>
+                                                <th class="min-col text-left">Dirección</th>
+                                                <th class="min-col text-left">Region</th>
+                                                <th class="min-col text-left">Comuna</th>
+                                                <th class="min-col text-left">N° Trabajadores</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="text-align: left;" id="bdy-listado-anexos-resumen">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr />
+                                <p>Para confirmar la operación oprima el boton "Finalizar"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Footer button-->
+                    <div class="panel-footer text-right">
+                        <div class="box-inline">
+                            <button class="btn btn-info" id="btn-back" type="button">Salir</button>
+                            <button type="button" class="previous btn btn-primary">Atrás</button>
+                            <button type="button" class="next btn btn-primary">Siguiente</button>
+                            <button type="submit" class="finish btn btn-primary" disabled>Finalizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--===================================================-->
+            <!-- End Bubble Numbers Form Wizard -->
+        </div>
+    </div>
+
+</div>

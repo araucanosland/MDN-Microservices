@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="~/Assets/img/favicon.ico" />
+
+    @RenderSection("metas", false)
+    <title>Motor de Negocios</title>
+    
+    
+    <!--Open Sans Font [ REQUIRED ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!--App Styles & dependences [ REQUIRED ]-->
+    <link href="~/Assets/css.App/bundle.min.css" rel="stylesheet">
+    <link href="~/Assets/css.App/print.css" rel="stylesheet">
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+        <!--NAVBAR-->
+        <!--===================================================-->
+        <header id="navbar" class="no-print">
+            <div id="navbar-container">
+
+                <!--Brand logo & name-->
+                <!--================================-->
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">
+                        <img src="~/Assets/img/M.png" alt="Nifty Logo" class="brand-icon">
+                        <div class="brand-title">
+                            <span class="brand-text" style="font-size:14px;">Motor de Negocios</span>
+                        </div>
+                    </a>
+                </div>
+                <!--================================-->
+                <!--End brand logo & name-->
+                <!--Navbar Dropdown-->
+                <!--================================-->
+                <div class="navbar-content clearfix">
+                    <ul class="nav navbar-top-links pull-left">
+
+                        <!--Navigation toogle button-->
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <li class="tgl-menu-btn">
+                            <a class="mainnav-toggle" href="#">
+                                <i class="demo-pli-view-list"></i>
+                            </a>
+                        </li>
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <!--End Navigation toogle button-->
+                        <!--Notification dropdown-->
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <li class="dropdown" style="display:none;">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <i class="demo-pli-bell"></i>
+                                <span class="badge badge-header badge-danger"></span>
+                            </a>
+
+                            <!--Notification dropdown menu-->
+                            <div class="dropdown-menu dropdown-menu-md">
+                                <div class="pad-all bord-btm">
+                                    <p class="text-semibold text-main mar-no">Tienes 2 Notificaciones.</p>
+                                </div>
+                                <div class="nano scrollable">
+                                    <div class="nano-content">
+                                        <ul class="head-list">
+
+                                            <!-- Dropdown list-->
+                                            <li>
+                                                <a href="#">
+                                                    <div class="clearfix">
+                                                        <p class="pull-left">Tasa de Gestión</p>
+                                                        <p class="pull-right">70%</p>
+                                                    </div>
+                                                    <div class="progress progress-sm">
+                                                        <div style="width: 70%;" class="progress-bar">
+                                                            <span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- Dropdown list-->
+                                            <li>
+                                                <a href="#">
+                                                    <div class="clearfix">
+                                                        <p class="pull-left">Tasa Gestión Positiva</p>
+                                                        <p class="pull-right">10%</p>
+                                                    </div>
+                                                    <div class="progress progress-sm">
+                                                        <div style="width: 10%;" class="progress-bar progress-bar-warning">
+                                                            <span class="sr-only">10% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- Dropdown list-->
+                                            <li>
+                                                <a class="media" href="#">
+                                                    <span class="label label-danger pull-right">Nuevo</span>
+                                                    <div class="media-left">
+                                                        <i class="demo-pli-speech-bubble-7 icon-2x"></i>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="text-nowrap">9 Gestiones Atrasadas</div>
+                                                        <small class="text-muted">Gestionar mas rápido</small>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--Dropdown footer-->
+                                <div class="pad-all bord-top">
+                                    <a href="#" class="btn-link text-dark box-block">
+                                        <i class="fa fa-angle-right fa-lg pull-right"></i>-
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <!--End notifications dropdown-->
+                        <li class="col-sm-9">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <div class="col-sm-4 text-right">
+                                    <span class="brand-text" style="font-size:11px;margin-left: 58px; margin-top:10px; color:white;">Buscar Afiliado: </span>
+                                </div>
+                                <div class="col-sm-6" style="padding-bottom:0px; margin-top:3px;">
+                                    <form id="frm-rut" action="/motor/App/DatosAfiliados" method="get">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control es-rut" name="RutBuscar" id="RutBuscar" tabindex="1" required placeholder="11111111-1" autocomplete="off" style="padding-bottom:0px; margin-top:3px;">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit" style="padding-bottom:0px; margin-top:3px;"><i class="ion-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="dropdown-user" class="dropdown" style="display:none; float: right;">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                                <span class="pull-right">
+                                    <i class="demo-pli-gear icon-2x icon-fw" style="line-height: 1.7em; font-size: 1.8em; font-style: inherit;"></i>
+                                </span>
+                                <div class="username hidden-xs"></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
+
+
+                                <!-- User dropdown menu -->
+                                <ul class="head-list usuario-soporte" style="display:none;">
+                                    <li>
+                                        <a href="#" id="btVolverListado">
+                                            <i class="demo-pli-computer-secure icon-lg icon-fw"></i> Volver a mi Cuenta
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="head-list usuario-comun" style="display:none;">
+                                    <li>
+                                        <a href="#" data-target="#demo-default-modal" data-toggle="modal">
+                                            <i class="demo-psi-lock-2"></i> Cambiar contraseña
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Dropdown footer -->
+                                <div class="pad-all text-right hidden">
+                                    <a href="#" class="btn btn-primary" id="btCerSesion">
+                                        <i class="demo-pli-unlock"></i> Cerrar Sesión
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--================================-->
+                <!--End Navbar Dropdown-->
+            </div>
+        </header>
+        <!--===================================================-->
+        <!--END NAVBAR-->
+        <div class="boxed">
+            <!--CONTENT CONTAINER-->
+            <!--===================================================-->
+            <div id="content-container">
+                @RenderBody()
+            </div>
+            <!--===================================================-->
+            <!--END CONTENT CONTAINER-->
+            <!--MAIN NAVIGATION-->
+            <!--===================================================-->
+            <nav id="mainnav-container" class="no-print">
+                <div id="mainnav">
+                    <!--Menu-->
+                    <!--================================-->
+                    <div id="mainnav-menu-wrap">
+                        <div class="nano">
+                            <div class="nano-content">
+                                <!--Profile Widget-->
+                                <!--================================-->
+                                <div id="mainnav-profile" class="mainnav-profile">
+                                    <div class="profile-wrap">
+                                        <div class="pad-btm">
+                                            <img class="img-circle img-sm img-border" src="~/Assets/img/profile-photos/1.png" alt="Profile Picture">
+                                        </div>
+                                        <a href="#profile-nav">
+                                            <p class="mnp-name" id="nombre_usuario">N/A</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul id="mainnav-menu" class="list-group"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--================================-->
+                    <!--End menu-->
+                </div>
+            </nav>
+            <!--===================================================-->
+            <!--END MAIN NAVIGATION-->
+        </div>
+        <!-- FOOTER -->
+        <!--===================================================-->
+        <footer id="footer">
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <p class="pad-lft">&#0169; 2017 Información Analítica</p>
+        </footer>
+        <!--===================================================-->
+        <!-- END FOOTER -->
+        <!-- SCROLL PAGE BUTTON -->
+        <!--===================================================-->
+        <button class="scroll-top btn">
+            <i class="pci-chevron chevron-up"></i>
+        </button>
+        <!--===================================================-->
+        <!--Large Bootstrap Modal-->
+        <!--===================================================-->
+        <div id="notini-modal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close puede-cerrarse" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                        <h4 class="modal-title" id="notini-title">Large modal</h4>
+                    </div>
+                    <div class="modal-body" id="notini-body">
+
+                    </div>
+                    <div class="modal-footer puede-cerrarse">
+                        <button data-dismiss="modal" class="btn btn-primary puede-cerrarse" type="button">OK</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+    <!--App General dependences [ REQUIRED ]-->
+    <script src="~/Assets/js.App/bundle.min.js"></script>
+    @RenderSection("script", false)
+
+</body>
+</html>

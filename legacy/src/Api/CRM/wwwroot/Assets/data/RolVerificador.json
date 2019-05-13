@@ -1,0 +1,71 @@
+﻿{
+  "Cotiza": [
+    {
+      "id": 1,
+      "respuesta": "SI"
+    },
+    {
+      "id": 2,
+      "respuesta": "NO"
+    }
+  ],
+  "Grado": [
+    {
+      "id": 3,
+      "respuesta": "SI",
+      "padres": [ 1, 2 ]
+    },
+    {
+      "id": 4,
+      "respuesta": "NO",
+      "padres": [ 1, 2 ]
+    },
+    {
+      "id": 5,
+      "respuesta": "DIRECTIVO",
+      "padres": [ 2 ]
+    },
+    {
+      "id": 6,
+      "respuesta": "PROFESIONAL",
+      "padres": [ 2 ]
+    }
+  ],
+  "Seguro": [
+    {
+      "id": 7,
+      "respuesta": "SI",
+      "padres": [ 2 ]
+    },
+    {
+      "id": 8,
+      "respuesta": "NO",
+      "padres": [ 5 ]
+    },
+    {
+      "id": 9,
+      "respuesta": "CERTIFICADO COD. TRABAJO",
+      "padres": [4]
+    },
+    {
+      "id": 10,
+      "respuesta": "CERTIFICADO PRO EMPLEO",
+      "padres": [4]
+    },
+    {
+      "id": 11,
+      "respuesta": "CERTIFICADO LEY 18883",
+      "padres": [3]
+    },
+    {
+      "id": 12,
+      "respuesta": "DAEM/SEG. CESANTIA",
+      "padres": [4]
+    },
+    {
+      "id": 13,
+      "respuesta": "LEY 19464/SEG. CESANTIA",
+      "padres": [4]
+    }
+  ]
+}

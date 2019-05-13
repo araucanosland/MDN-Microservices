@@ -1,0 +1,14 @@
+﻿[
+  {
+    "id": 1,
+    "nombre": "Comercial"
+  },
+  {
+    "id": 2,
+    "nombre": "Operativos"
+  },
+  {
+    "id": 3,
+    "nombre": "Servicios"
+  }
+]

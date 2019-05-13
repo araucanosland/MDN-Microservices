@@ -1,0 +1,9 @@
+﻿@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .ocultus {
+        display: block !important;
+    }
+}

@@ -1,0 +1,58 @@
+﻿[
+  {
+    "id": 1,
+    "padre": 1,
+    "nombre": "Parrilla"
+  },
+  {
+    "id": 2,
+    "padre": 1,
+    "nombre": "Productos"
+  },
+  {
+    "id": 3,
+    "padre": 1,
+    "nombre": "Convenios"
+  },
+  {
+    "id": 4,
+    "padre": 1,
+    "nombre": "Campañas"
+  },
+  {
+    "id": 5,
+    "padre": 1,
+    "nombre": "Proceso de Votación"
+  },
+  {
+    "id":6,
+    "padre": 2,
+    "nombre": "ASFAM"
+  },
+  {
+    "id": 7,
+    "padre": 2,
+    "nombre": "Crédito"
+  },
+  {
+    "id": 8,
+    "padre": 2,
+    "nombre": "Cobranza"
+  },
+  {
+    "id": 9,
+    "padre": 2,
+    "nombre": "Sil"
+  },
+  {
+    "id": 10,
+    "padre": 3,
+    "nombre": "Compromiso"
+  },
+  {
+    "id": 11,
+    "padre": 3,
+    "nombre": "Cumpl. de Cobertura"
+  }
+
+]

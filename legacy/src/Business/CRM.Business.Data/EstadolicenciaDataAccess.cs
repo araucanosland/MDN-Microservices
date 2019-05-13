@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using CRM.Business.Entity;
+using CDK.Integration;
+using CDK.Data;
+
+//------------------------------------------------------------------------------
+// <generado automáticamente>
+//     Este código fue generado por una herramienta.
+//
+//     Los cambios en este archivo podrían causar un comportamiento incorrecto y se perderán si
+//     se vuelve a generar el código.
+// </generado automáticamente>
+//------------------------------------------------------------------------------
+
+namespace CRM.Business.Data
+{
+    /// <summary>
+    /// Clase Acceso de Datos EstadolicenciaDataAccess
+    /// </summary>
+    /// <author>@Charly</author>
+    /// <created>28-09-2017 16:24:11</created>
+    /// <remarks>
+    /// Esta clase fué generada automáticamente por una herramienta.
+    /// </remarks>
+    public class EstadolicenciaDataAccess
+    {
+        #region metodos base
+
+        /// <summary>
+        /// Guarda la entidad de dominio <see cref="Estadolicencia"/> en la Base de Datos
+        /// </summary>
+        /// <author>@Charly</author>
+        /// <created>28-09-2017 16:24:11</created>
+        /// <param name="estadolicencia">Referencia a una clase <see cref="Estadolicencia"/>.</param>
+        /// <returns>Clave primaria resultante de la operación</returns>
+        public static int Guardar(Estadolicencia estadolicencia)
+        {
+            Parametros parametros = new Parametros
+            {
+                new Parametro("@CodEstado", estadolicencia.CodEstado),
+                new Parametro("@Nombre", estadolicencia.Nombre),
+
+            };
+
+            return DBHelper.InstanceCRM.ObtenerEscalar<int>("licencias.sp_Lic_Estadolicencia_Guardar", parametros);
+        }
+
+        /// <summary>
+        /// Recupera una entidad <see cref="Estadolicencia"/> de la Base de Datos dado un ID de Estadolicencia
+        /// </summary>
+        /// <author>@Charly</author>
+        /// <created>28-09-2017 16:24:11</created>
+        /// <param name="CodEstado">ID de Estadolicencia.</param>
+        /// <returns>Referencia a una clase <see cref="Estadolicencia"/>.</returns>
+        public static Estadolicencia ObtenerPorID(int CodEstado)
+        {
+            Parametro parametro = new Parametro("@CodEstado", CodEstado);
+
+            return DBHelper.InstanceCRM.ObtenerEntidad("licencias.sp_Lic_Estadolicencia_ObtenerPorID", parametro, ConstructorEntidad);
+        }
+
+        /// <summary>
+        /// Lista todas las entidades <see cref="Estadolicencia"/> de la Base de Datos
+        /// </summary>
+        /// <author>@Charly</author>
+        /// <created>28-09-2017 16:24:11</created>
+        /// <returns><see cref="DataTable"/> con todos los objetos.</returns>
+        public static DataTable Listar()
+        {
+            return DBHelper.InstanceCRM.ObtenerDataTable("licencias.sp_Lic_Estadolicencia_Listar");
+        }
+
+        /// <summary>
+        /// Recupera todas las entidades <see cref="Estadolicencia"/> de la Base de Datos
+        /// </summary>
+        /// <author>@Charly</author>
+        /// <created>28-09-2017 16:24:11</created>
+        /// <returns>Lista con todas las entidades <see cref="Estadolicencia"/>.</returns>
+        public static List<Estadolicencia> ObtenerEntidades()
+        {
+            return DBHelper.InstanceCRM.ObtenerColeccion("licencias.sp_Lic_Estadolicencia_Listar", ConstructorEntidad);
+        }
+
+        #endregion
+
+        #region metodos adicionales
+        #endregion
+
+        #region constructor
+        private static Estadolicencia ConstructorEntidad(DataRow row)
+        {
+            return new Estadolicencia
+            {
+                CodEstado = row["CodEstado"] != DBNull.Value ? Convert.ToInt32(row["CodEstado"]) : 0,
+                Nombre = row["Nombre"] != DBNull.Value ? row["Nombre"].ToString() : string.Empty,
+
+            };
+        }
+        #endregion
+    }
+}

@@ -1,3 +1,90 @@
 [
-    
+    {
+        "outputFileName": "wwwroot/Assets/css.App/bundle.min.css",
+        "inputFiles": [
+            "wwwroot/Assets/css/bootstrap.css",
+            "wwwroot/Assets/css/nifty.css",
+            "wwwroot/Assets/css/themes/type-a/theme-ocean.css",
+            "wwwroot/Assets/css/demo/nifty-demo-icons.css",
+            "wwwroot/Assets/premium/icon-sets/icons/line-icons/premium-line-icons.css",
+            "wwwroot/Assets/plugins/fooTable/css/footable.core.css",
+            "wwwroot/Assets/plugins/ionicons/css/ionicons.css",
+            "wwwroot/Assets/plugins/pace/pace.css",
+            "wwwroot/Assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css",
+            "wwwroot/Assets/plugins/bootstrap-validator/bootstrapValidator.css",
+            "wwwroot/Assets/plugins/bootstrap-select/bootstrap-select.css",
+            "wwwroot/Assets/plugins/bootstrap-table/bootstrap-table.css",
+            "wwwroot/Assets/plugins/chosen/chosen.css"
+        ],
+        "minify": {
+            "enabled": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/Assets/js.App/bundle.min.js",
+        "inputFiles": [
+            "wwwroot/Assets/js/jquery.js",
+            "wwwroot/Assets/plugins/pace/pace.js",
+            "wwwroot/Assets/js/bootstrap.js",
+            "wwwroot/Assets/js/nifty.js",
+            "wwwroot/Assets/js.App/Conf.js",
+            "wwwroot/Assets/js.App/Ext.js",
+            "wwwroot/Assets/js/demo/ui-modals.js",
+            "wwwroot/Assets/js/demo/icons.js",
+            "wwwroot/Assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js",
+            "wwwroot/Assets/plugins/bootstrap-validator/bootstrapValidator.js"
+        ],
+        "minify": {
+            "enabled": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/Assets/js.App/gestion.min.js",
+        "inputFiles": [
+            "wwwroot/Assets/plugins/fooTable/dist/footable.all.min.js",
+            "wwwroot/Assets/plugins/bootstrap-validator/bootstrapValidator.min.js",
+            "wwwroot/Assets/plugins/bootstrap-select/bootstrap-select.min.js",
+            "wwwroot/Assets/plugins/chosen/chosen.jquery.min.js",
+            "wwwroot/Assets/plugins/bootstrap-table/bootstrap-table.min.js",
+            "wwwroot/Assets/plugins/bootstrap-table/locale/bootstrap-table-es-ES.min.js",
+            "wwwroot/Assets/js.App/src/index.js"
+        ],
+        "minify": {
+            "enabled": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/Assets/js.App/inicio.min.js",
+        "inputFiles": [
+            "wwwroot/Assets/plugins/fooTable/dist/footable.all.min.js",
+            "wwwroot/Assets/plugins/bootstrap-select/bootstrap-select.js",
+            "wwwroot/Assets/plugins/masked-input/jquery.maskedinput.min.js",
+            "wwwroot/Assets/js/jquery.rut.chileno.min.js",
+            "wwwroot/Assets/plugins/gauge-js/gauge.min.js",
+            "wwwroot/Assets/js.App/src/BuscadorGrilla.js",
+            "wwwroot/Assets/js.App/src/inicio.js"
+        ],
+        "minify": {
+            "enabled": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/Assets/js.App/ficha-empresa.min.js",
+        "inputFiles": [
+            "wwwroot/Assets/plugins/dropzone/dropzone.min.js",
+            "wwwroot/Assets/plugins/bootstrap-select/bootstrap-select.min.js",
+            "wwwroot/Assets/plugins/chosen/chosen.jquery.min.js",
+            "wwwroot/Assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js",
+            "wwwroot/Assets/plugins/switchery/switchery.min.js",
+            "wwwroot/Assets/plugins/fullcalendar/lib/moment.min.js",
+            "wwwroot/Assets/plugins/fullcalendar/lib/jquery-ui.custom.min.js",
+            "wwwroot/Assets/plugins/fullcalendar/fullcalendar.min.js",
+            "wwwroot/Assets/plugins/fullcalendar/lang-all.js",
+            "wwwroot/Assets/plugins/bootbox/bootbox.min.js",
+            "wwwroot/Assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"
+        ],
+        "minify": {
+            "enabled": true
+        }
+    }
 ]

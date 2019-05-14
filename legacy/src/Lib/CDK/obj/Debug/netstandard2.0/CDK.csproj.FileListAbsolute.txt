@@ -1,9 +1,0 @@
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\obj\Debug\netstandard2.0\CDK.csprojAssemblyReference.cache
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\obj\Debug\netstandard2.0\CDK.csproj.CoreCompileInputs.cache
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\obj\Debug\netstandard2.0\CDK.AssemblyInfoInputs.cache
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\obj\Debug\netstandard2.0\CDK.AssemblyInfo.cs
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\bin\Debug\netstandard2.0\CDK.deps.json
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\bin\Debug\netstandard2.0\CDK.dll
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\bin\Debug\netstandard2.0\CDK.pdb
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\obj\Debug\netstandard2.0\CDK.dll
-C:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Lib\CDK\obj\Debug\netstandard2.0\CDK.pdb

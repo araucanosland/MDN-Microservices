@@ -1,9 +1,0 @@
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\bin\Debug\netstandard2.0\CRM.Security.Entity.deps.json
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\bin\Debug\netstandard2.0\CRM.Security.Entity.dll
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\bin\Debug\netstandard2.0\CRM.Security.Entity.pdb
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\obj\Debug\netstandard2.0\CRM.Security.Entity.csprojAssemblyReference.cache
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\obj\Debug\netstandard2.0\CRM.Security.Entity.csproj.CoreCompileInputs.cache
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\obj\Debug\netstandard2.0\CRM.Security.Entity.AssemblyInfoInputs.cache
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\obj\Debug\netstandard2.0\CRM.Security.Entity.AssemblyInfo.cs
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\obj\Debug\netstandard2.0\CRM.Security.Entity.dll
-c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Entity\obj\Debug\netstandard2.0\CRM.Security.Entity.pdb

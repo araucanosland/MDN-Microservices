@@ -1,3 +1,5 @@
 .vs
 bin
 obj
+*.min.js
+*.min.css

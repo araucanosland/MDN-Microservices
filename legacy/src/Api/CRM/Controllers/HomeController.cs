@@ -47,22 +47,24 @@ namespace CRM.Controllers
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        LoginResponse respuesta = SimpleJson.DeserializeObject<LoginResponse>(response.Content);
-
-
-                        Response.Cookies.Append("Token", response.Headers.Where(x => x.Name == "Token").FirstOrDefault().Value.ToString());
-                        Response.Cookies.Append("Rut", RE);
+                        //LoginResponse respuesta = SimpleJson.DeserializeObject<LoginResponse>(response.Content);
+                        LoginResponse respuesta = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResponse>(response.Content);
+                        
+                        Response.Cookies.Append("Token", respuesta.Token);
+                        Response.Cookies.Append("Rut", respuesta.Rut);
                         Response.Cookies.Append("Usuario", respuesta.Usuario);
                         Response.Cookies.Append("Cargo", respuesta.Cargo);
+
                         
                         if (respuesta.Cargo.Equals("Administrador Sistema") || respuesta.Cargo.Equals("Usuario Avanzado") || respuesta.Cargo.Contains("Zonal"))
                         {
-                            Response.Cookies.Append("X-Support-Token", response.Headers.Where(x => x.Name == "Token").FirstOrDefault().Value.ToString());
+                            Response.Cookies.Append("X-Support-Token", respuesta.Token);
                         }
 
                         Response.Cookies.Append("Noticia", respuesta.Noticia);
-                        Response.Cookies.Append("respuesta.Oficina", respuesta.Noticia);
+                        Response.Cookies.Append("Oficina", respuesta.Oficina);
                        
+                        Response.Cookies.Append("_s", Newtonsoft.Json.JsonConvert.SerializeObject(respuesta).ToString());
 
                         int install = Convert.ToInt32(respuesta.Instalar);
                         int multi = Convert.ToInt32(respuesta.Multi);
@@ -81,7 +83,7 @@ namespace CRM.Controllers
                             }
                             else
                             {
-                                return Redirect(_config.GetValue<string>("BaseURL") + response.Headers.Where(x => x.Name == "Location").FirstOrDefault().Value.ToString());
+                                return Redirect(_config.GetValue<string>("BaseURL") + _config.GetValue<string>("UrlInicio"));
                             }
                         }
                     }

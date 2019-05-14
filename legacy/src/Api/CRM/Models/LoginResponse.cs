@@ -9,5 +9,7 @@ namespace CRM.Models
         public string Instalar { get; set; }
         public string Multi { get; set; }
         public string Oficina { get; set; }
+        public string Token { get; set; }
+        public int TokenExpiry { get; set; }
     }
 }

@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using CRM.Models;
 
 namespace IA.Security.Api.Controllers
 {
@@ -40,14 +41,12 @@ namespace IA.Security.Api.Controllers
         //[ApiAuthenticationFilter(false)]
         [HttpGet]
         [Route("authenticate")]
-        public HttpResponseMessage Authenticate(string re)
+        public IActionResult Authenticate(string re)
         {
             Usuario usr = UsuarioDataAccess.UsuarioData(re);
             if (usr.IdUsuario != 0)
             {
-                var x = GetAuthToken(usr);
-                x.Headers.Location = new Uri(_config.GetValue<string>("ServidorApi") + _config.GetValue<string>("UrlInicio"));
-                return x;
+                return GetAuthToken(usr);
             }
             return null;
         }
@@ -56,7 +55,7 @@ namespace IA.Security.Api.Controllers
         //[ApiAuthenticationFilter(false)]
         [HttpPost]
         [Route("v2/authenticate")]
-        public HttpResponseMessage Authenticate2(UsuarioAccesoWeb acceso)
+        public IActionResult Authenticate2(UsuarioAccesoWeb acceso)
         {
             Usuario usr = UsuarioDataAccess.UsuarioData(acceso.Cuenta);
             if (usr.IdUsuario != 0)
@@ -66,9 +65,7 @@ namespace IA.Security.Api.Controllers
                     var enkpas = GetMd5Hash(md5Hash, acceso.Clave);
                     if (usr.ClaveAcceso.Equals(enkpas.ToUpper()))
                     {
-                        var x = GetAuthToken(usr);
-                        x.Headers.Location = new Uri(_config.GetValue<string>("ServidorApi") + _config.GetValue<string>("UrlInicio"));
-                        return x;
+                        return GetAuthToken(usr);
                     }
                 }
             }
@@ -80,12 +77,12 @@ namespace IA.Security.Api.Controllers
         //[ApiAuthenticationFilter(false)]
         [HttpPost, HttpOptions]
         [Route("call/authenticate")]
-        public HttpResponseMessage AuthenticateCall(UsuarioAccesoWeb acceso)
+        public IActionResult AuthenticateCall(UsuarioAccesoWeb acceso)
         {
 
             if (acceso == null)
             {
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return Ok();
             }
             else
             {
@@ -97,9 +94,8 @@ namespace IA.Security.Api.Controllers
                         var enkpas = GetMd5Hash(md5Hash, acceso.Clave);
                         if (usr.ClaveAcceso.Equals(enkpas.ToUpper()))
                         {
-                            var x = GetAuthToken(usr);
-                            x.Headers.Location = new Uri(_config.GetValue<string>("ServidorApi") + _config.GetValue<string>("UrlInicio"));
-                            return x;
+                            return GetAuthToken(usr);
+                            
                         }
                     }
                 }
@@ -158,7 +154,7 @@ namespace IA.Security.Api.Controllers
         }
 
 
-        private HttpResponseMessage GetAuthToken(Usuario user)
+        private IActionResult GetAuthToken(Usuario user)
         {
             //si en algun momento se necesita validar con ldap de araucana, vamos a ocupar este metodo para trabajarlo
             Token token = _tokenServices.GenerateToken(user.IdUsuario);
@@ -175,7 +171,7 @@ namespace IA.Security.Api.Controllers
             //response.Headers.Add("Instalar", user.Instalacion.ToString());
             //,Uname,Cargo,Noticia,Oficina,Multi,Instalar
             response.Headers.Add("Access-Control-Expose-Headers", "Token,TokenExpiry");
-            var obj = new
+            var obj = new LoginResponse
             {
                 Rut = user.RutUsuario,
                 Usuario = user.Nombres,
@@ -183,11 +179,13 @@ namespace IA.Security.Api.Controllers
                 Noticia = user.NoticiInicio.ToString(),
                 Instalar = user.Instalacion.ToString(),
                 Multi = DotacionDataAccess.MultiLoginByRut(user.RutUsuario).Count.ToString(),
-                Oficina = DotacionDataAccess.ObtenerByRut(user.RutUsuario).IdSucursal.ToString()
+                Oficina = DotacionDataAccess.ObtenerByRut(user.RutUsuario).IdSucursal.ToString(),
+                Token = token.AuthToken,
+                TokenExpiry = _config.GetValue<int>("AuthTokenExpiry")
             };
 
-            response.Content = new JsonContent(obj);
-            return response;
+            //response.Content = new JsonContent(obj);
+            return Ok(obj);
         }
 
 

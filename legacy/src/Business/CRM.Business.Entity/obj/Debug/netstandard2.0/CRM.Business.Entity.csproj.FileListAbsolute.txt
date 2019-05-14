@@ -1,0 +1,9 @@
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\bin\Debug\netstandard2.0\CRM.Business.Entity.deps.json
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\bin\Debug\netstandard2.0\CRM.Business.Entity.dll
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\bin\Debug\netstandard2.0\CRM.Business.Entity.pdb
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\obj\Debug\netstandard2.0\CRM.Business.Entity.csprojAssemblyReference.cache
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\obj\Debug\netstandard2.0\CRM.Business.Entity.csproj.CoreCompileInputs.cache
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\obj\Debug\netstandard2.0\CRM.Business.Entity.AssemblyInfoInputs.cache
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\obj\Debug\netstandard2.0\CRM.Business.Entity.AssemblyInfo.cs
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\obj\Debug\netstandard2.0\CRM.Business.Entity.dll
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Business\CRM.Business.Entity\obj\Debug\netstandard2.0\CRM.Business.Entity.pdb

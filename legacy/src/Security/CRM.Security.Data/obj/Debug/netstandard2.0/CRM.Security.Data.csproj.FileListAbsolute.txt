@@ -1,0 +1,14 @@
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CRM.Security.Data.deps.json
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CRM.Security.Data.dll
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CRM.Security.Data.pdb
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CDK.dll
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CRM.Security.Entity.dll
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CRM.Security.Entity.pdb
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\bin\Debug\netstandard2.0\CDK.pdb
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.csprojAssemblyReference.cache
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.csproj.CoreCompileInputs.cache
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.AssemblyInfoInputs.cache
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.AssemblyInfo.cs
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.csproj.CopyComplete
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.dll
+c:\Users\17042783-1.LAARAUCANA\Source\Mdn-Dev\MDN-Microservices\legacy\src\Security\CRM.Security.Data\obj\Debug\netstandard2.0\CRM.Security.Data.pdb
